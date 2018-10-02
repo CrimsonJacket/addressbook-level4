@@ -20,12 +20,14 @@
 <li><a href="#saving-module-configurations-code-save-code">3.5. Saving module configurations: <code>save</code></a></li>
 <li><a href="#loading-module-configurations-code-load-code-code-coming-in-v2-0-code">3.6. Loading module configurations: <code>load</code> <code>[coming in v2.0]</code></a></li>
 <li><a href="#generate-module-plan-code-generate-code">3.7. Generate module plan : <code>generate</code></a></li>
-<li><a href="#register-a-student-account-code-register-code">3.8. Register a Student Account : <code>register</code></a></li>
-<li><a href="#encryption-code-no-encrypt-code-code-coming-in-v2-0-code">3.9. Encryption: <code>no-encrypt</code> <code>[coming in v2.0]</code></a></li>
-<li><a href="#set-module-preference-code-set-mod-code">3.10. Set module preference: <code>set-mod</code></a></li>
-<li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.11. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
-<li><a href="#set-theme-code-set-theme-code">3.12. Set theme: <code>set-theme</code></a></li>
-<li><a href="#add-admin-code-addadmin-code">3.13. Add Admin: <code>addAdmin</code></a></li>
+<li><a href="#login-to-user-account-code-login-code-code-coming-in-v2-0-code">3.8. Login to User Account : <code>login</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#register-a-student-account-code-register-code">3.9. Register a Student Account : <code>register</code></a></li>
+<li><a href="#edit-student-account-code-editstudent-code-code-coming-in-v2-0-code">3.10. Edit Student Account : <code>editStudent</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#encryption-code-no-encrypt-code-code-coming-in-v2-0-code">3.11. Encryption: <code>no-encrypt</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#set-module-preference-code-set-mod-code">3.12. Set module preference: <code>set-mod</code></a></li>
+<li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.13. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
+<li><a href="#set-theme-code-set-theme-code">3.14. Set theme: <code>set-theme</code></a></li>
+<li><a href="#add-admin-code-addadmin-code">3.15. Add Admin: <code>addAdmin</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -223,14 +225,53 @@ Format: <code>generate</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="register-a-student-account-code-register-code"><a class="link" href="#register-a-student-account-code-register-code">3.8. Register a Student Account : <code>register</code></a></h3>
+<h3 id="login-to-user-account-code-login-code-code-coming-in-v2-0-code"><a class="link" href="#login-to-user-account-code-login-code-code-coming-in-v2-0-code">3.8. Login to User Account : <code>login</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>Register a Student Account with the input parameters.<br>
-Format: <code>register user/[USERNAME] pass/[PASSWORD] pic/[PATH_TO_PIC] enroll/[ENROLLMENT_DATE] maj/[MAJOR_CODE] min/[MINOR_CODE]</code></p>
+<p>Login to the User Account with the corresponding username.<br>
+Format: <code>login user/[USERNAME] pass/[PASSWORD] userData/[PATH_TO_DATA_FILE]</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encryption-code-no-encrypt-code-code-coming-in-v2-0-code"><a class="link" href="#encryption-code-no-encrypt-code-code-coming-in-v2-0-code">3.9. Encryption: <code>no-encrypt</code> <code>[coming in v2.0]</code></a></h3>
+<h3 id="register-a-student-account-code-register-code"><a class="link" href="#register-a-student-account-code-register-code">3.9. Register a Student Account : <code>register</code></a></h3>
+<div class="paragraph">
+<p>Register a Student Account with the input parameters.<br>
+Format: <code>register user/[USERNAME] pass/[PASSWORD] name/[NAME] pic/[PATH_TO_PIC] enroll/[ENROLLMENT_DATE] maj/[MAJOR_CODE] min/[MINOR_CODE]</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-student-account-code-editstudent-code-code-coming-in-v2-0-code"><a class="link" href="#edit-student-account-code-editstudent-code-code-coming-in-v2-0-code">3.10. Edit Student Account : <code>editStudent</code> <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>Edits the Student specific information as specified in the input parameters.<br>
+Format: <code>editStudent [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
+</div>
+<div class="paragraph">
+<p>Available Options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Edit Name : <code>name/[NAME]</code></p>
+</li>
+<li>
+<p>Edit Profile Picture: <code>pic/[PATH_TO_PIC]</code></p>
+</li>
+<li>
+<p>Edit Enrollment Date: <code>enroll/[ENROLLMENT_DATE]</code></p>
+</li>
+<li>
+<p>Edit Major : <code>maj/[MAJOR_CODE]</code></p>
+</li>
+<li>
+<p>Edit Minor : <code>min/[MINOR_CODE]</code></p>
+</li>
+<li>
+<p>Edit Modules Taken : <code>modules/[MODULE_CODE]</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="encryption-code-no-encrypt-code-code-coming-in-v2-0-code"><a class="link" href="#encryption-code-no-encrypt-code-code-coming-in-v2-0-code">3.11. Encryption: <code>no-encrypt</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>Encryption of information is enabled by default. If users wish to store the saved configuration in plaintext, they are required to explicitly disable this feature.<br>
 Format: <code>no-encrypt</code></p>
@@ -248,7 +289,7 @@ The application will save the configuration file in plaintext.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-module-preference-code-set-mod-code"><a class="link" href="#set-module-preference-code-set-mod-code">3.10. Set module preference: <code>set-mod</code></a></h3>
+<h3 id="set-module-preference-code-set-mod-code"><a class="link" href="#set-module-preference-code-set-mod-code">3.12. Set module preference: <code>set-mod</code></a></h3>
 <div class="paragraph">
 <p>Setting a preferred semester to take a module.<br>
 Format: <code>set-mod &lt;MOD_CODE&gt; &lt;SEMESTER&gt;</code></p>
@@ -266,7 +307,7 @@ Configures CS2103T to be taken in year 2 semester 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code"><a class="link" href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.11. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></h3>
+<h3 id="set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code"><a class="link" href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.13. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></h3>
 <div class="paragraph">
 <p>Setting the maximum number of semesters during candidature.<br>
 Format: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></p>
@@ -283,7 +324,7 @@ Format: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-theme-code-set-theme-code"><a class="link" href="#set-theme-code-set-theme-code">3.12. Set theme: <code>set-theme</code></a></h3>
+<h3 id="set-theme-code-set-theme-code"><a class="link" href="#set-theme-code-set-theme-code">3.14. Set theme: <code>set-theme</code></a></h3>
 <div class="paragraph">
 <p>Set a different theme based on a configuration file.<br>
 Format: <code>set-theme &lt;FILE_NAME&gt;</code></p>
@@ -300,7 +341,7 @@ Format: <code>set-theme &lt;FILE_NAME&gt;</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-admin-code-addadmin-code"><a class="link" href="#add-admin-code-addadmin-code">3.13. Add Admin: <code>addAdmin</code></a></h3>
+<h3 id="add-admin-code-addadmin-code"><a class="link" href="#add-admin-code-addadmin-code">3.15. Add Admin: <code>addAdmin</code></a></h3>
 <div class="paragraph">
 <p>Create and add a new Admin account.<br>
 Format: <code>addAdmin user\[USERNAME] pass\[PASSWORD] n\[NAME] ptp\[PATH_TO_PIC] salary\[SALARY] date\[EMPLOYMENTDATE]</code></p>
@@ -354,7 +395,13 @@ Format: <code>addAdmin user\[USERNAME] pass\[PASSWORD] n\[NAME] ptp\[PATH_TO_PIC
 <p><strong>Generate</strong> : <code>generate</code></p>
 </li>
 <li>
-<p><strong>Register</strong> : <code>register user/[USERNAME] pass/[PASSWORD] pic/[PATH_TO_PIC] enroll/[ENROLLMENT_DATE] maj/[MAJOR_CODE] min/[MINOR_CODE]</code></p>
+<p><strong>Login</strong> : <code>login user/[USERNAME] pass/[PASSWORD] userData/[PATH_TO_DATA_FILE]</code></p>
+</li>
+<li>
+<p><strong>Register</strong> : <code>register user/[USERNAME] pass/[PASSWORD] name/[NAME] pic/[PATH_TO_PIC] enroll/[ENROLLMENT_DATE] maj/[MAJOR_CODE] min/[MINOR_CODE]</code></p>
+</li>
+<li>
+<p><strong>Edit Student</strong> : <code>editStudent [OPTION]/[INPUT]&#8230;&#8203;</code></p>
 </li>
 <li>
 <p><strong>Encryption</strong> : <code>no-encrypt</code></p>
@@ -366,4 +413,4 @@ date\[EMPLOYMENTDATE]</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-02 12:52:47 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-02 13:44:30 UTC</div></div></div></body></html>
