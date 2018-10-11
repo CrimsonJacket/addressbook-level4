@@ -73,12 +73,11 @@
 <li><a href="#use-cases">Appendix D: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
 <li><a href="#glossary">Appendix F: Glossary</a></li>
-<li><a href="#product-survey">Appendix G: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
+<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">H.2. Deleting a person</a></li>
-<li><a href="#saving-data">H.3. Saving data</a></li>
+<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
+<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
+<li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -2194,7 +2193,7 @@ A candidature planner for NUS Undergraduates to assist them in their module plan
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>Load existing module configurations.</p>
+<p>1a. Load existing module configurations.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2217,19 +2216,6 @@ A candidature planner for NUS Undergraduates to assist them in their module plan
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>Load updated module configurations.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
 </div>
 <h3 id="use-case-generate-candidature-plan" class="discrete">Use case: Generate Candidature Plan</h3>
 <div class="paragraph">
@@ -2257,13 +2243,13 @@ A candidature planner for NUS Undergraduates to assist them in their module plan
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>Student able to generate plan based on years of candidature using relevant command [<code>generate &lt;NUM_YEAR&gt;year</code>].</p>
+<p>3a. Student able to generate plan based on years of candidature using relevant command [<code>generate &lt;NUM_YEAR&gt;year</code>].</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 <li>
-<p>Student able to generate plan based on specifying the semester in which a module is preferred to be taken using relevant command [<code>generate &lt;MOD_CODE&gt;&lt;SEMESTER&gt;</code>]
+<p>3b. Student able to generate plan based on specifying the semester in which a module is preferred to be taken using relevant command [<code>generate &lt;MOD_CODE&gt;&lt;SEMESTER&gt;</code>]
 Use case ends.</p>
 </li>
 </ul>
@@ -2333,7 +2319,16 @@ Use case ends.</p>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 <li>
-<p>Should be able to generate a user’s schedule without a significant delay</p>
+<p>Should be able to generate a user’s schedule under less than 10 seconds.</p>
+</li>
+<li>
+<p>Sensitive information (e.g. passwords) should not be saved in plaintext.</p>
+</li>
+<li>
+<p>A user should be able to remove any personal identifiable information <strong>(PII)</strong> from the application.</p>
+</li>
+<li>
+<p>An administrator should not be able to log in on behalf of a user.</p>
 </li>
 </ol>
 </div>
@@ -2344,53 +2339,33 @@ Use case ends.</p>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
+<dt class="hdlist1"><a id="cli"></a> CLI</dt>
+<dd>
+<p>CLI is an acronym for Command Line Interface. It is a text-based interface which facilitates interaction between the user and the software.</p>
+</dd>
 <dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
 <dd>
 <p>Windows, Linux, Unix, OS-X</p>
+</dd>
+<dt class="hdlist1"><a id="module"></a> Modules</dt>
+<dd>
+<p>Modules are classes on a specific set of topic, and assignments are often included to facilitate the learning process.
+Each module has its own code and module name, when coupled acts as an unique identifier to the module.</p>
+</dd>
+<dt class="hdlist1"><a id="user"></a> User</dt>
+<dd>
+<p>There are two types of use mainly <code>Student</code> and <code>Administrator</code>. Each of them have different functions implemented based on their role.</p>
+</dd>
+<dt class="hdlist1"><a id="xml"></a> XML</dt>
+<dd>
+<p>XML represent eXtensible Markup Language. It is used to create a common information format which facilitates the sharing of information through different interfaces.</p>
 </dd>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix G: Product Survey</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Product Name</strong></p>
-</div>
-<div class="paragraph">
-<p>Author: &#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Cons:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a></h2>
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
@@ -2408,7 +2383,7 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">H.1. Launch and Shutdown</a></h3>
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2446,7 +2421,7 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.2. Deleting a person</a></h3>
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2478,7 +2453,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.3. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2498,4 +2473,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-11 11:32:43 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-11 12:17:23 UTC</div></div></div></body></html>
