@@ -29,8 +29,8 @@
 <li><a href="#set-theme-code-set-theme-code">3.14. Set theme: <code>set-theme</code></a></li>
 <li><a href="#add-a-new-administrator-account-code-addadmin-code-code-coming-in-v2-0-code">3.15. Add a new administrator account: <code>addAdmin</code> <code>[coming in v2.0]</code></a></li>
 <li><a href="#remove-a-existing-administrator-account-code-removeadmin-code-code-coming-in-v2-0-code">3.16. Remove a existing administrator account: <code>removeAdmin</code> <code>[coming in v2.0]</code></a></li>
-<li><a href="#add-a-new-module-to-database-code-addmoduledb-code-code-coming-in-v2-0-code">3.17. Add a new module to database: <code>addModuleDB</code> <code>[coming in v2.0]</code></a></li>
-<li><a href="#remove-a-existing-module-from-database-code-removemoduledb-code-code-coming-in-v2-0-code">3.18. Remove a existing module from database: <code>removeModuleDB</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#add-a-new-module-to-database-code-addmoduledb-code-code-coming-in-v1-2-code">3.17. Add a new module to database: <code>addModuleDB</code> <code>[coming in v1.2]</code></a></li>
+<li><a href="#remove-a-existing-module-from-database-code-removemoduledb-code-code-coming-in-v1-2-code">3.18. Remove a existing module from database: <code>removeModuleDB</code> <code>[coming in v1.2]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -365,7 +365,7 @@ Format: <code>set-theme &lt;FILE_NAME&gt;.xml</code></p>
 <h3 id="add-a-new-administrator-account-code-addadmin-code-code-coming-in-v2-0-code"><a class="link" href="#add-a-new-administrator-account-code-addadmin-code-code-coming-in-v2-0-code">3.15. Add a new administrator account: <code>addAdmin</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>Create and add a new adminstrator account.<br>
-Format: <code>addAdmin user\[USERNAME] pass\[PASSWORD] n\[NAME] ptp\[PATH_TO_PIC] salary\[SALARY] date\[EMPLOYMENTDATE]</code></p>
+Format: <code>addAdmin user\&lt;USERNAME&gt; pass\&lt;PASSWORD&gt; n\&lt;NAME&gt; ptp\&lt;PATH_TO_PIC&gt; salary\&lt;SALARY&gt; date\&lt;EMPLOYMENTDATE&gt;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -373,7 +373,8 @@ Format: <code>addAdmin user\[USERNAME] pass\[PASSWORD] n\[NAME] ptp\[PATH_TO_PIC
 <div class="ulist">
 <ul>
 <li>
-<p><code>addAdmin user\master pass\myPass n\John Doe ptp\johnDoe.img salary\4000 date\1/1/2018</code></p>
+<p><code>addAdmin user\master pass\myPass n\John Doe ptp\johnDoe.img salary\4000 date\01/01/2018</code><br>
+Creates a new administrator account with the following stated details.</p>
 </li>
 </ul>
 </div>
@@ -382,7 +383,7 @@ Format: <code>addAdmin user\[USERNAME] pass\[PASSWORD] n\[NAME] ptp\[PATH_TO_PIC
 <h3 id="remove-a-existing-administrator-account-code-removeadmin-code-code-coming-in-v2-0-code"><a class="link" href="#remove-a-existing-administrator-account-code-removeadmin-code-code-coming-in-v2-0-code">3.16. Remove a existing administrator account: <code>removeAdmin</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>Remove a currently existing administrator account.<br>
-Format: <code>removeAdmin &lt;USERNAME</code></p>
+Format: <code>removeAdmin &lt;USERNAME&gt;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -397,10 +398,10 @@ Removes a administrator account with username "adminUsername" if it exists.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-new-module-to-database-code-addmoduledb-code-code-coming-in-v2-0-code"><a class="link" href="#add-a-new-module-to-database-code-addmoduledb-code-code-coming-in-v2-0-code">3.17. Add a new module to database: <code>addModuleDB</code> <code>[coming in v2.0]</code></a></h3>
+<h3 id="add-a-new-module-to-database-code-addmoduledb-code-code-coming-in-v1-2-code"><a class="link" href="#add-a-new-module-to-database-code-addmoduledb-code-code-coming-in-v1-2-code">3.17. Add a new module to database: <code>addModuleDB</code> <code>[coming in v1.2]</code></a></h3>
 <div class="paragraph">
 <p>Creates a new module and add it to the module database.<br>
-Format: <code>createModuleDB code\[MODULE_CODE] department\[DEPARTMENT] title\[TITLE] credit\[CREDIT] available\[SEM1][SEM2][SPECIAL_TERM1][SPECIAL_TERM2] description\[DESCRIPTION]</code></p>
+Format: <code>addModuleDB code\&lt;MODULE_CODE&gt; department\&lt;DEPARTMENT&gt; title\&lt;TITLE&gt; credit\&lt;CREDIT&gt; available\&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt; description\&lt;DESCRIPTION&gt;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -408,13 +409,14 @@ Format: <code>createModuleDB code\[MODULE_CODE] department\[DEPARTMENT] title\[T
 <div class="ulist">
 <ul>
 <li>
-<p><code>createModuleDB code\CS2109 department\Computing title\The New Module credit\4 available\yynn description\This course is newly offered by the school of computing. Visit the module website for more details</code></p>
+<p><code>addModuleDB code\CS2109 department\Computing title\The New Module credit\4 available\yynn description\This course is newly offered by the school of computing. Visit the module website for more details</code><br>
+Create and add a new module with module code "CS2109" and the stated details to the module database.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-a-existing-module-from-database-code-removemoduledb-code-code-coming-in-v2-0-code"><a class="link" href="#remove-a-existing-module-from-database-code-removemoduledb-code-code-coming-in-v2-0-code">3.18. Remove a existing module from database: <code>removeModuleDB</code> <code>[coming in v2.0]</code></a></h3>
+<h3 id="remove-a-existing-module-from-database-code-removemoduledb-code-code-coming-in-v1-2-code"><a class="link" href="#remove-a-existing-module-from-database-code-removemoduledb-code-code-coming-in-v1-2-code">3.18. Remove a existing module from database: <code>removeModuleDB</code> <code>[coming in v1.2]</code></a></h3>
 <div class="paragraph">
 <p>Removes a existing module from the module database.<br>
 Format: <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
@@ -481,10 +483,15 @@ Removes a module with module code "CS2109" if it exists.</p>
 <p><strong>Encryption</strong> : <code>no-encrypt</code></p>
 </li>
 <li>
-<p><strong>Add Admin</strong> : <code>addAdmin user\[USERNAME] pass\[PASSWORD] n\[NAME] ptp\[PATH_TO_PIC] salary\[SALARY]
-date\[EMPLOYMENTDATE]</code></p>
+<p><strong>Add Admin</strong> : <code>addAdmin user\&lt;USERNAME&gt; pass\&lt;PASSWORD&gt; n\&lt;NAME&gt; ptp\&lt;PATH_TO_PIC&gt; salary\&lt;SALARY&gt; date\&lt;EMPLOYMENT_DATE&gt;</code></p>
+</li>
+<li>
+<p><strong>Add Module to Database</strong> : <code>addModuleDB code\&lt;MODULE_CODE&gt; department\&lt;DEPARTMENT&gt; title\&lt;TITLE&gt; credit\&lt;CREDIT&gt; available\&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt; description\&lt;DESCRIPTION&gt;</code></p>
+</li>
+<li>
+<p><strong>Remove Module from Database</strong> : <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-15 14:52:22 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 05:47:39 UTC</div></div></div></body></html>
