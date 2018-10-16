@@ -29,13 +29,14 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#user-module-management">3.1. User Module Management</a></li>
-<li><a href="#module-database-administration">3.2. Module Database Administration</a></li>
-<li><a href="#undo-redo-feature">3.3. Undo/Redo feature</a></li>
-<li><a href="#save-user-feature">3.4. Save User Feature</a></li>
-<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#generate">3.1. Generate</a></li>
+<li><a href="#user-module-management">3.2. User Module Management</a></li>
+<li><a href="#module-database-administration">3.3. Module Database Administration</a></li>
+<li><a href="#undo-redo-feature">3.4. Undo/Redo feature</a></li>
+<li><a href="#save-user-feature">3.5. Save User Feature</a></li>
+<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -588,7 +589,137 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="user-module-management"><a class="link" href="#user-module-management">3.1. User Module Management</a></h3>
+<h3 id="generate"><a class="link" href="#generate">3.1. Generate</a></h3>
+<div class="paragraph">
+<p>Generate is a command for student users to generate a schedule containing the modules to take in each
+semester during their entire university candidature.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The generate command can only be executed by users of type <code>Student</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The section below will describe in detail the current implementation and design considerations of the
+generate feature.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The generate command is facilitated by <code>GenerateCommand</code> class. It attempts to generate a schedule based on
+ the student&#8217;s staged modules. It makes use of the <code>Generate</code> class from the <code>Logic</code> package to create a
+ schedule.</p>
+</div>
+<div class="paragraph">
+<p>The <code>GenerateCommand</code> class extends from the <code>Command</code> class. Figure 1 as shown below depicts the UML
+diagram for the <code>GenerateCommand</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GenerateCommandUML.png" alt="GenerateCommandUML" width=""250">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. GenerateCommand UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p><code>GenerateCommand</code> uses multiple components of the modsUni application. The sequence diagram shown below in
+ Figure 2 illustrates the interactions between some of these components.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SequenceDiagramforGenerate.png" alt="SequenceDiagramforGenerate" width=""250">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. High Level Sequence Diagram for the <code>generate</code> command</em></p>
+</div>
+<div class="sect4">
+<h5 id="implementation-of-the-generate-command"><a class="link" href="#implementation-of-the-generate-command">Implementation of the generate command</a></h5>
+<div class="paragraph">
+<p>Given below is an example usage scenario of how the generate command behaves:</p>
+</div>
+<div class="paragraph">
+<p>The user launches the application for the first time and the <code>currentUser</code> will at this point be <code>null</code>.
+Issuing the generate command at this point will throw an error message indicating to the user that they have
+not registered an account or they are currently not logged in.</p>
+</div>
+<div class="paragraph">
+<p>In order to utilise the generate command, the user must perform one of the following options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The user executes <code>register user/demo &#8230;&#8203;</code> to register a new <code>Student</code> account, followed by <code>addModuleS
+cs1010</code>.</p>
+</li>
+<li>
+<p>The user executes <code>login user/demo pass/P@ssw0rd</code> to log into account, followed by <code>addModuleS cs1010</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A new <code>Student</code> would be initialized and automatically set as the <code>currentUser</code>. The module cs1010 would
+also be added to the student&#8217;s staged module list, enabling the student to perform generate command.<br>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-to-generate-a-schedule"><a class="link" href="#aspect-how-to-generate-a-schedule">Aspect: How to generate a schedule</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Using of a separate <code>Generate</code> class to encapsulate the logic for
+generating the schedule.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Modification made to the generating of schedule does not affect the <code>Student</code> model.</p>
+</li>
+<li>
+<p>Cons: This approach adds complexity to the design of the application.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Adding the logic for generating the schedule to the <code>Student</code> model.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This alternative is easier to implement.</p>
+</li>
+<li>
+<p>Cons: It breaks the single responsibility principle of the <code>Student</code> model.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="user-module-management"><a class="link" href="#user-module-management">3.2. User Module Management</a></h3>
 <div class="paragraph">
 <p>User Module Management involves mainly the interaction between users and their module lists.
 A user is able to add and remove the module only if he is a student and the module exists in the database.
@@ -598,7 +729,7 @@ A user is allowed to search a module in the database.</p>
 <p>The section below will describe in detail the Current Implementation and the Design Considerations of the User Module Management.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The User Module Management is facilitated by the following classes:</p>
 </div>
@@ -724,7 +855,7 @@ event to show the changes of <code>currentModuleList</code>. UI will reflect the
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-search-the-module-in-the-database"><a class="link" href="#aspect-search-the-module-in-the-database">Aspect: Search the module in the database</a></h5>
 <div class="ulist">
@@ -761,7 +892,7 @@ event to show the changes of <code>currentModuleList</code>. UI will reflect the
 </div>
 </div>
 <div class="sect2">
-<h3 id="module-database-administration"><a class="link" href="#module-database-administration">3.2. Module Database Administration</a></h3>
+<h3 id="module-database-administration"><a class="link" href="#module-database-administration">3.3. Module Database Administration</a></h3>
 <div class="paragraph">
 <p>Module database administration is a series of commands that administrators can use to make necessary changes to keep
 the module database up to date, or to cater to their own needs.</p>
@@ -779,7 +910,7 @@ The commands pertaining to module database administration can only be executed b
 </table>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Module database administration mechanism is facilitated by <code>ModuleList</code> in <code>Model</code> via the following operations:</p>
 </div>
@@ -959,7 +1090,7 @@ For this example usage scenario, we assume that module "CS2109" already existed.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-add-remove-executes"><a class="link" href="#aspect-how-add-remove-executes">Aspect: How add &amp; remove executes</a></h5>
 <div class="ulist">
@@ -1031,9 +1162,9 @@ another module just to store the other module codes. This can be heavy on memory
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.3. Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.4. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -1163,7 +1294,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1233,7 +1364,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="save-user-feature"><a class="link" href="#save-user-feature">3.4. Save User Feature</a></h3>
+<h3 id="save-user-feature"><a class="link" href="#save-user-feature">3.5. Save User Feature</a></h3>
 <div class="paragraph">
 <p>The save user feature involves mainly the saving process of a user&#8217;s information.
 A user is able to save their information only after they have logged in/registered an account.</p>
@@ -1242,7 +1373,7 @@ A user is able to save their information only after they have logged in/register
 <p>The section below will describe in detail the current implementation and the design considerations of the save user feature.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>save</code> mechanism of modsUni is facilitated by <code>SaveCommand</code> class and is event-driven.
 It allows a user to save their own data in modsUni as a XML file.
@@ -1361,7 +1492,7 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-data-to-save"><a class="link" href="#aspect-data-to-save">Aspect: Data to save</a></h5>
 <div class="ulist">
@@ -1398,20 +1529,20 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1442,7 +1573,7 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3084,4 +3215,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 10:19:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 11:27:19 UTC</div></div></div></body></html>
