@@ -29,14 +29,15 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#generate">3.1. Generate</a></li>
-<li><a href="#user-module-management">3.2. User Module Management</a></li>
-<li><a href="#module-database-administration">3.3. Module Database Administration</a></li>
-<li><a href="#undo-redo-feature">3.4. Undo/Redo feature</a></li>
-<li><a href="#save-user-feature">3.5. Save User Feature</a></li>
-<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#user-account-management">3.1. User Account Management</a></li>
+<li><a href="#generate">3.2. Generate</a></li>
+<li><a href="#user-module-management">3.3. User Module Management</a></li>
+<li><a href="#module-database-administration">3.4. Module Database Administration</a></li>
+<li><a href="#undo-redo-feature">3.5. Undo/Redo feature</a></li>
+<li><a href="#save-user-feature">3.6. Save User Feature</a></li>
+<li><a href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.8. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -589,7 +590,322 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="generate"><a class="link" href="#generate">3.1. Generate</a></h3>
+<h3 id="user-account-management"><a class="link" href="#user-account-management">3.1. User Account Management</a></h3>
+<div class="paragraph">
+<p>User Account Management involves mainly the authentication process of the users.
+Only once they are authenticated, will their respective user data be loaded into the application.
+Additionally, it is only by registering/logging in will users be able to access and manipulate their account details.<br>
+This section will describe in detail the Current Implementation and the Design Considerations of the User Account Management feature.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The User Account Management mechanism is facilitated by the following classes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Credential</code><br>
+It stores <code>Username</code>, <code>Password</code> and <code>Key</code>(coming in v1.3) of the <code>User</code> class.<br>
+Additionally, it implements the following operation(s):</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Credential#isSameCredential(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;Determines if there already exists a <code>Credential</code> with the same username in the <code>CredentialStore</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>CredentialStore</code><br>
+It stores the credentials and the corresponding username in a <code>HashMap</code> object.<br>
+Additionally, it implements the following operations(s):</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CredentialStore#addCredential(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;Adds the input credential into the credential store</p>
+</li>
+<li>
+<p><code>CredentialStore#removeCredential(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;Removes the input credential from the credential store.</p>
+</li>
+<li>
+<p><code>CredentialStore#isVerifiedCredential(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;Checks if there exists the same credential with the matching username and passwords. Returns <code>true</code> if the input credential is verified.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The above operations are exposed in the <code>Model</code> interface as <code>Model#addCredential()</code>, <code>Model#removeCredential()</code> and <code>Model#isVerifiedCredential()</code> respectively.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>User</code><br>
+Contains all the necessary data contained within a single user.<br>
+Currently, there are two Users, each defined by their <code>Roles</code>; namely <code>Student</code> and <code>Admin</code> as defined in the enum class <code>Role.java</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Student</code><br>
+Refers to the majority of the users. It stores variables pertaining to a student user.</p>
+</li>
+<li>
+<p><code>Admin</code><br>
+Refers to the application managers. It stores variables pertaining to an administrator.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Each User types contain different class-variables. Additionally, the sets of commands available for either <code>User</code> types are limited to their respective <code>Role</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="implementation-of-the-register-feature"><a class="link" href="#implementation-of-the-register-feature">Implementation of the register feature</a></h5>
+<div class="paragraph">
+<p>The <code>register</code> feature is facilitated by the <code>RegisterCommand</code> class.
+It allows for students to sign up for a modsUni account, which is required to use the application.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Registering only applies to students. For the creation of <code>Admin</code> Accounts, only existing administrators can create another <code>Admin</code> account
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>RegisterCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML representation of the <code>RegisterCommand</code>.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RegisterCommandUML.png" alt="RegisterCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. UML Diagram of <code>RegisterCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by <code>RegisterCommandParser</code>,
+which returns a <code>RegisterCommand</code> object after parsing Username, Password, Name, Path to Profile Picture, Enrollment Date, Major(s) and Minor(s).
+The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>RegisterCommand</code> is being executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforRegisterCommandLogicAndModel.png" alt="SDforRegisterCommandLogicAndModel" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>RegisterCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 3 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforRegisterCommandOverview.png" alt="SDforRegisterCommandOverview" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3. High-Level Sequence diagram of registering a new student account.</em></p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the register mechanism behaves at each step:</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. At start up, the <code>currentUser</code> in <code>Model</code> is not yet instantiated,
+this would prevent any commands aside from <code>register</code> and <code>login</code> to be available to the user.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>currentUser</code> refers to the user account currently loaded in the modsUni Application.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>register user/demo &#8230;&#8203;</code> to register a new <code>Student</code> account.
+The <code>register</code> command will call <code>Model#addCredential(&#8230;&#8203;)</code> and <code>Model#setCurrentUser(&#8230;&#8203;)</code>.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A new <code>Student</code> would be initialized and automatically set as the <code>currentUser</code>, enabling the user to perform additional commands automatically.<br>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="implementation-of-the-login-feature"><a class="link" href="#implementation-of-the-login-feature">Implementation of the login feature</a></h5>
+<div class="paragraph">
+<p>The <code>login</code> feature is facilitated by the <code>LoginCommand</code> class.
+It allows for students to log into their existing modsUni account, granting them access to their respective user data.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>LoginCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML represenation of the <code>LoginCommand</code>.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LoginCommandUML.png" alt="LoginCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. UML Diagram of <code>LoginCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by <code>LoginCommandParser</code>, which returns a <code>LoginCommand</code> after parsing the username and password inputs.
+The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>LoginCommand</code> is being executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforLoginCommandLogicAndModel.png" alt="SDforLoginCommandLogicAndModel" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>LoginCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 3 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforLoginCommandOverview.png" alt="SDforLoginCommandOverview" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3. High-Level Sequence diagram of the login process.</em></p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the login mechanism behaves at each step:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user launches the application. As explained earlier, since the <code>currentUser</code> in <code>Model</code> is not yet instantiated,
+the user will only be able to execute either the <code>register</code> or <code>login</code> command.<br></p>
+</li>
+<li>
+<p>Having already registered an account, the user can proceed to execute <code>login user/demo pass/#Qwerty123</code> to log in to their account.
+The <code>login</code> command will call <code>Model#isVerifiedCredential(&#8230;&#8203;)</code> to determine if the user input matches a credential in <code>CredentialStore</code>.<br></p>
+</li>
+<li>
+<p>Should the credential be valid and verified, a <code>User</code> will be loaded from a the default <code>userData.xml</code> file.
+Subseqently, the <code>Model#setCurrentUser(&#8230;&#8203;)</code> will be called to set the loaded user data as the <code>currentUser</code>.<br></p>
+</li>
+<li>
+<p>Should the credential not be valid or does not match an existing credential in the <code>CredentialStore</code>, the user will simply be shown a failure message.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-user-credentials-are-stored"><a class="link" href="#aspect-how-user-credentials-are-stored">Aspect: How user credentials are stored.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Usage of a separate <code>CredentialStore</code> class to store all user credentials.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This allows for better security through abstraction. By having the user credentials stored away from the <code>User</code>, they(users &amp; malicious attackers) will not be able to explicitly manipulate the secured data outside the given parameters.</p>
+</li>
+<li>
+<p>Cons: Additional memory resources is used to store the data structures.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Storing the user credentials within the <code>User</code> class.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This alternative is easier to implement.</p>
+</li>
+<li>
+<p>Cons: Sacrifices security for ease of implementation.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-user-account-features"><a class="link" href="#aspect-data-structure-to-support-the-user-account-features">Aspect: Data structure to support the user account features.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> A <code>HashMap</code> is used to store the credentials, using a username-credential(<code>String&#8594;Credential</code>) key-value pair.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Considering that there is no possibility of duplicate usernames, utilizing a <code>HashMap</code> data structure would improve optimization when verifying a specific credential, with an <em>O(1)</em> search time.</p>
+</li>
+<li>
+<p>Cons: Additional memory resources is required for the usage of complex data structures.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Using a <code>List</code> of Credentials</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Will require less memory resources. Additionally, it is easier to implement.</p>
+</li>
+<li>
+<p>Cons: Should more and more user adopt the application, the increased volume of user credentials would result in an <em>O(n)</em> operation when verifying a user credential.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generate"><a class="link" href="#generate">3.2. Generate</a></h3>
 <div class="paragraph">
 <p>Generate is a command for student users to generate a schedule containing the modules to take in each
 semester during their entire university candidature.</p>
@@ -611,7 +927,7 @@ The generate command can only be executed by users of type <code>Student</code>.
 generate feature.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The generate command is facilitated by <code>GenerateCommand</code> class. It attempts to generate a schedule based on
  the student&#8217;s staged modules. It makes use of the <code>Generate</code> class from the <code>Logic</code> package to create a
@@ -681,7 +997,7 @@ also be added to the student&#8217;s staged module list, enabling the student to
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-generate-a-schedule"><a class="link" href="#aspect-how-to-generate-a-schedule">Aspect: How to generate a schedule</a></h5>
 <div class="ulist">
@@ -719,7 +1035,7 @@ generating the schedule.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-module-management"><a class="link" href="#user-module-management">3.2. User Module Management</a></h3>
+<h3 id="user-module-management"><a class="link" href="#user-module-management">3.3. User Module Management</a></h3>
 <div class="paragraph">
 <p>User Module Management involves mainly the interaction between users and their module lists.
 A user is able to add and remove the module only if he is a student and the module exists in the database.
@@ -729,7 +1045,7 @@ A user is allowed to search a module in the database.</p>
 <p>The section below will describe in detail the Current Implementation and the Design Considerations of the User Module Management.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The User Module Management is facilitated by the following classes:</p>
 </div>
@@ -855,7 +1171,7 @@ event to show the changes of <code>currentModuleList</code>. UI will reflect the
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-search-the-module-in-the-database"><a class="link" href="#aspect-search-the-module-in-the-database">Aspect: Search the module in the database</a></h5>
 <div class="ulist">
@@ -892,7 +1208,7 @@ event to show the changes of <code>currentModuleList</code>. UI will reflect the
 </div>
 </div>
 <div class="sect2">
-<h3 id="module-database-administration"><a class="link" href="#module-database-administration">3.3. Module Database Administration</a></h3>
+<h3 id="module-database-administration"><a class="link" href="#module-database-administration">3.4. Module Database Administration</a></h3>
 <div class="paragraph">
 <p>Module database administration is a series of commands that administrators can use to make necessary changes to keep
 the module database up to date, or to cater to their own needs.</p>
@@ -910,7 +1226,7 @@ The commands pertaining to module database administration can only be executed b
 </table>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Module database administration mechanism is facilitated by <code>ModuleList</code> in <code>Model</code> via the following operations:</p>
 </div>
@@ -1090,7 +1406,7 @@ For this example usage scenario, we assume that module "CS2109" already existed.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-add-remove-executes"><a class="link" href="#aspect-how-add-remove-executes">Aspect: How add &amp; remove executes</a></h5>
 <div class="ulist">
@@ -1151,7 +1467,7 @@ time they execute command that requires reading the module list.</p>
 </li>
 <li>
 <p>Cons: Each module can only have one module code. Thus if a module have multiple module codes, we have to create
-another module just to store the other module codes. This can be heavy on memory usage//.</p>
+another module just to store the other module codes. This can be heavy on memory usage.</p>
 </li>
 </ul>
 </div>
@@ -1162,9 +1478,9 @@ another module just to store the other module codes. This can be heavy on memory
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.4. Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.5. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -1189,24 +1505,36 @@ Additionally, it implements the following operations:</p>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UndoRedoStartingStateListDiagram.png" alt="UndoRedoStartingStateListDiagram" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UndoRedoNewCommand1StateListDiagram.png" alt="UndoRedoNewCommand1StateListDiagram" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1225,8 +1553,12 @@ If a command fails its execution, it will not call <code>Model#commitAddressBook
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1268,16 +1600,24 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UndoRedoNewCommand3StateListDiagram.png" alt="UndoRedoNewCommand3StateListDiagram" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1294,7 +1634,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1364,7 +1704,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="save-user-feature"><a class="link" href="#save-user-feature">3.5. Save User Feature</a></h3>
+<h3 id="save-user-feature"><a class="link" href="#save-user-feature">3.6. Save User Feature</a></h3>
 <div class="paragraph">
 <p>The save user feature involves mainly the saving process of a user&#8217;s information.
 A user is able to save their information only after they have logged in/registered an account.</p>
@@ -1373,7 +1713,7 @@ A user is able to save their information only after they have logged in/register
 <p>The section below will describe in detail the current implementation and the design considerations of the save user feature.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>save</code> mechanism of modsUni is facilitated by <code>SaveCommand</code> class and is event-driven.
 It allows a user to save their own data in modsUni as a XML file.
@@ -1492,7 +1832,7 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-data-to-save"><a class="link" href="#aspect-data-to-save">Aspect: Data to save</a></h5>
 <div class="ulist">
@@ -1529,20 +1869,20 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1573,7 +1913,7 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3215,4 +3555,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 11:27:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 11:53:45 UTC</div></div></div></body></html>
