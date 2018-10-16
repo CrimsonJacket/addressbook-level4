@@ -29,12 +29,13 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#module-database-administration">3.1. Module Database Administration</a></li>
-<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#save-user-feature">3.3. Save User Feature</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#user-module-management">3.1. User Module Management</a></li>
+<li><a href="#module-database-administration">3.2. Module Database Administration</a></li>
+<li><a href="#undo-redo-feature">3.3. Undo/Redo feature</a></li>
+<li><a href="#save-user-feature">3.4. Save User Feature</a></li>
+<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -587,7 +588,180 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="module-database-administration"><a class="link" href="#module-database-administration">3.1. Module Database Administration</a></h3>
+<h3 id="user-module-management"><a class="link" href="#user-module-management">3.1. User Module Management</a></h3>
+<div class="paragraph">
+<p>User Module Management involves mainly the interaction between users and their module lists.
+A user is able to add and remove the module only if he is a student and the module exists in the database.
+A user is allowed to search a module in the database.</p>
+</div>
+<div class="paragraph">
+<p>The section below will describe in detail the Current Implementation and the Design Considerations of the User Module Management.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The User Module Management is facilitated by the following classes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Module</code>
+It stores all the necessary data contained within a single module.
+The <code>code</code> of a module is considered as a key for searching and comparing purpose.
+Two modules with the same codes are considered as the same module.</p>
+</li>
+<li>
+<p><code>ModuleList</code>
+It stores a <code>UniqueModuleList</code> which stores modules with unique code.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UniqueModuleList</code> stores an internal <code>ObservableList</code> for UI purpose.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>User</code>
+It is the actor of the command. Add and remove commands are limited to a user whose <code>Roles</code> is <code>Student</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Student</code> stores two <code>ModuleList</code> namely <code>modulesTaken</code> and <code>modulesStaged</code>, to store the modules chosen by a student.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>modulesTaken</code> represents the module student has taken before.</p>
+</li>
+<li>
+<p><code>modulesStaged</code> represents the module student wants to take later.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="implementation-of-the-add-feature"><a class="link" href="#implementation-of-the-add-feature">Implementation of the add feature</a></h5>
+<div class="paragraph">
+<p>The <code>add</code> feature is facilitated by the <code>AddModuleToStudentStagedCommand</code> and <code>AddModuleToStudentTakenCommand</code> class.
+It allows a user to add modules to his staged/taken module list by giving their code.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A user is allowed to add only if:<br>
+* the user is a student<br>
+* the module exists in the database at this moment<br>
+* his staged/taken module list does not contains the module already
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>AddModuleToStudentStaged/TakenCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML representation of the <code>AddModuleToStudentStaged/TakenCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddModuleToStudentStagedTakenCommandUML.png" alt="AddModuleToStudentStagedTakenCommandUML" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. UML Diagram of <code>AddModuleToStudentStaged/TakenCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by <code>AddModuleToStudentStaged/TakenCommandParser</code>,
+which returns a <code>AddModuleToStudentStaged/TakenCommand</code> object after parsing Code.</p>
+</div>
+<div class="paragraph">
+<p>The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>AddModuleToStudentStaged/TakenCommand</code> is being executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforAddModuleToStudentStagedTakenCommandLogicAndModel.png" alt="SDforAddModuleToStudentStagedTakenCommandLogicAndModel" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>AddModuleToStudentStaged/TakenCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 3 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforAddModuleToStudentStagedTakenCommandOverview.png" alt="SDforAddModuleToStudentStagedTakenCommandOverview" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3. High-Level Sequence diagram of adding a new module to the student&#8217;s staged/taken module list.</em></p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the adding mechanism behaves at each step:
+Step 1. The user launches the application for the first time. After login as a student, a <code>Student</code> model will be created,
+<code>modulesTaken</code> and <code>modulesStaged</code> will be initialized as an empty <code>ModuleList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. After the user enters the command, <code>AddModuleToStudentStaged/TakenCommandParser</code> will create a <code>AddModuleToStudentStaged/TakenCommand</code>,
+with the code of the module to be searched in the database later stored in <code>toSearch</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. When the command is executed, <code>AddModuleToStudentStaged/TakenCommand</code> will call <code>Model#isStudent()</code> to check the <code>Role</code> of student,
+<code>Model#searchModuleInModuleList(&#8230;&#8203;)</code> to check whether the module exists in the database and update <code>toAdd</code> with the module of full information,
+<code>Model#hasModuleStaged/Taken(&#8230;&#8203;)</code> to check whether the module has already existed in the student&#8217;s staged/taken module list,
+<code>Model#addModuleStaged/Taken(&#8230;&#8203;)</code> to finally add the module to the student&#8217;s staged/taken module list.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. After the module is added, <code>Model</code> will reset data of <code>currentModuleList</code> to <code>modulesStaged/Taken</code>, and raise an
+event to show the changes of <code>currentModuleList</code>. UI will reflect the current <code>modulesStaged/Taken</code> after executing.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-search-the-module-in-the-database"><a class="link" href="#aspect-search-the-module-in-the-database">Aspect: Search the module in the database</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Creates a "dummy" module with code for searching.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement. Do not need to refactor <code>moduleList</code> to support this feature.</p>
+</li>
+<li>
+<p>Cons: Efficiency of searching is low. May violate OOP to create a "dummy" module.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Refactor <code>moduleList</code> to be a <code>HashMap</code> for searching.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Efficiency of searching will increase. Avoid violation of OOP.</p>
+</li>
+<li>
+<p>Cons: May not be cost-efficient to refactor <code>moduleList</code> only to support this feature.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="module-database-administration"><a class="link" href="#module-database-administration">3.2. Module Database Administration</a></h3>
 <div class="paragraph">
 <p>Module database administration is a series of commands that administrators can use to make necessary changes to keep
 the module database up to date, or to cater to their own needs.</p>
@@ -605,7 +779,7 @@ The commands pertaining to module database administration can only be executed b
 </table>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Module database administration mechanism is facilitated by <code>ModuleList</code> in <code>Model</code> via the following operations:</p>
 </div>
@@ -785,7 +959,7 @@ For this example usage scenario, we assume that module "CS2109" already existed.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-add-remove-executes"><a class="link" href="#aspect-how-add-remove-executes">Aspect: How add &amp; remove executes</a></h5>
 <div class="ulist">
@@ -846,7 +1020,7 @@ time they execute command that requires reading the module list.</p>
 </li>
 <li>
 <p>Cons: Each module can only have one module code. Thus if a module have multiple module codes, we have to create
-another module just to store the other module codes. This can be heavy on memory usage.</p>
+another module just to store the other module codes. This can be heavy on memory usage//.</p>
 </li>
 </ul>
 </div>
@@ -857,9 +1031,9 @@ another module just to store the other module codes. This can be heavy on memory
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.3. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -989,7 +1163,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1059,7 +1233,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="save-user-feature"><a class="link" href="#save-user-feature">3.3. Save User Feature</a></h3>
+<h3 id="save-user-feature"><a class="link" href="#save-user-feature">3.4. Save User Feature</a></h3>
 <div class="paragraph">
 <p>The save user feature involves mainly the saving process of a user&#8217;s information.
 A user is able to save their information only after they have logged in/registered an account.</p>
@@ -1068,7 +1242,7 @@ A user is able to save their information only after they have logged in/register
 <p>The section below will describe in detail the current implementation and the design considerations of the save user feature.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>save</code> mechanism of modsUni is facilitated by <code>SaveCommand</code> class and is event-driven.
 It allows a user to save their own data in modsUni as a XML file.
@@ -1187,7 +1361,7 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-data-to-save"><a class="link" href="#aspect-data-to-save">Aspect: Data to save</a></h5>
 <div class="ulist">
@@ -1224,20 +1398,20 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1268,7 +1442,7 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2910,4 +3084,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 09:42:16 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 10:19:28 UTC</div></div></div></body></html>
