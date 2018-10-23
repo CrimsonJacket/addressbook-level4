@@ -14,10 +14,10 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-module-to-student-s-staged-module-list-code-addmodules-code-code-coming-in-v1-3-code">3.2. Adding a module to student&#8217;s staged module list: <code>addModuleS</code> <code>[coming in v1.3]</code></a></li>
-<li><a href="#adding-a-module-to-student-s-taken-module-list-code-addmodulet-code-code-coming-in-v1-3-code">3.3. Adding a module to student&#8217;s taken module list: <code>addModuleT</code> <code>[coming in v1.3]</code></a></li>
-<li><a href="#deleting-a-module-from-student-s-staged-module-list-code-removemodules-code-code-coming-in-v1-3-code">3.4. Deleting a module from student&#8217;s staged module list: <code>removeModuleS</code> <code>[coming in v1.3]</code></a></li>
-<li><a href="#deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code-code-coming-in-v1-3-code">3.5. Deleting a module from student&#8217;s taken module list: <code>removeModuleT</code> <code>[coming in v1.3]</code></a></li>
+<li><a href="#adding-a-module-to-student-s-staged-module-list-code-addmodules-code">3.2. Adding a module to student&#8217;s staged module list: <code>addModuleS</code></a></li>
+<li><a href="#adding-a-module-to-student-s-taken-module-list-code-addmodulet-code">3.3. Adding a module to student&#8217;s taken module list: <code>addModuleT</code></a></li>
+<li><a href="#deleting-a-module-from-student-s-staged-module-list-code-removemodules-code">3.4. Deleting a module from student&#8217;s staged module list: <code>removeModuleS</code></a></li>
+<li><a href="#deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code">3.5. Deleting a module from student&#8217;s taken module list: <code>removeModuleT</code></a></li>
 <li><a href="#searching-for-a-module-in-the-database-code-search-code">3.6. Searching for a module in the database: <code>search</code></a></li>
 <li><a href="#saving-user-data-code-save-code">3.7. Saving user data: <code>save</code></a></li>
 <li><a href="#generate-module-plan-code-generate-code">3.8. Generate module plan: <code>generate</code></a></li>
@@ -135,9 +135,10 @@ Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-module-to-student-s-staged-module-list-code-addmodules-code-code-coming-in-v1-3-code"><a class="link" href="#adding-a-module-to-student-s-staged-module-list-code-addmodules-code-code-coming-in-v1-3-code">3.2. Adding a module to student&#8217;s staged module list: <code>addModuleS</code> <code>[coming in v1.3]</code></a></h3>
+<h3 id="adding-a-module-to-student-s-staged-module-list-code-addmodules-code"><a class="link" href="#adding-a-module-to-student-s-staged-module-list-code-addmodules-code">3.2. Adding a module to student&#8217;s staged module list: <code>addModuleS</code></a></h3>
 <div class="paragraph">
-<p>Adds a module to the student’s staged module list. Adding is case insensitive.<br>
+<p>Adds a module to the student’s staged module list. It&#8217;s the module list student about to take.<br>
+Adding is case insensitive.<br>
 Format: <code>addModuleS &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 </div>
 <div class="paragraph">
@@ -153,7 +154,7 @@ Format: <code>addModuleS &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 Both the above commands will have the same effect.</p>
 </li>
 <li>
-<p><code>addModuleS CS2103T CS2101 CS1010</code> <code>[coming in v1.3]</code></p>
+<p><code>addModuleS CS2103T CS2101 CS1010</code></p>
 </li>
 </ul>
 </div>
@@ -162,9 +163,10 @@ Both the above commands will have the same effect.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-module-to-student-s-taken-module-list-code-addmodulet-code-code-coming-in-v1-3-code"><a class="link" href="#adding-a-module-to-student-s-taken-module-list-code-addmodulet-code-code-coming-in-v1-3-code">3.3. Adding a module to student&#8217;s taken module list: <code>addModuleT</code> <code>[coming in v1.3]</code></a></h3>
+<h3 id="adding-a-module-to-student-s-taken-module-list-code-addmodulet-code"><a class="link" href="#adding-a-module-to-student-s-taken-module-list-code-addmodulet-code">3.3. Adding a module to student&#8217;s taken module list: <code>addModuleT</code></a></h3>
 <div class="paragraph">
-<p>Adds a module to the student’s taken module list. Adding is case insensitive.<br>
+<p>Adds a module to the student’s taken module list. It&#8217;s the module list student has taken.<br>
+Adding is case insensitive.<br>
 Format: <code>addModuleT &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 </div>
 <div class="paragraph">
@@ -180,18 +182,16 @@ Format: <code>addModuleT &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 Both the above commands will have the same effect.</p>
 </li>
 <li>
-<p><code>addModuleT CS2103T CS2101 CS1010</code> <code>[coming in v1.3]</code></p>
+<p><code>addModuleT CS2103T CS2101 CS1010</code></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>By executing the above command, UI will display the student&#8217;s taken module list.</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-module-from-student-s-staged-module-list-code-removemodules-code-code-coming-in-v1-3-code"><a class="link" href="#deleting-a-module-from-student-s-staged-module-list-code-removemodules-code-code-coming-in-v1-3-code">3.4. Deleting a module from student&#8217;s staged module list: <code>removeModuleS</code> <code>[coming in v1.3]</code></a></h3>
+<h3 id="deleting-a-module-from-student-s-staged-module-list-code-removemodules-code"><a class="link" href="#deleting-a-module-from-student-s-staged-module-list-code-removemodules-code">3.4. Deleting a module from student&#8217;s staged module list: <code>removeModuleS</code></a></h3>
 <div class="paragraph">
-<p>Deletes a module from the student’s staged module list. Deleting is case insensitive.<br>
+<p>Deletes a module from the student’s staged module list. It&#8217;s the module list student about to take.<br>
+Deleting is case insensitive.<br>
 Format: <code>removeModuleS &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 </div>
 <div class="paragraph">
@@ -207,18 +207,16 @@ Format: <code>removeModuleS &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 Both the above commands will have the same effect.</p>
 </li>
 <li>
-<p><code>removeModuleS CS2103T CS2101 CS1010</code> <code>[coming in v1.3]</code></p>
+<p><code>removeModuleS CS2103T CS2101 CS1010</code></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>By executing the above command, UI will display the student&#8217;s staged module list.</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code-code-coming-in-v1-3-code"><a class="link" href="#deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code-code-coming-in-v1-3-code">3.5. Deleting a module from student&#8217;s taken module list: <code>removeModuleT</code> <code>[coming in v1.3]</code></a></h3>
+<h3 id="deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code"><a class="link" href="#deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code">3.5. Deleting a module from student&#8217;s taken module list: <code>removeModuleT</code></a></h3>
 <div class="paragraph">
-<p>Deletes a module form the student’s taken module list. Deleting is case insensitive.<br>
+<p>Deletes a module form the student’s taken module list. It&#8217;s the module list student has taken.<br>
+Deleting is case insensitive.<br>
 Format: <code>removeModuleT &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 </div>
 <div class="paragraph">
@@ -234,12 +232,9 @@ Format: <code>removeModuleT &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 Both the above commands will have the same effect.</p>
 </li>
 <li>
-<p><code>removeModuleT CS2103T CS2101 CS1010</code> <code>[coming in v1.3]</code></p>
+<p><code>removeModuleT CS2103T CS2101 CS1010</code></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>By executing the above command, UI will display the student&#8217;s taken module list.</p>
 </div>
 </div>
 <div class="sect2">
@@ -262,9 +257,6 @@ Returns a list of modules that begin with CS101 or GEH.</p>
 Returns the same result as above.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>By executing the above command, UI will display all modules in the database whose code starts with given prefix.</p>
 </div>
 </div>
 <div class="sect2">
@@ -626,4 +618,4 @@ Removes a module with module code "CS2109" if it exists.</p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 09:09:10 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 14:14:07 UTC</div></div></div></body></html>
