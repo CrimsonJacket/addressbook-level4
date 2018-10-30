@@ -20,23 +20,33 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>:</p>
+<p><strong>Major enhancement</strong>: <strong>Generating</strong> of a student&#8217;s schedule was added.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Justification:</p>
+<p>What it does: It allows students to generate a list of modules to take in each semester.</p>
 </li>
 <li>
-<p>Highlights:</p>
-</li>
-<li>
-<p>Credits:</p>
+<p>Justification: This feature allows students to easily plan their candidature and it is also one of the
+core features of modsUni.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>:</p>
+<p><strong>Minor enhancement</strong>: Loading in of modules from a <code>XML</code> file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: It reads an <code>XML</code> file containing the list of modules that are available for students to
+take.</p>
+</li>
+<li>
+<p>Justification: This feature allows students to view the module information and add it to their
+staged/taken list for the generating of their schedule.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Code contributed</strong>:</p>
@@ -83,6 +93,49 @@
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="generate-module-plan-code-generate-code"><a class="link" href="#generate-module-plan-code-generate-code">Generate module plan: <code>generate</code></a></h3>
+<div class="paragraph">
+<p>Generates a schedule based on the modules that have been added by the <code>addModuleS</code> command.<br>
+Format: <code>generate</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>generate</code> with missing prerequisites<br>
+List of modules with missing prerequisites would be shown to the user.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Only <code>Student</code> user accounts can execute the <code>generate</code> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To generate successfully, modules and it&#8217;s prerequisites should be added to the staged/taken list before
+executing.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -99,9 +152,10 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="data-security-feature"><a class="link" href="#data-security-feature">Data Security Feature</a></h3>
+<h3 id="generate"><a class="link" href="#generate">Generate</a></h3>
 <div class="paragraph">
-<p>The data security feature mainly involves the encryption of the user data file when using the <code>save</code> command and the decryption of a user data file when logging in using the <code>login</code> command.<br></p>
+<p>Generate is a command for student users to generate a schedule containing the modules to take in each
+semester during their entire university candidature.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -110,193 +164,148 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Advanced Encryption Standard (AES) is the algorithm used for encryption.
+The generate command can only be executed by users of type <code>Student</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>This section will describe in details the current implementation and the design considerations of the data encryption &amp; decryption feature.</p>
+<p>The section below will describe in detail the current implementation and design considerations of the
+generate feature.</p>
 </div>
-<hr>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The data security feature is facilitated by <code>DataSecurityUtil</code> class.<br>
-It implements the following operations(s):</p>
+<p>The generate command is facilitated by the <code>GenerateCommand</code> class and the following methods in the Model
+class:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>DataSecurityUtil#encryptFile(…​)</code> — Encrypts a <code>File</code> object with the specified password and overrides the original unencrypted file.</p>
+<p><code>Model#isStudent()</code>&#8201;&#8212;&#8201;This method checks if the current user is a student.</p>
 </li>
 <li>
-<p><code>DataSecurityUtil#decryptFile(…​)</code> — Decrypts a <code>File</code> object with the specified password and overrides the original encrypted file.</p>
+<p><code>Model#canGenerate()</code>&#8201;&#8212;&#8201;This method checks if it is possible to generate a schedule.</p>
 </li>
 <li>
-<p><code>DataSecurityUtil#encrypt(…​)</code> — Encrypts a <code>byte[]</code> with the specified password and returns the encrypted <code>byte[]</code>.</p>
-</li>
-<li>
-<p><code>DataSecurityUtil#decrypt(…​)</code> — Decrypts a <code>byte[]</code> with the specified password and returns the decrypted <code>byte[]</code>.</p>
+<p><code>Model#generateSchedule()</code>&#8201;&#8212;&#8201;This method generates a schedule.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><code>DataSecurityUtil</code> class utilizes <code>javax.crypto.cipher</code> and <code>javax.crypto.spec.SecretKeySpec</code> packages for the operations mentioned above.</p>
+<p>It generates a schedule based on the student’s staged modules. It also makes use of the <code>Generate</code>
+class from the <code>Logic</code> package to create a schedule.</p>
 </div>
 <div class="paragraph">
-<p>The <code>Hashing</code> class is used to generate a SHA-1 hash to ensure that there are at least 16 bytes (128 bits) which are required to generate <code>SecretKeySpec</code>.</p>
-</div>
-<div class="paragraph">
-<p>Currently, encryption is performed in <code>StorageManager</code> and decryption is performed in <code>LoginCommand</code> where the file is loaded.</p>
-</div>
-<div class="sect4">
-<h5 id="implementation-of-the-encryption-feature"><a class="link" href="#implementation-of-the-encryption-feature">Implementation of the encryption feature</a></h5>
-<div class="paragraph">
-<p>The encryption feature is integrated with the save user feature (3.6).<br>
-Immediately after the user data file is saved onto local disk, <code>DataSecurityUtil#encryptFile(&#8230;&#8203;)</code> will be called to encrypt the file.
-This is shown in the following code snippet below:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> handleSaveUserChangedEvent(SaveUserChangedEvent cuce) {
-    <span class="comment">// ... logging ...</span>
-    <span class="keyword">try</span> {
-        userStorage.saveUser(cuce.user, cuce.filePath);
-        DataSecurityUtil.encryptFile(cuce.filePath.toFile(),
-                cuce.password.getValue());
-    } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
-        logger.warning(<span class="string"><span class="delimiter">&quot;</span><span class="content">Unable to save or encrypt data</span><span class="delimiter">&quot;</span></span>);
-        e.printStackTrace();
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The sequence diagram shown below in Figure 1 illustrates the integration of encryption with the save user feature.</p>
+<p>The <code>GenerateCommand</code> class extends from the <code>Command</code> class. Figure 1 as shown below depicts the UML
+diagram for the <code>GenerateCommand</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SequenceDiagramforSaveEventHandlingWithEncryption.png" alt="SequenceDiagramforSaveEventHandlingWithEncryption" width="650">
+<img src="../images/GenerateCommandUML.png" alt="GenerateCommandUML" width=""250">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 1. Sequence Diagram for the interaction between EventsCenter and Storage Components when executing SaveCommand with encryption</em></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="implementation-of-the-decryption-feature"><a class="link" href="#implementation-of-the-decryption-feature">Implementation of the decryption feature</a></h5>
-<div class="paragraph">
-<p>The decryption feature is integrated with the login feature under user account management(3.1).<br>
-<code>LoginCommand</code> calls <code>DataSecurityUtil#decryptFile(&#8230;&#8203;)</code> once the validation of the user is completed.</p>
+<p><em>Figure 1. GenerateCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>This is shown in the following code snippet below:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult execute(Model model, CommandHistory history) <span class="directive">throws</span> CommandException {
-        <span class="comment">// ... check if user logged in ... //</span>
-        <span class="comment">// ... check if credential is valid .. //</span>
-
-        User toSetCurrentUser;
-        <span class="keyword">try</span> {
-            DataSecurityUtil.decryptFile(pathToSaveFile.toFile(),
-                toLogin.getPassword().toString());
-
-            Optional&lt;User&gt; userFromFile = model.readUserFile(pathToSaveFile);
-            <span class="keyword">if</span> (!userFromFile.isPresent()) {
-                <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_UNABLE_TO_READ_FILE);
-            }
-            toSetCurrentUser = userFromFile.get();
-
-            DataSecurityUtil.encryptFile(pathToSaveFile.toFile(), toLogin.getPassword().getValue());
-        } <span class="keyword">catch</span> (DataConversionException | <span class="exception">IOException</span> | CorruptedFileException
-            | <span class="exception">NoSuchAlgorithmException</span> | <span class="exception">InvalidKeyException</span> | InvalidPasswordException
-            | <span class="exception">NoSuchPaddingException</span> e) {
-            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_UNABLE_TO_READ_FILE);
-        }
-
-        model.setCurrentUser(toSetCurrentUser);
-        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SUCCESS,
-            toSetCurrentUser.getUsername()));
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The sequence diagram shown below in Figure 2 illustrates the integration of decryption with the login feature.</p>
+<p>In the execute method of the Generate command, it will first check if the current user is a Student. Next
+it will proceed on to check if all prerequisites of the student’s staged modules have been met. It does the
+ prerequisite checks using the student’s taken module list. If the conditions are satisfactory, it will
+ generate a schedule. Figure 2(shown below) shows the sequence diagram when executing the <code>GenerateCommand</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SDforSaveCommandLogicAndModelUserDecryption.png" alt="SDforSaveCommandLogicAndModelUserDecryption" width="900">
+<img src="../images/SDforGenerateCommandLogicAndModel.png" alt="SDforGenerateCommandLogicAndModel" width=""250">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2. Sequence Diagram for the interaction between Logic Component and DataSecurityUtil when executing LoginCommand</em></p>
+<p><em>Figure 2. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
+ <code>GenerateCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p><code>GenerateCommand</code> uses multiple components of the modsUni application. Upon completion of generating the
+schedule, two events will be posted. The first event is <code>MainWindowClearResourceEvent</code>. It will be posted to
+inform the current UI that is in the main window to clear it&#8217;s resources. The second event is
+<code>NewGenerateResultAvailableEvent</code>. This event will show the UI for the schedule in the main window.
+The sequence diagram shown below in Figure 3 illustrates the interactions between some of these components.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SequenceDiagramforGenerate.png" alt="SequenceDiagramforGenerate" width=""250">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3. High Level Sequence Diagram for the <code>generate</code> command</em></p>
+</div>
+<div class="sect4">
+<h5 id="example-scenario-of-the-generate-command"><a class="link" href="#example-scenario-of-the-generate-command">Example scenario of the generate command</a></h5>
+<div class="paragraph">
+<p>Given below is an example usage scenario of how the generate command behaves:</p>
+</div>
+<div class="paragraph">
+<p>The user launches the application for the first time and the <code>currentUser</code> will at this point be <code>null</code>.
+Issuing the generate command at this point will throw an error message indicating to the user that they have
+not registered an account or they are currently not logged in.</p>
+</div>
+<div class="paragraph">
+<p>In order to utilise the generate command, the user must perform one of the following options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The user executes <code>register user/demo &#8230;&#8203;</code> to register a new <code>Student</code> account, followed by <code>addModuleS
+cs1010</code>.</p>
+</li>
+<li>
+<p>The user executes <code>login user/demo pass/P@ssw0rd</code> to log into account, followed by <code>addModuleS cs1010</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A new <code>Student</code> would be initialized and automatically set as the <code>currentUser</code>. The module cs1010 would
+also be added to the student&#8217;s staged module list, enabling the student to perform generate command.<br>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-encryption-is-implemented"><a class="link" href="#aspect-how-encryption-is-implemented">Aspect: How encryption is implemented</a></h5>
+<h5 id="aspect-how-to-generate-a-schedule"><a class="link" href="#aspect-how-to-generate-a-schedule">Aspect: How to generate a schedule</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Implement as an in-built feature.</p>
+<p><strong>Alternative 1 (current choice):</strong> Using of a separate <code>Generate</code> class to encapsulate the logic for
+generating the schedule.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Ensures that the confidentiality of a user&#8217;s data file is preserved at all times.</p>
+<p>Pros: Modification made to the generating of schedule does not affect the <code>Student</code> model.</p>
 </li>
 <li>
-<p>Cons: Users do not have full control.</p>
+<p>Cons: This approach adds complexity to the design of the application.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Implement as a command.</p>
+<p><strong>Alternative 2:</strong> Adding the logic for generating the schedule to the <code>Student</code> model.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Users will have more control on the data security.</p>
+<p>Pros: This alternative is easier to implement.</p>
 </li>
 <li>
-<p>Cons: Unable to enforce the data security of the application.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-generation-of-security-key-for-encryption-decryption"><a class="link" href="#aspect-generation-of-security-key-for-encryption-decryption">Aspect: Generation of security key for encryption/decryption</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Generate the key using a user&#8217;s password.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: User does not need to supply additional information or file for encryption/decryption.</p>
-</li>
-<li>
-<p>Cons: User is unable to decrypt their user data file if they forget their password.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Generate the key using <code>KeyGenerator</code> and an additional file is needed to log in.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: The key will be more secured compared to the key generated from alternative 1.</p>
-</li>
-<li>
-<p>Cons: User is unable to decrypt their user data file if the key file is lost or corrupted.</p>
+<p>Cons: It breaks the single responsibility principle of the <code>Student</code> model.</p>
 </li>
 </ul>
 </div>
@@ -307,4 +316,4 @@ This is shown in the following code snippet below:</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 10:50:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 12:17:01 UTC</div></div></div></body></html>

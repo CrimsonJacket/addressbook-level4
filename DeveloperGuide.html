@@ -1022,9 +1022,25 @@ generate feature.</p>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The generate command is facilitated by <code>GenerateCommand</code> class. It attempts to generate a schedule based on
- the student&#8217;s staged modules. It makes use of the <code>Generate</code> class from the <code>Logic</code> package to create a
- schedule.</p>
+<p>The generate command is facilitated by the <code>GenerateCommand</code> class and the following methods in the Model
+class:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#isStudent()</code>&#8201;&#8212;&#8201;This method checks if the current user is a student.</p>
+</li>
+<li>
+<p><code>Model#canGenerate()</code>&#8201;&#8212;&#8201;This method checks if it is possible to generate a schedule.</p>
+</li>
+<li>
+<p><code>Model#generateSchedule()</code>&#8201;&#8212;&#8201;This method generates a schedule.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It generates a schedule based on the student’s staged modules. It also makes use of the <code>Generate</code>
+class from the <code>Logic</code> package to create a schedule.</p>
 </div>
 <div class="paragraph">
 <p>The <code>GenerateCommand</code> class extends from the <code>Command</code> class. Figure 1 as shown below depicts the UML
@@ -1039,8 +1055,26 @@ diagram for the <code>GenerateCommand</code> class.</p>
 <p><em>Figure 1. GenerateCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
-<p><code>GenerateCommand</code> uses multiple components of the modsUni application. The sequence diagram shown below in
- Figure 2 illustrates the interactions between some of these components.</p>
+<p>In the execute method of the Generate command, it will first check if the current user is a Student. Next
+it will proceed on to check if all prerequisites of the student’s staged modules have been met. It does the
+ prerequisite checks using the student’s taken module list. If the conditions are satisfactory, it will
+ generate a schedule. Figure 2(shown below) shows the sequence diagram when executing the <code>GenerateCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforGenerateCommandLogicAndModel.png" alt="SDforGenerateCommandLogicAndModel" width=""250">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
+ <code>GenerateCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p><code>GenerateCommand</code> uses multiple components of the modsUni application. Upon completion of generating the
+schedule, two events will be posted. The first event is <code>MainWindowClearResourceEvent</code>. It will be posted to
+inform the current UI that is in the main window to clear it&#8217;s resources. The second event is
+<code>NewGenerateResultAvailableEvent</code>. This event will show the UI for the schedule in the main window.
+The sequence diagram shown below in Figure 3 illustrates the interactions between some of these components.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1048,10 +1082,10 @@ diagram for the <code>GenerateCommand</code> class.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2. High Level Sequence Diagram for the <code>generate</code> command</em></p>
+<p><em>Figure 3. High Level Sequence Diagram for the <code>generate</code> command</em></p>
 </div>
 <div class="sect4">
-<h5 id="implementation-of-the-generate-command"><a class="link" href="#implementation-of-the-generate-command">Implementation of the generate command</a></h5>
+<h5 id="example-scenario-of-the-generate-command"><a class="link" href="#example-scenario-of-the-generate-command">Example scenario of the generate command</a></h5>
 <div class="paragraph">
 <p>Given below is an example usage scenario of how the generate command behaves:</p>
 </div>
@@ -3746,4 +3780,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 10:50:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 12:17:01 UTC</div></div></div></body></html>
