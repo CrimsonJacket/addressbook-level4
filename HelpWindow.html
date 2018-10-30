@@ -19,11 +19,11 @@
 <li><a href="#deleting-a-module-from-student-s-staged-module-list-code-removemodules-code">3.4. Deleting a module from student&#8217;s staged module list: <code>removeModuleS</code></a></li>
 <li><a href="#deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code">3.5. Deleting a module from student&#8217;s taken module list: <code>removeModuleT</code></a></li>
 <li><a href="#searching-for-a-module-in-the-database-code-search-code">3.6. Searching for a module in the database: <code>search</code></a></li>
-<li><a href="#saving-user-data-code-save-code">3.7. Saving user data: <code>save</code></a></li>
+<li><a href="#save">3.7. Saving user data: <code>save</code></a></li>
 <li><a href="#generate-module-plan-code-generate-code">3.8. Generate module plan: <code>generate</code></a></li>
 <li><a href="#login-to-user-account-code-login-code">3.9. Login to User Account : <code>login</code></a></li>
 <li><a href="#register-a-student-account-code-register-code">3.10. Register a Student Account : <code>register</code></a></li>
-<li><a href="#edit-student-account-code-editstudent-code-code-coming-in-v1-3-code">3.11. Edit Student Account : <code>editStudent</code> <code>[coming in v1.3]</code></a></li>
+<li><a href="#edit-student-account-code-edit-code">3.11. Edit Student Account : <code>edit</code></a></li>
 <li><a href="#data-encryption">3.12. Data Encryption</a></li>
 <li><a href="#set-module-preference-code-set-mod-code">3.13. Set module preference: <code>set-mod</code></a></li>
 <li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.14. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
@@ -69,37 +69,46 @@ This way, you are able to use the application easily and effectively without com
 <p>Copy the file to the folder you want to use as the home folder for modsUni.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<p>Create a <code>data</code> folder in the home folder.</p>
+</li>
+<li>
+<p>Download the latest <code>modules.xml</code> <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master/data">here</a></p>
+</li>
+<li>
+<p>Copy the XML file to the <code>data</code> folder.</p>
+</li>
+<li>
+<p>Double-click <code>modsUni.jar</code> to start the app. The GUI should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
 </div>
 </li>
-<li>
+</ol>
+</div>
+<div class="paragraph">
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
-</li>
-<li>
+e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window. +</p>
+</div>
+<div class="paragraph">
 <p>Some example commands you can try:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>add</code></strong><code>CS2103T</code> : adds the module CS2103T to the module configuration</p>
+<p><strong><code>addModuleS</code></strong><code>CS2103T</code> : adds the module CS2103T to the staged modules configuration</p>
 </li>
 <li>
-<p><strong><code>remove</code></strong><code>CS2103T</code> : removes the module CS2103T to the module configuration</p>
+<p><strong><code>removeModuleS</code></strong><code>CS2103T</code> : removes the module CS2103T to the staged module configuration</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
+<div class="paragraph">
 <p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -260,7 +269,7 @@ Returns the same result as above.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-user-data-code-save-code"><a class="link" href="#saving-user-data-code-save-code">3.7. Saving user data: <code>save</code></a></h3>
+<h3 id="save"><a class="link" href="#save">3.7. Saving user data: <code>save</code></a></h3>
 <div class="paragraph">
 <p>Save current module configurations for future usage.<br>
 Format: <code>save sp/[FILE_NAME].xml</code></p>
@@ -296,7 +305,7 @@ Format: <code>login user/&lt;USERNAME&gt; pass/&lt;PASSWORD&gt; userData/[PATH_T
 <div class="ulist">
 <ul>
 <li>
-<p><code>login user/demo pass/#Qwerty123</code>
+<p><code>login user/demo pass/#Qwerty123 userdata/demo.xml</code>
 The above command essentially sends a login request to <code>CredentialStore</code> with the following credential details:</p>
 <div class="ulist">
 <ul>
@@ -305,6 +314,9 @@ The above command essentially sends a login request to <code>CredentialStore</co
 </li>
 <li>
 <p>Password : <code>#Qwerty123</code></p>
+</li>
+<li>
+<p>Userdata : <code>demo.xml</code></p>
 </li>
 </ul>
 </div>
@@ -318,7 +330,27 @@ The above command essentially sends a login request to <code>CredentialStore</co
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Option to include <code>userData</code> is currently unavailable. [coming in v1.3]
+Specified <code>userdata/</code> option should specify a relative filepath.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The image displays the changes to expect after the successful execution of the login command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LoginCommandExample.png" alt="LoginCommandExample" width="790">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Note that your details will automatically be displayed in the User Tab and a simple successful message is displayed on the bottom right window.
 </td>
 </tr>
 </table>
@@ -342,7 +374,7 @@ Format: <code>register [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 <p>Password : <code>pass/&lt;PASSWORD&gt;</code></p>
 </li>
 <li>
-<p>Name : <code>name/[NAME]</code></p>
+<p>Name : <code>n/[NAME]</code></p>
 </li>
 <li>
 <p>Path To Picture: <code>pic/&lt;PATH_TO_PIC&gt;</code></p>
@@ -359,12 +391,12 @@ Format: <code>register [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>register user/demo pass/#Qwerty123 name/Daniel Demo pic/path.img enroll/02/08/2017 maj/CS min/MA</code><br>
+<p><code>register user/demo pass/#Qwerty123 n/Demo pic/path.img enroll/02/08/2017 maj/CS min/MA</code><br>
 The above command creates a student account with the following details:</p>
 <div class="ulist">
 <ul>
@@ -375,7 +407,7 @@ The above command creates a student account with the following details:</p>
 <p>Password : <code>#Qwerty123</code></p>
 </li>
 <li>
-<p>Name : <code>Daniel Demo</code></p>
+<p>Name : <code>Demo</code></p>
 </li>
 <li>
 <p>Path To Picture: <code>path.img</code></p>
@@ -394,12 +426,34 @@ The above command creates a student account with the following details:</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>The image displays the changes to expect after the successful execution of the register command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RegisterCommandExample.png" alt="RegisterCommandExample" width="790">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A temporary save file path is generated and used to save the details of the newly
+registered user. Do remember the location of the save file. You may choose to save
+the file in another location by executing the <code>save</code> command as detailed in <a href="#save">Section 3.7, &#8220;Saving user data: <code>save</code>&#8221;</a>.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="edit-student-account-code-editstudent-code-code-coming-in-v1-3-code"><a class="link" href="#edit-student-account-code-editstudent-code-code-coming-in-v1-3-code">3.11. Edit Student Account : <code>editStudent</code> <code>[coming in v1.3]</code></a></h3>
+<h3 id="edit-student-account-code-edit-code"><a class="link" href="#edit-student-account-code-edit-code">3.11. Edit Student Account : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits the Student specific information as specified in the input parameters.<br>
-Format: <code>editStudent [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
+Format: <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
 <p>Available Options:</p>
@@ -407,7 +461,7 @@ Format: <code>editStudent [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edit Name : <code>name/[NAME]</code></p>
+<p>Edit Name : <code>n/[NAME]</code></p>
 </li>
 <li>
 <p>Edit Profile Picture: <code>pic/[PATH_TO_PIC]</code></p>
@@ -421,10 +475,45 @@ Format: <code>editStudent [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 <li>
 <p>Edit Minor : <code>min/[MINOR_CODE]</code></p>
 </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>Edit Modules Taken : <code>modules/[MODULE_CODE]</code></p>
+<p><code>edit n/Demo Lition</code><br>
+The above command edits the <code>Name</code> of the current student with the new details:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Name : <code>Demo Lition</code></p>
 </li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The image displays the changes to expect after the successful execution of the edit command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditCommandExample.png" alt="EditCommandExample" width="790">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Notice that the Name in the User Tab has changed.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -598,10 +687,10 @@ Removes a module with module code "CS2109" if it exists.</p>
 <p><strong>Login</strong> : <code>login user/[USERNAME] pass/[PASSWORD] userData/[PATH_TO_DATA_FILE]</code></p>
 </li>
 <li>
-<p><strong>Register</strong> : <code>register user/[USERNAME] pass/[PASSWORD] name/[NAME] pic/[PATH_TO_PIC] enroll/[ENROLLMENT_DATE] maj/[MAJOR_CODE] min/[MINOR_CODE]</code></p>
+<p><strong>Register</strong> : <code>register user/[USERNAME] pass/[PASSWORD] n/[NAME] pic/[PATH_TO_PIC] enroll/[ENROLLMENT_DATE] maj/[MAJOR_CODE] min/[MINOR_CODE]</code></p>
 </li>
 <li>
-<p><strong>Edit Student</strong> : <code>editStudent [OPTION]/[INPUT]&#8230;&#8203;</code></p>
+<p><strong>Edit Student</strong> : <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code></p>
 </li>
 <li>
 <p><strong>Add Admin</strong> : <code>addAdmin user\&lt;USERNAME&gt; pass\&lt;PASSWORD&gt; n\&lt;NAME&gt; ptp\&lt;PATH_TO_PIC&gt; salary\&lt;SALARY&gt; date\&lt;EMPLOYMENT_DATE&gt;</code></p>
@@ -615,4 +704,4 @@ Removes a module with module code "CS2109" if it exists.</p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 05:52:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 08:03:53 UTC</div></div></div></body></html>
