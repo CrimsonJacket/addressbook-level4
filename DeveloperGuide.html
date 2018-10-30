@@ -1357,6 +1357,20 @@ The commands pertaining to module database administration can only be executed b
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Administrators can choose to add, remove or edit a module using <code>addModuleDB</code>, <code>removeModuleDB</code> and <code>editModule</code> respectively.
+The changes will then be reflected
+in both the module list in memory and in storage. Figure 1(shown below) describes the general flow of the administration
+of the module database in an activity diagram.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ADforModuleDatabaseAdministration.png" alt="ADforModuleDatabaseAdministration" width=""800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. Activity diagram for module database administration.</em></p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
@@ -1373,6 +1387,9 @@ The commands pertaining to module database administration can only be executed b
 <li>
 <p><code>ModuleList#hasModule(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;This method checks if the given module already exists.</p>
 </li>
+<li>
+<p><code>ModuleList#updateModule(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;This method replace the specified target module with the given edited module.</p>
+</li>
 </ul>
 </div>
 <div class="admonitionblock note">
@@ -1383,13 +1400,27 @@ The commands pertaining to module database administration can only be executed b
 </td>
 <td class="content">
 These operations are exposed in the <code>Model</code> interface as <code>Model#addModuleToDatabase(&#8230;&#8203;)</code>,
-<code>Model#removeModuleFromDatabase(&#8230;&#8203;)</code> and <code>Model#hasModuleInDatabase(&#8230;&#8203;)</code> respectively.
+<code>Model#removeModuleFromDatabase(&#8230;&#8203;)</code>, <code>Model#hasModuleInDatabase(&#8230;&#8203;)</code> and <code>Model#updateModule(&#8230;&#8203;)</code> respectively.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Module database administration mechanism is facilitated by several command classes in modsUni.</p>
+<p>Each module database administration commands is facilitated by a command class in modsUni. The following list
+illustrates each command and their respective command class:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addModuleDB</code>&#8201;&#8212;&#8201;<code>AddModuleToDatabaseCommand</code></p>
+</li>
+<li>
+<p><code>removeModuleDB</code>&#8201;&#8212;&#8201;<code>RemoveModuleFromDatabaseCommand</code></p>
+</li>
+<li>
+<p><code>editModule</code>&#8201;&#8212;&#8201;<code>EditModuleCommand</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><strong>Adding module to database</strong></p>
@@ -1398,7 +1429,7 @@ These operations are exposed in the <code>Model</code> interface as <code>Model#
 <p><code>addModuleDB</code> mechanism is facilitated by <code>AddModuleToDatabaseCommand</code>. It allows the addition of modules to database.</p>
 </div>
 <div class="paragraph">
-<p>The <code>AddModuleToDatabaseCommand</code> extends for <code>Command</code>. Figure 1(shown below) depicts the UML representation of the
+<p>The <code>AddModuleToDatabaseCommand</code> extends for <code>Command</code>. Figure 2(shown below) depicts the UML representation of the
 <code>AddModuleToDatabaseCommand</code>.</p>
 </div>
 <div class="imageblock">
@@ -1407,11 +1438,11 @@ These operations are exposed in the <code>Model</code> interface as <code>Model#
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 1 UML Diagram of <code>AddModuleToDatabaseCommand</code>.</em></p>
+<p><em>Figure 2. UML diagram of <code>AddModuleToDatabaseCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Parsing of command is performed by <code>AddModuleToDatabaseCommandParser</code>, which returns a <code>AddModuleToDatabaseCommand</code>
-object after parsing ModuleCode, Title, Credit, Department, Description, and AvailableSem. Figure 2(shown below)
+object after parsing ModuleCode, Title, Credit, Department, Description, AvailableSem and Prereq. Figure 3(shown below)
  shows the
 sequence diagram of the <code>AddModuleToDatabaseCommandParser</code>.</p>
 </div>
@@ -1421,11 +1452,11 @@ sequence diagram of the <code>AddModuleToDatabaseCommandParser</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
+<p><em>Figure 3. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
 <code>AddModuleToDatabaseCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 3(shown below) shows the high-level sequence diagram of the command execution.</p>
+<p>Figure 4(shown below) shows the high-level sequence diagram of the command execution.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1433,10 +1464,22 @@ sequence diagram of the <code>AddModuleToDatabaseCommandParser</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 3. High-Level Sequence diagram of adding a module to database.</em></p>
+<p><em>Figure 4. High-Level Sequence diagram of adding a module to database.</em></p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the <code>addModuleDB</code> mechanism behaves at each step:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For this example usage scenario, we assume that module "CS2109" did not exist in initially.
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1452,18 +1495,6 @@ informing the admin that the module already exists, and the module is not added.
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For this example usage scenario, we assume that module "CS2109" did not exist in initially.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p><strong>Deleting module from database</strong></p>
 </div>
@@ -1472,7 +1503,7 @@ For this example usage scenario, we assume that module "CS2109" did not exist in
 <code>Module</code> from the database.</p>
 </div>
 <div class="paragraph">
-<p>The <code>RemoveModuleFromDatabaseCommand</code> extends for <code>Command</code>. Figure 4(shown below) depicts the UML representation of the
+<p>The <code>RemoveModuleFromDatabaseCommand</code> extends for <code>Command</code>. Figure 5(shown below) depicts the UML representation of the
 <code>RemoveModuleFromDatabaseCommand</code>.</p>
 </div>
 <div class="imageblock">
@@ -1481,11 +1512,11 @@ For this example usage scenario, we assume that module "CS2109" did not exist in
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 4 UML Diagram of `RemoveModuleFromDatabase.</em></p>
+<p><em>Figure 5. UML diagram of <code>RemoveModuleFromDatabaseCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Parsing of command is performed by <code>RemoveModuleFromDatabaseParser</code>, which returns a <code>RemoveModuleFromDatabase</code> object
-after parsing moduleCode object. Figure 5(shown below) shows the sequence diagram of the <code>RemoveModuleFromDatabaseCommandParser</code>.</p>
+after parsing moduleCode object. Figure 6(shown below) shows the sequence diagram of the <code>RemoveModuleFromDatabaseCommandParser</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1493,11 +1524,11 @@ after parsing moduleCode object. Figure 5(shown below) shows the sequence diagra
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 5. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
+<p><em>Figure 6. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
 <code>RemoveModuleFromDatabase</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 6(shown below) shows the high-level sequence diagram of the command execution.</p>
+<p>Figure 7(shown below) shows the high-level sequence diagram of the command execution.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1505,10 +1536,22 @@ after parsing moduleCode object. Figure 5(shown below) shows the sequence diagra
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 6. High-Level Sequence diagram of removing a module from database.</em></p>
+<p><em>Figure 7. High-Level sequence diagram of removing a module from database.</em></p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the <code>removeModuleDB</code> mechanism behaves at each step:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For this example usage scenario, we assume that module "CS2109" already existed.
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1524,17 +1567,47 @@ executing <code>removeModuleDB CS2109</code>. The <code>removeModuleDB</code> co
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For this example usage scenario, we assume that module "CS2109" already existed.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p><strong>Editing module from database</strong></p>
+</div>
+<div class="paragraph">
+<p><code>editModule</code> mechanism is facilitated by the <code>EditModuleCommand</code> class. It allows <code>Admin</code> to edit <code>Module</code> from the
+database.</p>
+</div>
+<div class="paragraph">
+<p>The <code>EditModuleCommand</code> extends for <code>Command</code>. Figure 8(shown below) depicts the UML representation of the <code>EditModuleCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditModuleCommandUML.png" alt="EditModuleCommandUML" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 8. UML diagram of <code>EditModuleCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by the <code>EditModuleCommandParser</code>, which returns a <code>EditModuleCommand</code> object after parsing
+ModuleCode, Title, Credit, Department, Description, AvailableSem and Prereq. Figure 9(shown below) shows the sequence
+diagram of the <code>EditModuleCommandParser</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforEditModuleCommandLogicAndModel.png" alt="SDforEditModuleCommandLogicAndModel" width=""800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 9. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>EditModule</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 10(shown below) shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforEditModuleCommand.png" alt="SDforEditModuleCommand" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 10. High-level sequence diagram of editing a module from database.</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -3780,4 +3853,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 12:24:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 14:23:34 UTC</div></div></div></body></html>

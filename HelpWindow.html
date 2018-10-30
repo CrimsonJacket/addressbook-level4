@@ -28,10 +28,13 @@
 <li><a href="#set-module-preference-code-set-mod-code">3.13. Set module preference: <code>set-mod</code></a></li>
 <li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.14. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
 <li><a href="#set-theme-code-set-theme-code">3.15. Set theme: <code>set-theme</code></a></li>
-<li><a href="#add-a-new-administrator-account-code-addadmin-code-code-coming-in-v2-0-code">3.16. Add a new administrator account: <code>addAdmin</code> <code>[coming in v2.0]</code></a></li>
-<li><a href="#remove-a-existing-administrator-account-code-removeadmin-code-code-coming-in-v2-0-code">3.17. Remove a existing administrator account: <code>removeAdmin</code> <code>[coming in v2.0]</code></a></li>
-<li><a href="#add-a-new-module-to-database-code-addmoduledb-code-code-coming-in-v1-2-code">3.18. Add a new module to database: <code>addModuleDB</code> <code>[coming in v1.2]</code></a></li>
-<li><a href="#remove-a-existing-module-from-database-code-removemoduledb-code-code-coming-in-v1-2-code">3.19. Remove a existing module from database: <code>removeModuleDB</code> <code>[coming in v1.2]</code></a></li>
+<li><a href="#add-a-new-administrator-account-code-addadmin-code">3.16. Add a new administrator account: <code>addAdmin</code></a></li>
+<li><a href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">3.17. Edit the currently logged in administrator account: <code>editAdmin</code></a></li>
+<li><a href="#remove-a-existing-user-account-code-removeuser-code">3.18. Remove a existing user account: <code>removeUser</code></a></li>
+<li><a href="#show-the-list-of-usernames-code-showuser-code">3.19. Show the list of usernames: <code>showUser</code></a></li>
+<li><a href="#add-a-new-module-to-database-code-addmoduledb-code">3.20. Add a new module to database: <code>addModuleDB</code></a></li>
+<li><a href="#edit-details-of-a-module-in-database-code-editmodule-code">3.21. Edit details of a module in database: <code>editModule</code></a></li>
+<li><a href="#remove-a-existing-module-from-database-code-removemoduledb-code">3.22. Remove a existing module from database: <code>removeModuleDB</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -620,61 +623,282 @@ Format: <code>set-theme &lt;FILE_NAME&gt;.xml</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-new-administrator-account-code-addadmin-code-code-coming-in-v2-0-code"><a class="link" href="#add-a-new-administrator-account-code-addadmin-code-code-coming-in-v2-0-code">3.16. Add a new administrator account: <code>addAdmin</code> <code>[coming in v2.0]</code></a></h3>
+<h3 id="add-a-new-administrator-account-code-addadmin-code"><a class="link" href="#add-a-new-administrator-account-code-addadmin-code">3.16. Add a new administrator account: <code>addAdmin</code></a></h3>
 <div class="paragraph">
 <p>Create and add a new adminstrator account.<br>
-Format: <code>addAdmin user\&lt;USERNAME&gt; pass\&lt;PASSWORD&gt; n\&lt;NAME&gt; ptp\&lt;PATH_TO_PIC&gt; salary\&lt;SALARY&gt; date\&lt;EMPLOYMENTDATE&gt;</code></p>
+Format: <code>addAdmin OPTION/INPUT&#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Input fields:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addAdmin user\master pass\myPass n\John Doe ptp\johnDoe.img salary\4000 date\01/01/2018</code><br>
+<p>Username : <code>user/&lt;USERNAME&gt;</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters and should not be blank.</p>
+</li>
+<li>
+<p>Password : <code>pass/&lt;PASSWORD&gt;</code>&#8201;&#8212;&#8201;It should contain alphanumeric and special characters</p>
+</li>
+<li>
+<p>Name : <code>n/&lt;NAME&gt;</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters and spaces and should not be blank.</p>
+</li>
+<li>
+<p>Save path : <code>sp/&lt;SAVE_PATH&gt;</code>&#8201;&#8212;&#8201;It should be a relative save path.</p>
+</li>
+<li>
+<p>Salary : <code>salary/&lt;SALARY&gt;</code>&#8201;&#8212;&#8201;It should contain only integers.</p>
+</li>
+<li>
+<p>Employment date : <code>date/&lt;EMPLOYMENTDATE&gt;</code>&#8201;&#8212;&#8201;it should be in the format DD/MM/YYYY</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addAdmin user/master pass/myPass#1 n/John Doe sp/userdata.xml salary/4000 date/01/01/2018</code><br>
 Creates a new administrator account with the following stated details.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-a-existing-administrator-account-code-removeadmin-code-code-coming-in-v2-0-code"><a class="link" href="#remove-a-existing-administrator-account-code-removeadmin-code-code-coming-in-v2-0-code">3.17. Remove a existing administrator account: <code>removeAdmin</code> <code>[coming in v2.0]</code></a></h3>
+<h3 id="edit-the-currently-logged-in-administrator-account-code-editadmin-code"><a class="link" href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">3.17. Edit the currently logged in administrator account: <code>editAdmin</code></a></h3>
 <div class="paragraph">
-<p>Remove a currently existing administrator account.<br>
+<p>Edit the details of the currently logged in administrator.<br>
+Format: <code>editAdmin OPTION/INPUT&#8230;&#8203;</code><br></p>
+</div>
+<div class="paragraph">
+<p>Input fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name : <code>n/[NAME]</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters and spaces and should not be blank.</p>
+</li>
+<li>
+<p>Salary : <code>salary/[SALARY]</code>&#8201;&#8212;&#8201;It should contain only integers.</p>
+</li>
+<li>
+<p>Employment date : <code>employ/[EMPLOYMENT_DATE]</code>&#8201;&#8212;&#8201;it should be in the format DD/MM/YYYY</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editAdmin n/john</code>
+Change the name of the logged in administrator to "john".</p>
+</li>
+<li>
+<p><code>editAdmin salary/3000 employ/01/01/2018</code>
+Change both the salary and employement date of the logged in administrator to "3000" and "01/01/2018" respectively.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remove-a-existing-user-account-code-removeuser-code"><a class="link" href="#remove-a-existing-user-account-code-removeuser-code">3.18. Remove a existing user account: <code>removeUser</code></a></h3>
+<div class="paragraph">
+<p>Remove a currently existing user account.<br>
 Format: <code>removeAdmin &lt;USERNAME&gt;</code></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>removeAdmin user\adminUsername</code><br>
-Removes a administrator account with username "adminUsername" if it exists.</p>
+<p><code>removeAdmin Username</code><br>
+Removes a administrator account with username "Username" if it exists.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-new-module-to-database-code-addmoduledb-code-code-coming-in-v1-2-code"><a class="link" href="#add-a-new-module-to-database-code-addmoduledb-code-code-coming-in-v1-2-code">3.18. Add a new module to database: <code>addModuleDB</code> <code>[coming in v1.2]</code></a></h3>
+<h3 id="show-the-list-of-usernames-code-showuser-code"><a class="link" href="#show-the-list-of-usernames-code-showuser-code">3.19. Show the list of usernames: <code>showUser</code></a></h3>
+<div class="paragraph">
+<p>Display the list of usernames on the main display.<br>
+Format: <code>showUser</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-a-new-module-to-database-code-addmoduledb-code"><a class="link" href="#add-a-new-module-to-database-code-addmoduledb-code">3.20. Add a new module to database: <code>addModuleDB</code></a></h3>
 <div class="paragraph">
 <p>Creates a new module and add it to the module database.<br>
-Format: <code>addModuleDB code\&lt;MODULE_CODE&gt; department\&lt;DEPARTMENT&gt; title\&lt;TITLE&gt; credit\&lt;CREDIT&gt; available\&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt; description\&lt;DESCRIPTION&gt;</code></p>
+Format: <code>addModuleDB OPTION/INPUT&#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Input fields <code>(Input restriction and validation coming in v1.4)</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addModuleDB code\CS2109 department\Computing title\The New Module credit\4 available\yynn description\This course is newly offered by the school of computing. Visit the module website for more details</code><br>
-Create and add a new module with module code "CS2109" and the stated details to the module database.</p>
+<p>Module code : <code>code/&lt;MODULE_CODE&gt;</code></p>
+</li>
+<li>
+<p>Department : <code>department/&lt;DEPARTMENT&gt;</code></p>
+</li>
+<li>
+<p>Title : <code>title/&lt;TITLE&gt;</code></p>
+</li>
+<li>
+<p>Description : <code>description/&lt;DESCRIPTION&gt;</code></p>
+</li>
+<li>
+<p>Credit : <code>credit/&lt;CREDIT&gt;</code></p>
+</li>
+<li>
+<p>Available semesters : <code>available/&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;</code></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For each entry enter '1' if the module will be available. Otherwise, enter '0'.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Prerequisites : <code>prereq/&lt;PREREQ_STRING&gt;</code></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH]</code><br>
+Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH])</code><br>
+Every branch should be enclosed in parentheses followed by <code>&amp;</code> or <code>|</code>, then the list of module codes or branches.
+The end of a module code should be indicated with a <code>,</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addModuleDB code/CS2103T department/Computing title/The New Module credit/4 available/1100
+description/This course is newly offered by the school of computing. Visit the module website for more details
+prereq/|(|CS1020,CS1020E,CS2020,)(&amp;CS2030,(|CS2040,CS2040C,))</code><br>
+Create and add a new module with module code "CS2103T" and the stated details to the module database.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-a-existing-module-from-database-code-removemoduledb-code-code-coming-in-v1-2-code"><a class="link" href="#remove-a-existing-module-from-database-code-removemoduledb-code-code-coming-in-v1-2-code">3.19. Remove a existing module from database: <code>removeModuleDB</code> <code>[coming in v1.2]</code></a></h3>
+<h3 id="edit-details-of-a-module-in-database-code-editmodule-code"><a class="link" href="#edit-details-of-a-module-in-database-code-editmodule-code">3.21. Edit details of a module in database: <code>editModule</code></a></h3>
+<div class="paragraph">
+<p>Edit the details of a module specified by its index in database panel in database.<br>
+Format: <code>editModule &lt;INDEX&gt; OPTION/INPUT&#8230;&#8203;</code><br></p>
+</div>
+<div class="paragraph">
+<p>Input fields <code>(Input restriction and validation coming in v1.4)</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Module code : <code>code/[MODULE_CODE]</code></p>
+</li>
+<li>
+<p>Department : <code>department/[DEPARTMENT]</code></p>
+</li>
+<li>
+<p>Title : <code>title/[TITLE]</code></p>
+</li>
+<li>
+<p>Description : <code>description/[DESCRIPTION]</code></p>
+</li>
+<li>
+<p>Credit : <code>credit/[CREDIT]</code></p>
+</li>
+<li>
+<p>Available semesters : <code>available/[&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;]</code></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For each entry enter '1' if available, '0' if not
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Prerequisites : <code>prereq/[PREREQ_STRING]</code></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH]</code><br>
+Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH])</code><br>
+Every branch should be enclosed in parentheses followed by <code>&amp;</code> or <code>|</code>, then the list of module codes or branches.
+The end of a module code should be indicated with a <code>,</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editModule 1 code/CS2105</code><br>
+Change the module code of module with index "1" to "CS2105".</p>
+</li>
+<li>
+<p><code>editModule 4 code/CS2103 credit/4</code><br>
+Change the module code and credit of module with index "4" to "CS2103" and "4" respectively.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+After editing, the database panel will display the updated list as shown below.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditModuleCommandExample.png" alt="EditModuleCommandExample" width="700">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remove-a-existing-module-from-database-code-removemoduledb-code"><a class="link" href="#remove-a-existing-module-from-database-code-removemoduledb-code">3.22. Remove a existing module from database: <code>removeModuleDB</code></a></h3>
 <div class="paragraph">
 <p>Removes a existing module from the module database.<br>
 Format: <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
@@ -687,6 +911,23 @@ Format: <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
 <li>
 <p><code>removeModuleDB CS2109</code><br>
 Removes a module with module code "CS2109" if it exists.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+After removing, the database panel will display the updated list as shown below.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RemoveModuleFromDatabaseCommandExample.png" alt="RemoveModuleFromDatabaseCommandExample" width="700">
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -738,10 +979,27 @@ Removes a module with module code "CS2109" if it exists.</p>
 <p><strong>Edit Student</strong> : <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code></p>
 </li>
 <li>
-<p><strong>Add Admin</strong> : <code>addAdmin user\&lt;USERNAME&gt; pass\&lt;PASSWORD&gt; n\&lt;NAME&gt; ptp\&lt;PATH_TO_PIC&gt; salary\&lt;SALARY&gt; date\&lt;EMPLOYMENT_DATE&gt;</code></p>
+<p><strong>Encryption</strong> : <code>no-encrypt</code></p>
 </li>
 <li>
-<p><strong>Add Module to Database</strong> : <code>addModuleDB code\&lt;MODULE_CODE&gt; department\&lt;DEPARTMENT&gt; title\&lt;TITLE&gt; credit\&lt;CREDIT&gt; available\&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt; description\&lt;DESCRIPTION&gt;</code></p>
+<p><strong>Add Admin</strong> : <code>addAdmin user/&lt;USERNAME&gt; pass/&lt;PASSWORD&gt; n/&lt;NAME&gt; sp/&lt;SAVE_PATH&gt; salary/&lt;SALARY&gt; date/&lt;EMPLOYMENT_DATE&gt;</code></p>
+</li>
+<li>
+<p><strong>Edit Admin</strong> : <code>editAdmin n/[NAME] salary/[SALARY] date/[EMPLOYMENT_DATE]</code></p>
+</li>
+<li>
+<p><strong>Remove User</strong> : <code>removeUser &lt;USERNAME&gt;</code></p>
+</li>
+<li>
+<p><strong>Show Usernames</strong> : <code>showUser</code></p>
+</li>
+<li>
+<p><strong>Add Module to Database</strong> : <code>addModuleDB code/&lt;MODULE_CODE&gt; department/&lt;DEPARTMENT&gt; title/&lt;TITLE&gt; credit/&lt;CREDIT&gt;
+available/&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt; description/&lt;DESCRIPTION&gt; prereq/&lt;PREREQ_STRING&gt;</code></p>
+</li>
+<li>
+<p><strong>Edit Module in Database</strong> : <code>addModuleDB code/[MODULE_CODE] department/[DEPARTMENT] title/[TITLE] credit/[CREDIT]
+available/[&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;] description/[DESCRIPTION] prereq/[PREREQ_STRING]</code></p>
 </li>
 <li>
 <p><strong>Remove Module from Database</strong> : <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
@@ -749,4 +1007,4 @@ Removes a module with module code "CS2109" if it exists.</p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 12:24:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 14:23:34 UTC</div></div></div></body></html>
