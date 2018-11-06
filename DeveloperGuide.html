@@ -35,8 +35,9 @@
 <li><a href="#module-database-administration">3.4. Module Database Administration</a></li>
 <li><a href="#save-user-feature">3.5. Save User Feature</a></li>
 <li><a href="#data-security-feature">3.6. Data Security Feature</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#load-user-feature">3.7. Load User feature</a></li>
+<li><a href="#logging">3.8. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1786,7 +1787,7 @@ A list of modules staged for the generation of candidature.</p>
 <li>
 <p><code>UserStorage</code><br>
 It provides methods to save the current user&#8217;s attributes as well as to load a file containing previously saved data.<br>
-Additionally, it implements the following operations(s):</p>
+Additionally, it implements the following operations:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1991,12 +1992,6 @@ It implements the following operations(s):</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>DataSecurityUtil#encryptFile(…​)</code> — Encrypts a <code>File</code> object with the specified password and overrides the original unencrypted file.</p>
-</li>
-<li>
-<p><code>DataSecurityUtil#decryptFile(…​)</code> — Decrypts a <code>File</code> object with the specified password and overrides the original encrypted file.</p>
-</li>
-<li>
 <p><code>DataSecurityUtil#encrypt(…​)</code> — Encrypts a <code>byte[]</code> with the specified password and returns the encrypted <code>byte[]</code>.</p>
 </li>
 <li>
@@ -2011,27 +2006,43 @@ It implements the following operations(s):</p>
 <p>The <code>Hashing</code> class is used to generate a SHA-1 hash to ensure that there are at least 16 bytes (128 bits) which are required to generate <code>SecretKeySpec</code>.</p>
 </div>
 <div class="paragraph">
-<p>Currently, encryption is performed in <code>StorageManager</code> and decryption is performed in <code>LoginCommand</code> where the file is loaded.</p>
+<p>Both encryption and decryption is performed in <code>XMLAdaptedUser</code>.</p>
 </div>
 <div class="sect4">
 <h5 id="implementation-of-the-encryption-feature"><a class="link" href="#implementation-of-the-encryption-feature">Implementation of the encryption feature</a></h5>
 <div class="paragraph">
-<p>The encryption feature is integrated with the save user feature (3.6).<br>
-Immediately after the user data file is saved onto local disk, <code>DataSecurityUtil#encryptFile(&#8230;&#8203;)</code> will be called to encrypt the file.
-This is shown in the following code snippet below:</p>
+<p>The encryption feature is integrated with the save user feature (3.6).</p>
+</div>
+<div class="paragraph">
+<p>During the conversion of a <code>User</code> object to XML, the encryption is performed in <code>XMLAdapterUser</code>, right before the file is written locally.
+Currently, we only encrypt the <code>Username</code> (for all users) and <code>Salary</code> (for administrators).</p>
+</div>
+<div class="paragraph">
+<p>The following code snippet shown below illustrates the encryption process:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> handleSaveUserChangedEvent(SaveUserChangedEvent cuce) {
-    <span class="comment">// ... logging ...</span>
-    <span class="keyword">try</span> {
-        userStorage.saveUser(cuce.user, cuce.filePath);
-        DataSecurityUtil.encryptFile(cuce.filePath.toFile(),
-                cuce.password.getValue());
-    } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
-        logger.warning(<span class="string"><span class="delimiter">&quot;</span><span class="content">Unable to save or encrypt data</span><span class="delimiter">&quot;</span></span>);
-        e.printStackTrace();
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> XmlAdaptedUser(User user, <span class="predefined-type">String</span> password) {
+    <span class="comment">// ... null checks ...</span>
+
+
+    <span class="comment">// All users</span>
+    <span class="local-variable">this</span>.username = DataSecurityUtil.bytesToBase64(DataSecurityUtil.encrypt(
+            user.getUsername().toString().getBytes(), password));
+    <span class="local-variable">this</span>.name = user.getName().toString();
+    <span class="local-variable">this</span>.role = user.getRole().toString();
+    <span class="local-variable">this</span>.pathToProfilePic = user.getPathToProfilePic().toString();
+
+
+    <span class="comment">// Admin</span>
+    <span class="keyword">if</span> (user.getRole() == <span class="predefined-type">Role</span>.ADMIN) {
+        Admin admin = (Admin) user;
+        <span class="local-variable">this</span>.salary = DataSecurityUtil.bytesToBase64(DataSecurityUtil.encrypt(
+                admin.getSalary().toString().getBytes(), password));
+        <span class="local-variable">this</span>.employmentDate = admin.getEmploymentDate().toString();
     }
+
+    <span class="comment">// ... removed for brevity ...</span>
 }</code></pre>
 </div>
 </div>
@@ -2050,40 +2061,51 @@ This is shown in the following code snippet below:</p>
 <div class="sect4">
 <h5 id="implementation-of-the-decryption-feature"><a class="link" href="#implementation-of-the-decryption-feature">Implementation of the decryption feature</a></h5>
 <div class="paragraph">
-<p>The decryption feature is integrated with the login feature under user account management(3.1).<br>
-<code>LoginCommand</code> calls <code>DataSecurityUtil#decryptFile(&#8230;&#8203;)</code> once the validation of the user is completed.</p>
+<p>The decryption feature is integrated with the login feature under user account management(3.1).<br></p>
 </div>
 <div class="paragraph">
-<p>This is shown in the following code snippet below:</p>
+<p>When <code>LoginCommand</code> calls <code>model.readUser(&#8230;&#8203;)</code> the loading of user file will commence and the decryption will occur in <code>XMLAdapterUser#toModelType(&#8230;&#8203;)</code>.</p>
+</div>
+<div class="paragraph">
+<p>This is shown in the following code snippets below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult execute(Model model, CommandHistory history) <span class="directive">throws</span> CommandException {
-        <span class="comment">// ... check if user logged in ... //</span>
-        <span class="comment">// ... check if credential is valid .. //</span>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> User toModelType(<span class="predefined-type">String</span> password) <span class="directive">throws</span> IllegalValueException, CorruptedFileException,
+        <span class="exception">NoSuchPaddingException</span>, InvalidPasswordException, <span class="exception">NoSuchAlgorithmException</span>, <span class="exception">InvalidKeyException</span> {
+    User user = <span class="predefined-constant">null</span>;
+    checkMandatoryFields();
 
-        User toSetCurrentUser;
-        <span class="keyword">try</span> {
-            DataSecurityUtil.decryptFile(pathToSaveFile.toFile(),
-                toLogin.getPassword().toString());
+    <span class="predefined-type">String</span> decryptedUsername = decryptUsername(password);
 
-            Optional&lt;User&gt; userFromFile = model.readUserFile(pathToSaveFile);
-            <span class="keyword">if</span> (!userFromFile.isPresent()) {
-                <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_UNABLE_TO_READ_FILE);
-            }
-            toSetCurrentUser = userFromFile.get();
+    <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="content">ADMIN</span><span class="delimiter">&quot;</span></span>.equals(role)) {
+        checkAdminFields();
+        <span class="predefined-type">String</span> decryptedSalary = decryptSalary(password);
+        user = <span class="keyword">new</span> Admin(<span class="keyword">new</span> Username(decryptedUsername), <span class="keyword">new</span> <span class="predefined-type">Name</span>(name), <span class="predefined-type">Role</span>.ADMIN, <span class="keyword">new</span> Salary(decryptedSalary),
+                <span class="keyword">new</span> EmployDate(employmentDate));
+    }
+    <span class="comment">// ... removed for brevity ...</span>
 
-            DataSecurityUtil.encryptFile(pathToSaveFile.toFile(), toLogin.getPassword().getValue());
-        } <span class="keyword">catch</span> (DataConversionException | <span class="exception">IOException</span> | CorruptedFileException
-            | <span class="exception">NoSuchAlgorithmException</span> | <span class="exception">InvalidKeyException</span> | InvalidPasswordException
-            | <span class="exception">NoSuchPaddingException</span> e) {
-            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_UNABLE_TO_READ_FILE);
-        }
-
-        model.setCurrentUser(toSetCurrentUser);
-        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SUCCESS,
-            toSetCurrentUser.getUsername()));
+    <span class="keyword">return</span> user;
 }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code snippets of <code>decryptUsername(&#8230;&#8203;)</code> and <code>decryptSalary(&#8230;&#8203;)</code> is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">String</span> decryptUsername(<span class="predefined-type">String</span> password) <span class="directive">throws</span> <span class="exception">NoSuchAlgorithmException</span>, <span class="exception">InvalidKeyException</span>,
+        InvalidPasswordException, CorruptedFileException, <span class="exception">NoSuchPaddingException</span> {
+    <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">String</span>(DataSecurityUtil.decrypt(
+            DataSecurityUtil.base64ToBytes(username), password), StandardCharsets.UTF_8);
+}
+
+ <span class="directive">private</span> <span class="predefined-type">String</span> decryptSalary(<span class="predefined-type">String</span> password) <span class="directive">throws</span> <span class="exception">NoSuchAlgorithmException</span>, <span class="exception">InvalidKeyException</span>,
+            InvalidPasswordException, CorruptedFileException, <span class="exception">NoSuchPaddingException</span> {
+    <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">String</span>(DataSecurityUtil.decrypt(
+            DataSecurityUtil.base64ToBytes(salary), password), StandardCharsets.UTF_8);
+ }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2170,14 +2192,153 @@ This is shown in the following code snippet below:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="load-user-feature"><a class="link" href="#load-user-feature">3.7. Load User feature</a></h3>
+<div class="paragraph">
+<p>The load user feature involves mainly the loading process of a user&#8217;s attributes.
+This feature is integrated into the <code>login</code> command, however it functions independently from authentication process.</p>
+</div>
+<div class="paragraph">
+<p>This section will describe in details the current implementation and the design considerations of the load user feature.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The load mechanism is facilitated by the <code>UserStorage</code> class.</p>
+</div>
+<div class="paragraph">
+<p>It provides a method to load the user&#8217;s attributes from a saved file.<br>
+The following operation is used for the loading process:</p>
+</div>
+<div class="paragraph">
+<p><code>StorageManager#readUser(…​)</code> — Reads the user&#8217;s data from the specified file path.</p>
+</div>
+<div class="sect4">
+<h5 id="implementation-of-the-save-feature-2"><a class="link" href="#implementation-of-the-save-feature-2">Implementation of the save feature</a></h5>
+<div class="paragraph">
+<p>The load mechanism of modsUni is facilitated by <code>LoginCommand</code> class and is event-driven.
+It allows a user to load their data in modsUni from a XML file.</p>
+</div>
+<div class="paragraph">
+<p>The load feature uses multiple components of the modsUni application.
+Parsing of command is performed by LoginCommandParser, which returns a LoginCommand object after parsing the save file path.</p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram shown below in Figure 1 illustrates the interactions between some of these components.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SequenceDiagramforLoginLoad.png" alt="SequenceDiagramforLoginLoad" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. Sequence Diagram for the interaction between Logic and Model Components when executing LoginCommand</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforLoginCommandOverviewWithLoad.png" alt="SDforLoginCommandOverviewWithLoad" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. High-Level Sequence Diagram of the login process.</em></p>
+</div>
+<div class="paragraph">
+<p>The Storage component makes use of <code>XmlUserStorage</code> class to read <code>User</code> from the file specified by the file path.
+The conversion from <code>XmlSerializableUser</code> to <code>User</code> object is shown in the following code snippet below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> Optional&lt;User&gt; readUser(Path filePath, <span class="predefined-type">String</span> password) <span class="directive">throws</span> DataConversionException, <span class="exception">FileNotFoundException</span> {
+    <span class="comment">// ... null checks ...</span>
+
+    XmlSerializableUser xmlUser = XmlFileStorage.loadUserDataFromSaveFile(filePath);
+    <span class="keyword">try</span> {
+        <span class="keyword">return</span> Optional.of(xmlUser.toModelType(...));
+    } <span class="keyword">catch</span> (IllegalValueException ive) {
+        logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Illegal values found in </span><span class="delimiter">&quot;</span></span> + filePath + <span class="string"><span class="delimiter">&quot;</span><span class="content">: </span><span class="delimiter">&quot;</span></span> + ive.getMessage());
+        <span class="keyword">throw</span> <span class="keyword">new</span> DataConversionException(ive);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The method <code>XmlFileStorage#loadUserDataFromSaveFile(&#8230;&#8203;)</code> as shown in the code snipplets below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> XmlSerializableUser loadUserDataFromSaveFile(Path file) <span class="directive">throws</span> DataConversionException, <span class="exception">FileNotFoundException</span> {
+    <span class="keyword">try</span> {
+        <span class="keyword">return</span> XmlUtil.getDataFromFile(file, XmlSerializableUser.class);
+    } <span class="keyword">catch</span> (JAXBException e) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> DataConversionException(e);
+    }
+}</code></pre>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the save mechanism behaves:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A student will use the login command to log into their account.</p>
+</li>
+<li>
+<p>Upon issuing the login command , the login command will call <code>Model#readUserFile(&#8230;&#8203;)</code> which then loads the file into an <code>XmlSerializableUser</code> using <code>XmlFileStorage.loadUserDataFromSaveFile(&#8230;&#8203;)</code>.</p>
+</li>
+<li>
+<p>The <code>XmlSerializableUser</code> object is then converted to an <code>User</code> object using the  <code>XmlSerializableUser#toModelType(&#8230;&#8203;)</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.7.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-load-command"><a class="link" href="#aspect-load-command">Aspect: Load command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Loads file together with login.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Able to load a user saved file without entering an additional command.</p>
+</li>
+<li>
+<p>Cons: Reduce flexibility.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Load file using an independent load command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More control over when a file is loaded..</p>
+</li>
+<li>
+<p>Cons: Additional command which may lead to more bug.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -2208,7 +2369,7 @@ This is shown in the following code snippet below:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3853,4 +4014,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 15:56:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 15:57:11 UTC</div></div></div></body></html>

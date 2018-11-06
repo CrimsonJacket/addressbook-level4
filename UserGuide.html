@@ -20,14 +20,15 @@
 <li><a href="#deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code">3.5. Deleting a module from student&#8217;s taken module list: <code>removeModuleT</code></a></li>
 <li><a href="#searching-for-a-module-in-the-database-code-search-code">3.6. Searching for a module in the database: <code>search</code></a></li>
 <li><a href="#save">3.7. Saving user data: <code>save</code></a></li>
-<li><a href="#generate-module-plan-code-generate-code">3.8. Generate module plan: <code>generate</code></a></li>
-<li><a href="#login-to-user-account-code-login-code">3.9. Login to User Account : <code>login</code></a></li>
-<li><a href="#register-a-student-account-code-register-code">3.10. Register a Student Account : <code>register</code></a></li>
-<li><a href="#edit-student-account-code-edit-code">3.11. Edit Student Account : <code>edit</code></a></li>
-<li><a href="#data-encryption">3.12. Data Encryption</a></li>
-<li><a href="#set-module-preference-code-set-mod-code">3.13. Set module preference: <code>set-mod</code></a></li>
-<li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.14. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
-<li><a href="#set-theme-code-set-theme-code">3.15. Set theme: <code>set-theme</code></a></li>
+<li><a href="#switchtab">3.8. Switch left panel tabs: <code>switch</code></a></li>
+<li><a href="#generate-module-plan-code-generate-code">3.9. Generate module plan: <code>generate</code></a></li>
+<li><a href="#login-to-user-account-code-login-code">3.10. Login to User Account : <code>login</code></a></li>
+<li><a href="#register-a-student-account-code-register-code">3.11. Register a Student Account : <code>register</code></a></li>
+<li><a href="#edit-student-account-code-edit-code">3.12. Edit Student Account : <code>edit</code></a></li>
+<li><a href="#data-encryption">3.13. Data Encryption</a></li>
+<li><a href="#set-module-preference-code-set-mod-code">3.14. Set module preference: <code>set-mod</code></a></li>
+<li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.15. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
+<li><a href="#set-theme-code-set-theme-code">3.16. Set theme: <code>set-theme</code></a></li>
 </ul>
 </li>
 <li><a href="#AdminFeatures">4. Administrator Features</a>
@@ -294,23 +295,152 @@ the filtered database module list.</p>
 <div class="sect2">
 <h3 id="save"><a class="link" href="#save">3.7. Saving user data: <code>save</code></a></h3>
 <div class="paragraph">
-<p>Save current module configurations for future usage.<br>
-Format: <code>save sp/[FILE_NAME].xml</code></p>
+<p>Saves current user information for the restoration of a user when logging in.<br>
+Format: <code>save sp/&lt;FILE_NAME&gt;.xml</code></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>save sp/userdata.xml</code><br>
-Saves the current user data to the file name <code>userdata.xml</code></p>
+Saves the current user data to the file name <code>userdata.xml</code>.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The prefix <code>"sp"</code> is the short form for <code>"save path"</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Figure 1 shows an example of the usage of the save command in the application.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SaveCommandExample.jpg" alt="SaveCommandExample" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. An example of a save command</em></p>
+</div>
+<div class="paragraph">
+<p>Upon entering the command, you will see the types of information stored as well as a successful message as shown in Figure 2.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SaveCommandSuccessful.jpg" alt="SaveCommandSuccessful" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Saved information and successful message are displayed upon entering save command</em></p>
+</div>
+<div class="paragraph">
+<p>Upon entering the save command, a file depicted in Figure 3 will be generated.
+This file will be required when logging in.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Modifying the saved file may result in the loss of data that is unrecoverable. Edit at your own risk!
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SaveFileExample.jpg" alt="SaveFileExample" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3. An example of a user&#8217;s information in a saved file</em></p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="generate-module-plan-code-generate-code"><a class="link" href="#generate-module-plan-code-generate-code">3.8. Generate module plan: <code>generate</code></a></h3>
+<h3 id="switchtab"><a class="link" href="#switchtab">3.8. Switch left panel tabs: <code>switch</code></a></h3>
+<div class="paragraph">
+<p>Switches to the selected tab on the left panel.<br>
+Format: <code>switch tab/&lt;OPTION&gt;</code></p>
+</div>
+<div class="paragraph">
+<p>Available Options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User tab: <code>tab/user</code></p>
+</li>
+<li>
+<p>Staged tab: <code>tab/staged</code></p>
+</li>
+<li>
+<p>Taken tab: <code>tab/taken</code></p>
+</li>
+<li>
+<p>Database tab: <code>tab/database</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>switch tab/database</code><br>
+Switches the left panel to the database tab.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You do not need to be logged in to use the switch command.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Figure 1 shows an example of the usage of switch command in the application.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SwitchTabCommandExample.jpg" alt="SwitchTabCommandExample" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. An example of a switch to the database tab</em></p>
+</div>
+<div class="paragraph">
+<p>Upon entering the command, you will see that the left panel switches to the database panel as shown in Figure 2.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SwitchTabCommandSuccessful.jpg" alt="SwitchTabCommandSuccessful" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. A successful example of switching to the database tab</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generate-module-plan-code-generate-code"><a class="link" href="#generate-module-plan-code-generate-code">3.9. Generate module plan: <code>generate</code></a></h3>
 <div class="paragraph">
 <p>Generates a schedule based on the modules that have been added by the <code>addModuleS</code> command.<br>
 Format: <code>generate</code></p>
@@ -353,7 +483,7 @@ executing.
 </div>
 </div>
 <div class="sect2">
-<h3 id="login-to-user-account-code-login-code"><a class="link" href="#login-to-user-account-code-login-code">3.9. Login to User Account : <code>login</code></a></h3>
+<h3 id="login-to-user-account-code-login-code"><a class="link" href="#login-to-user-account-code-login-code">3.10. Login to User Account : <code>login</code></a></h3>
 <div class="paragraph">
 <p>Login to the User Account with the corresponding credentials.<br>
 Format: <code>login user/&lt;USERNAME&gt; pass/&lt;PASSWORD&gt; userData/[PATH_TO_DATA_FILE]</code></p>
@@ -416,7 +546,7 @@ Note that your details will automatically be displayed in the User Tab and a sim
 </div>
 </div>
 <div class="sect2">
-<h3 id="register-a-student-account-code-register-code"><a class="link" href="#register-a-student-account-code-register-code">3.10. Register a Student Account : <code>register</code></a></h3>
+<h3 id="register-a-student-account-code-register-code"><a class="link" href="#register-a-student-account-code-register-code">3.11. Register a Student Account : <code>register</code></a></h3>
 <div class="paragraph">
 <p>Register a Student Account with the input parameters.<br>
 Format: <code>register [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
@@ -509,7 +639,7 @@ the file in another location by executing the <code>save</code> command as detai
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-student-account-code-edit-code"><a class="link" href="#edit-student-account-code-edit-code">3.11. Edit Student Account : <code>edit</code></a></h3>
+<h3 id="edit-student-account-code-edit-code"><a class="link" href="#edit-student-account-code-edit-code">3.12. Edit Student Account : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits the Student specific information as specified in the input parameters.<br>
 Format: <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
@@ -576,13 +706,13 @@ Notice that the Name in the User Tab has changed.
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-encryption"><a class="link" href="#data-encryption">3.12. Data Encryption</a></h3>
+<h3 id="data-encryption"><a class="link" href="#data-encryption">3.13. Data Encryption</a></h3>
 <div class="paragraph">
 <p>Data stored using the <code>save</code> command is encrypted by default.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-module-preference-code-set-mod-code"><a class="link" href="#set-module-preference-code-set-mod-code">3.13. Set module preference: <code>set-mod</code></a></h3>
+<h3 id="set-module-preference-code-set-mod-code"><a class="link" href="#set-module-preference-code-set-mod-code">3.14. Set module preference: <code>set-mod</code></a></h3>
 <div class="paragraph">
 <p>Setting a preferred semester to take a module.<br>
 Format: <code>set-mod &lt;MOD_CODE&gt; &lt;SEMESTER&gt;</code></p>
@@ -600,7 +730,7 @@ Configures CS2103T to be taken in year 2 semester 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code"><a class="link" href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.14. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></h3>
+<h3 id="set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code"><a class="link" href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.15. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></h3>
 <div class="paragraph">
 <p>Setting the maximum number of semesters during candidature.<br>
 Format: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></p>
@@ -617,7 +747,7 @@ Format: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-theme-code-set-theme-code"><a class="link" href="#set-theme-code-set-theme-code">3.15. Set theme: <code>set-theme</code></a></h3>
+<h3 id="set-theme-code-set-theme-code"><a class="link" href="#set-theme-code-set-theme-code">3.16. Set theme: <code>set-theme</code></a></h3>
 <div class="paragraph">
 <p>Set a different theme based on a configuration file.<br>
 Format: <code>set-theme &lt;FILE_NAME&gt;.xml</code></p>
@@ -1036,4 +1166,4 @@ available/[&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;] d
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 15:56:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 15:57:11 UTC</div></div></div></body></html>
