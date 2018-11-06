@@ -28,17 +28,21 @@
 <li><a href="#set-module-preference-code-set-mod-code">3.13. Set module preference: <code>set-mod</code></a></li>
 <li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.14. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
 <li><a href="#set-theme-code-set-theme-code">3.15. Set theme: <code>set-theme</code></a></li>
-<li><a href="#add-a-new-administrator-account-code-addadmin-code">3.16. Add a new administrator account: <code>addAdmin</code></a></li>
-<li><a href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">3.17. Edit the currently logged in administrator account: <code>editAdmin</code></a></li>
-<li><a href="#remove-a-existing-user-account-code-removeuser-code">3.18. Remove a existing user account: <code>removeUser</code></a></li>
-<li><a href="#show-the-list-of-usernames-code-showuser-code">3.19. Show the list of usernames: <code>showUser</code></a></li>
-<li><a href="#add-a-new-module-to-database-code-addmoduledb-code">3.20. Add a new module to database: <code>addModuleDB</code></a></li>
-<li><a href="#edit-details-of-a-module-in-database-code-editmodule-code">3.21. Edit details of a module in database: <code>editModule</code></a></li>
-<li><a href="#remove-a-existing-module-from-database-code-removemoduledb-code">3.22. Remove a existing module from database: <code>removeModuleDB</code></a></li>
 </ul>
 </li>
-<li><a href="#faq">4. FAQ</a></li>
-<li><a href="#command-summary">5. Command Summary</a></li>
+<li><a href="#AdminFeatures">4. Administrator Features</a>
+<ul class="sectlevel2">
+<li><a href="#add-a-new-administrator-account-code-addadmin-code">4.1. Add a new administrator account: <code>addAdmin</code></a></li>
+<li><a href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">4.2. Edit the currently logged in administrator account: <code>editAdmin</code></a></li>
+<li><a href="#remove-a-existing-user-account-code-removeuser-code">4.3. Remove a existing user account: <code>removeUser</code></a></li>
+<li><a href="#show-the-list-of-usernames-code-showuser-code">4.4. Show the list of usernames: <code>showUser</code></a></li>
+<li><a href="#add-a-new-module-to-database-code-addmoduledb-code">4.5. Add a new module to database: <code>addModuleDB</code></a></li>
+<li><a href="#edit-details-of-a-module-in-database-code-editmodule-code">4.6. Edit details of a module in database: <code>editModule</code></a></li>
+<li><a href="#remove-a-existing-module-from-database-code-removemoduledb-code">4.7. Remove a existing module from database: <code>removeModuleDB</code></a></li>
+</ul>
+</li>
+<li><a href="#faq">5. FAQ</a></li>
+<li><a href="#command-summary">6. Command Summary</a></li>
 </ul>
 </div>
 </div>
@@ -92,7 +96,7 @@ This way, you are able to use the application easily and effectively without com
 </div>
 <div class="paragraph">
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window. +</p>
+e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.<br></p>
 </div>
 <div class="paragraph">
 <p>Some example commands you can try:</p>
@@ -112,6 +116,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 <div class="paragraph">
 <p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
+</div>
+<div class="paragraph">
+<p>To begin using administrator commands, login to the default master account with the following command:<br>
+<code>login user/master pass/Pass#123 userdata/masterconfig.xml</code><br></p>
+</div>
+<div class="paragraph">
+<p>Refer to <a href="#AdminFeatures">Section 4, &#8220;Administrator Features&#8221;</a> for details of each admin command.</p>
 </div>
 </div>
 </div>
@@ -622,8 +633,26 @@ Format: <code>set-theme &lt;FILE_NAME&gt;.xml</code></p>
 </ul>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="AdminFeatures"><a class="link" href="#AdminFeatures">4. Administrator Features</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The commands in this section can only be executed when logged into an administrator account. Otherwise, the message
+<code>Only an admin user can execute this command</code> will be displayed in the output window.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="add-a-new-administrator-account-code-addadmin-code"><a class="link" href="#add-a-new-administrator-account-code-addadmin-code">3.16. Add a new administrator account: <code>addAdmin</code></a></h3>
+<h3 id="add-a-new-administrator-account-code-addadmin-code"><a class="link" href="#add-a-new-administrator-account-code-addadmin-code">4.1. Add a new administrator account: <code>addAdmin</code></a></h3>
 <div class="paragraph">
 <p>Create and add a new adminstrator account.<br>
 Format: <code>addAdmin OPTION/INPUT&#8230;&#8203;</code><br></p>
@@ -659,14 +688,14 @@ Format: <code>addAdmin OPTION/INPUT&#8230;&#8203;</code><br></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addAdmin user/master pass/myPass#1 n/John Doe sp/userdata.xml salary/4000 date/01/01/2018</code><br>
+<p><code>addAdmin user/myUsername pass/Password#1 n/John Doe sp/exampleconfig.xml salary/3000 employ/30/09/2018</code><br>
 Creates a new administrator account with the following stated details.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-the-currently-logged-in-administrator-account-code-editadmin-code"><a class="link" href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">3.17. Edit the currently logged in administrator account: <code>editAdmin</code></a></h3>
+<h3 id="edit-the-currently-logged-in-administrator-account-code-editadmin-code"><a class="link" href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">4.2. Edit the currently logged in administrator account: <code>editAdmin</code></a></h3>
 <div class="paragraph">
 <p>Edit the details of the currently logged in administrator.<br>
 Format: <code>editAdmin OPTION/INPUT&#8230;&#8203;</code><br></p>
@@ -704,7 +733,7 @@ Change both the salary and employement date of the logged in administrator to "3
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-a-existing-user-account-code-removeuser-code"><a class="link" href="#remove-a-existing-user-account-code-removeuser-code">3.18. Remove a existing user account: <code>removeUser</code></a></h3>
+<h3 id="remove-a-existing-user-account-code-removeuser-code"><a class="link" href="#remove-a-existing-user-account-code-removeuser-code">4.3. Remove a existing user account: <code>removeUser</code></a></h3>
 <div class="paragraph">
 <p>Remove a currently existing user account.<br>
 Format: <code>removeAdmin &lt;USERNAME&gt;</code></p>
@@ -722,14 +751,14 @@ Removes a administrator account with username "Username" if it exists.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="show-the-list-of-usernames-code-showuser-code"><a class="link" href="#show-the-list-of-usernames-code-showuser-code">3.19. Show the list of usernames: <code>showUser</code></a></h3>
+<h3 id="show-the-list-of-usernames-code-showuser-code"><a class="link" href="#show-the-list-of-usernames-code-showuser-code">4.4. Show the list of usernames: <code>showUser</code></a></h3>
 <div class="paragraph">
 <p>Display the list of usernames on the main display.<br>
 Format: <code>showUser</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-new-module-to-database-code-addmoduledb-code"><a class="link" href="#add-a-new-module-to-database-code-addmoduledb-code">3.20. Add a new module to database: <code>addModuleDB</code></a></h3>
+<h3 id="add-a-new-module-to-database-code-addmoduledb-code"><a class="link" href="#add-a-new-module-to-database-code-addmoduledb-code">4.5. Add a new module to database: <code>addModuleDB</code></a></h3>
 <div class="paragraph">
 <p>Creates a new module and add it to the module database.<br>
 Format: <code>addModuleDB OPTION/INPUT&#8230;&#8203;</code><br></p>
@@ -804,7 +833,7 @@ Create and add a new module with module code "CS2103T" and the stated details to
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-details-of-a-module-in-database-code-editmodule-code"><a class="link" href="#edit-details-of-a-module-in-database-code-editmodule-code">3.21. Edit details of a module in database: <code>editModule</code></a></h3>
+<h3 id="edit-details-of-a-module-in-database-code-editmodule-code"><a class="link" href="#edit-details-of-a-module-in-database-code-editmodule-code">4.6. Edit details of a module in database: <code>editModule</code></a></h3>
 <div class="paragraph">
 <p>Edit the details of a module specified by its index in database panel in database.<br>
 Format: <code>editModule &lt;INDEX&gt; OPTION/INPUT&#8230;&#8203;</code><br></p>
@@ -898,7 +927,7 @@ After editing, the database panel will display the updated list as shown below.
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-a-existing-module-from-database-code-removemoduledb-code"><a class="link" href="#remove-a-existing-module-from-database-code-removemoduledb-code">3.22. Remove a existing module from database: <code>removeModuleDB</code></a></h3>
+<h3 id="remove-a-existing-module-from-database-code-removemoduledb-code"><a class="link" href="#remove-a-existing-module-from-database-code-removemoduledb-code">4.7. Remove a existing module from database: <code>removeModuleDB</code></a></h3>
 <div class="paragraph">
 <p>Removes a existing module from the module database.<br>
 Format: <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
@@ -935,7 +964,7 @@ After removing, the database panel will display the updated list as shown below.
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
+<h2 id="faq"><a class="link" href="#faq">5. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
@@ -944,7 +973,7 @@ After removing, the database panel will display the updated list as shown below.
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1007,4 +1036,4 @@ available/[&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;] d
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 15:25:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 15:52:13 UTC</div></div></div></body></html>
