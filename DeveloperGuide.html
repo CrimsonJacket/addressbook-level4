@@ -20,11 +20,11 @@
 <li><a href="#design">2. Design</a>
 <ul class="sectlevel2">
 <li><a href="#Design-Architecture">2.1. Architecture</a></li>
-<li><a href="#Design-Ui">2.2. UI component</a></li>
-<li><a href="#Design-Logic">2.3. Logic component</a></li>
-<li><a href="#Design-Model">2.4. Model component</a></li>
-<li><a href="#Design-Storage">2.5. Storage component</a></li>
-<li><a href="#Design-Commons">2.6. Common classes</a></li>
+<li><a href="#Design-Ui">2.2. UI Component</a></li>
+<li><a href="#Design-Logic">2.3. Logic Component</a></li>
+<li><a href="#Design-Model">2.4. Model Component</a></li>
+<li><a href="#Design-Storage">2.5. Storage Component</a></li>
+<li><a href="#Design-Commons">2.6. Common Classes</a></li>
 </ul>
 </li>
 <li><a href="#implementation">3. Implementation</a>
@@ -204,7 +204,7 @@ This will generate all resources required by the application and tests.</p>
 <div class="sect2">
 <h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">1.4. Configurations to do before writing code</a></h3>
 <div class="sect3">
-<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">1.4.1. Configuring the coding style</a></h4>
+<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">1.4.1. Configuring the Coding Style</a></h4>
 <div class="paragraph">
 <p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.adoc">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order from ours. To rectify,</p>
 </div>
@@ -236,7 +236,7 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">1.4.2. Updating documentation to match your fork</a></h4>
+<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">1.4.2. Updating Documentation to match your fork</a></h4>
 <div class="paragraph">
 <p>After forking the repo, the documentation will still have the modsUni branding and refer to the <code>CS2103-AY1819S1-W17-2/main</code> repo.</p>
 </div>
@@ -255,7 +255,7 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">1.4.3. Setting up CI</a></h4>
+<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">1.4.3. Setting Up CI</a></h4>
 <div class="paragraph">
 <p>Set up Travis to perform Continuous Integration (CI) for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
 </div>
@@ -291,7 +291,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.4. Getting started with coding</a></h4>
+<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.4. Getting Started with Coding</a></h4>
 <div class="paragraph">
 <p>When you are ready to start coding,</p>
 </div>
@@ -402,13 +402,13 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </div>
 <div class="title">Figure 2. Class Diagram of the Logic Component</div>
 </div>
-<h4 id="events-driven-nature-of-the-design" class="discrete">Events-Driven nature of the design</h4>
+<h4 id="events-driven-nature-of-the-design" class="discrete">Events-Driven Nature of the Design</h4>
 <div class="paragraph">
 <p>The <em>Sequence Diagram</em> below shows how the components interact for the scenario where the user issues the register command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
+<img src="images/SDforRegisterCommandOverview.png" alt="SDforRegisterCommandOverview" width="800">
 </div>
 <div class="title">Figure 3. Component interactions for <code>register</code> command (part 1)</div>
 </div>
@@ -429,7 +429,7 @@ Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</c
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforDeletePersonEventHandling.png" alt="SDforDeletePersonEventHandling" width="800">
+<img src="images/SDforRegisterCommandPart2.png" alt="SDforRegisterCommandPart2" width="800">
 </div>
 <div class="title">Figure 4. Component interactions for <code>register</code> command (part 2)</div>
 </div>
@@ -450,7 +450,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI component</a></h3>
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI Component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
@@ -484,7 +484,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic component</a></h3>
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic Component</a></h3>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
@@ -522,7 +522,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
+<h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model Component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
@@ -553,7 +553,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage Component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
@@ -578,7 +578,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
+<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common Classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.modsuni.commons</code> package.</p>
 </div>
@@ -597,7 +597,18 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>User Account Management involves mainly the authentication process of the users.
 Only once they are authenticated, will their respective user data be loaded into the application.
 Additionally, it is only by registering/logging in will users be able to access and manipulate their account details.<br>
-This section will describe in detail the Current Implementation and the Design Considerations of the User Account Management feature.</p>
+This section will describe in detail the Current Implementation and the Design Considerations of the User Account Management feature.<br></p>
+</div>
+<div class="paragraph">
+<p>Figure 1(shown below) describes the general flow of the user account management in an activity diagram.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/ADforUserAccountManagement.png" alt="ADforUserAccountManagement" width="800">
+</div>
+</div>
+<div class="paragraph text-center">
+<p><em>Figure 1. Activity Diagram for User Account Management.</em></p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
@@ -608,7 +619,7 @@ This section will describe in detail the Current Implementation and the Design C
 <ul>
 <li>
 <p><code>Credential</code><br>
-It stores <code>Username</code>, <code>Password</code> and <code>Key</code>(coming in v1.3) of the <code>User</code> class.<br>
+It stores <code>Username</code> and <code>Password</code> of the <code>User</code> class.<br>
 Additionally, it implements the following operation(s):</p>
 <div class="ulist">
 <ul>
@@ -671,6 +682,17 @@ Refers to the application managers. It stores variables pertaining to an adminis
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Figure 2(shown below) is the Class Diagrams illustrating the inheritance between <code>User</code>, <code>Student</code> and <code>Admin</code></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/UserClassDiagram.png" alt="UserClassDiagram" width="500">
+</div>
+</div>
+<div class="paragraph text-center">
+<p><em>Figure 2. User, Student and Admin Class Diagrams</em></p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -702,39 +724,39 @@ Registering only applies to students. For the creation of <code>Admin</code> Acc
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>RegisterCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML representation of the <code>RegisterCommand</code>.<br></p>
+<p>The <code>RegisterCommand</code> extends the <code>Command</code> class. Figure 3(shown below) depicts the UML representation of the <code>RegisterCommand</code>.<br></p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/RegisterCommandUML.png" alt="RegisterCommandUML" width="350">
 </div>
 </div>
-<div class="paragraph">
-<p><em>Figure 1. UML Diagram of <code>RegisterCommand</code>.</em></p>
+<div class="paragraph text-center">
+<p><em>Figure 3. UML Diagram of <code>RegisterCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Parsing of command is performed by <code>RegisterCommandParser</code>,
 which returns a <code>RegisterCommand</code> object after parsing Username, Password, Name, Path to Profile Picture, Enrollment Date, Major(s) and Minor(s).
-The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>RegisterCommand</code> is being executed.</p>
+The Sequence Diagram shown below in Figure 4 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>RegisterCommand</code> is being executed.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/SDforRegisterCommandLogicAndModel.png" alt="SDforRegisterCommandLogicAndModel" width="900">
 </div>
 </div>
-<div class="paragraph">
-<p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>RegisterCommand</code>.</em></p>
+<div class="paragraph text-center">
+<p><em>Figure 4. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>RegisterCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 3 below shows the high-level sequence diagram of the command execution.</p>
+<p>Figure 5 below shows the high-level sequence diagram of the command execution.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/SDforRegisterCommandOverview.png" alt="SDforRegisterCommandOverview" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p><em>Figure 3. High-Level Sequence diagram of registering a new student account.</em></p>
+<div class="paragraph text-center">
+<p><em>Figure 5. High-Level Sequence diagram of registering a new student account.</em></p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the register mechanism behaves at each step:</p>
@@ -781,35 +803,35 @@ It allows for students to log into their existing modsUni account, granting them
 <div class="paragraph">
 <p>The <code>LoginCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML representation of the <code>LoginCommand</code>.<br></p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/LoginCommandUML.png" alt="LoginCommandUML" width="350">
 </div>
 </div>
-<div class="paragraph">
+<div class="paragraph text-center">
 <p><em>Figure 1. UML Diagram of <code>LoginCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Parsing of command is performed by <code>LoginCommandParser</code>, which returns a <code>LoginCommand</code> after parsing the username and password inputs.
 The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>LoginCommand</code> is being executed.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/SDforLoginCommandLogicAndModel.png" alt="SDforLoginCommandLogicAndModel" width="900">
 </div>
 </div>
-<div class="paragraph">
+<div class="paragraph text-center">
 <p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>LoginCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Figure 3 below shows the high-level sequence diagram of the command execution.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/SDforLoginCommandOverview.png" alt="SDforLoginCommandOverview" width="800">
 </div>
 </div>
-<div class="paragraph">
+<div class="paragraph text-center">
 <p><em>Figure 3. High-Level Sequence Diagram of the login process.</em></p>
 </div>
 <div class="paragraph">
@@ -845,35 +867,35 @@ to modify personal details.<br></p>
 <div class="paragraph">
 <p>The <code>EditStudentCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML representation of the <code>EditStudentCommand</code>.<br></p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/EditStudentCommandUML.png" alt="EditStudentCommandUML" width="350">
 </div>
 </div>
-<div class="paragraph">
+<div class="paragraph text-center">
 <p><em>Figure 1. UML Diagram of <code>EditStudentCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Parsing the command is performed by <code>EditStudentCommandParser</code>, which returns a <code>EditCommand</code> after parsing the user input.
 The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>EditStudentCommand</code> is being executed.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/SDforEditStudentCommandLogicAndModel.png" alt="SDforEditStudentCommandLogicAndModel" width="900">
 </div>
 </div>
-<div class="paragraph">
+<div class="paragraph text-center">
 <p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>EditStudentCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Figure 3 below shows the high-level sequence diagram of the command execution:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/SDforEditStudentCommand.png" alt="SDforEditStudentCommand" width="800">
 </div>
 </div>
-<div class="paragraph">
+<div class="paragraph text-center">
 <p><em>Figure 3. High-Level Sequence Diagram of the edit process.</em></p>
 </div>
 <div class="paragraph">
@@ -2799,7 +2821,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8221;</a> before attempting to modify the <code>Logic</code> component.
+Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic Component&#8221;</a> before attempting to modify the <code>Logic</code> component.
 </td>
 </tr>
 </table>
@@ -2862,7 +2884,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8221;</a> before attempting to modify the <code>Model</code> component.
+Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model Component&#8221;</a> before attempting to modify the <code>Model</code> component.
 </td>
 </tr>
 </table>
@@ -2931,7 +2953,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</a> before attempting to modify the <code>UI</code> component.
+Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI Component&#8221;</a> before attempting to modify the <code>UI</code> component.
 </td>
 </tr>
 </table>
@@ -3152,7 +3174,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage component&#8221;</a> before attempting to modify the <code>Storage</code> component.
+Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage Component&#8221;</a> before attempting to modify the <code>Storage</code> component.
 </td>
 </tr>
 </table>
@@ -4014,4 +4036,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 15:57:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 08:25:32 UTC</div></div></div></body></html>

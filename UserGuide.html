@@ -25,10 +25,11 @@
 <li><a href="#login-to-user-account-code-login-code">3.10. Login to User Account : <code>login</code></a></li>
 <li><a href="#register-a-student-account-code-register-code">3.11. Register a Student Account : <code>register</code></a></li>
 <li><a href="#edit-student-account-code-edit-code">3.12. Edit Student Account : <code>edit</code></a></li>
-<li><a href="#data-encryption">3.13. Data Encryption</a></li>
-<li><a href="#set-module-preference-code-set-mod-code">3.14. Set module preference: <code>set-mod</code></a></li>
-<li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.15. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
-<li><a href="#set-theme-code-set-theme-code">3.16. Set theme: <code>set-theme</code></a></li>
+<li><a href="#logout-from-user-account-code-logout-code">3.13. Logout from User Account : <code>logout</code></a></li>
+<li><a href="#data-encryption">3.14. Data Encryption</a></li>
+<li><a href="#set-module-preference-code-set-mod-code">3.15. Set module preference: <code>set-mod</code></a></li>
+<li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.16. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
+<li><a href="#set-theme-code-set-theme-code">3.17. Set theme: <code>set-theme</code></a></li>
 </ul>
 </li>
 <li><a href="#AdminFeatures">4. Administrator Features</a>
@@ -494,18 +495,18 @@ Format: <code>login user/&lt;USERNAME&gt; pass/&lt;PASSWORD&gt; userData/[PATH_T
 <div class="ulist">
 <ul>
 <li>
-<p><code>login user/demo pass/#Qwerty123 userdata/demo.xml</code>
+<p><code>login user/max33 pass/#Qwerty4321 userdata/max33.xml</code><br>
 The above command essentially sends a login request to <code>CredentialStore</code> with the following credential details:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Username : <code>demo</code></p>
+<p>Username : <code>max33</code></p>
 </li>
 <li>
-<p>Password : <code>#Qwerty123</code></p>
+<p>Password : <code>#Qwerty4321</code></p>
 </li>
 <li>
-<p>Userdata : <code>demo.xml</code></p>
+<p>Userdata : <code>max33.xml</code></p>
 </li>
 </ul>
 </div>
@@ -525,12 +526,15 @@ Specified <code>userdata/</code> option should specify a relative filepath.
 </table>
 </div>
 <div class="paragraph">
-<p>The image displays the changes to expect after the successful execution of the login command.</p>
+<p>The figure below displays the UI updates that you should expect to observed after the successful execution of a login command.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/LoginCommandExample.png" alt="LoginCommandExample" width="790">
+<img src="images/LoginCommandExample2.png" alt="LoginCommandExample2" width="500">
 </div>
+</div>
+<div class="paragraph text-center">
+<p><em>Fig 1. Example of a Login Command and the expected UI output</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -566,9 +570,6 @@ Format: <code>register [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 <p>Name : <code>n/[NAME]</code></p>
 </li>
 <li>
-<p>Path To Picture: <code>pic/&lt;PATH_TO_PIC&gt;</code></p>
-</li>
-<li>
 <p>Enrollment Date: <code>enroll/&lt;ENROLLMENT_DATE&gt;</code></p>
 </li>
 <li>
@@ -579,36 +580,49 @@ Format: <code>register [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The password must contain at least three character categories among the following:<br>
+- Uppercase characters (A-Z)<br>
+- Lowercase characters (a-z)<br>
+- Digits (0-9)<br>
+- Special characters (~!@#$%^&amp;*_-+=`|\(){}[]:;"'&lt;&gt;,.?/)
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>register user/demo pass/#Qwerty123 n/Demo pic/path.img enroll/02/08/2017 maj/CS min/MA</code><br>
+<p><code>register user/max33 pass/#Qwerty4321 n/Max Verstappen enroll/15/03/2015 maj/CS maj/DA min/BA min/MA</code><br>
 The above command creates a student account with the following details:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Username : <code>demo</code></p>
+<p>Username : <code>max33</code></p>
 </li>
 <li>
-<p>Password : <code>#Qwerty123</code></p>
+<p>Password : <code>#Qwerty4321</code></p>
 </li>
 <li>
-<p>Name : <code>Demo</code></p>
+<p>Name : <code>Max Verstappen</code></p>
 </li>
 <li>
-<p>Path To Picture: <code>path.img</code></p>
+<p>Enrollment Date: <code>15/03/2015&gt;</code></p>
 </li>
 <li>
-<p>Enrollment Date: <code>02/08/2017&gt;</code></p>
+<p>Major(s) : <code>CS</code>, <code>DA</code></p>
 </li>
 <li>
-<p>Major(s) : <code>CS</code></p>
-</li>
-<li>
-<p>Minor(s) : <code>MA</code></p>
+<p>Minor(s) : <code>BA</code>, <code>MA</code></p>
 </li>
 </ul>
 </div>
@@ -616,12 +630,36 @@ The above command creates a student account with the following details:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The image displays the changes to expect after the successful execution of the register command.</p>
+<p>The figure below displays the UI updates that you should expect to observed after the successful execution of the register command.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/RegisterCommandExample.png" alt="RegisterCommandExample" width="790">
+<img src="images/RegisterCommandExample2.png" alt="RegisterCommandExample2" width="600">
 </div>
+</div>
+<div class="paragraph text-center">
+<p><em>Fig 2a. Example of a register command &amp; the expected UI output.</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Notice how the respective fields related to the newly registered user is automatically
+updated.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/RegisterCommandOutputDisplay.png" alt="RegisterCommandOutputDisplay" width="400">
+</div>
+</div>
+<div class="paragraph text-center">
+<p><em>Fig 2b. Expected Command Message after running register command.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -653,9 +691,6 @@ Format: <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 <p>Edit Name : <code>n/[NAME]</code></p>
 </li>
 <li>
-<p>Edit Profile Picture: <code>pic/[PATH_TO_PIC]</code></p>
-</li>
-<li>
 <p>Edit Enrollment Date: <code>enroll/[ENROLLMENT_DATE]</code></p>
 </li>
 <li>
@@ -672,12 +707,18 @@ Format: <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit n/Demo Lition</code><br>
-The above command edits the <code>Name</code> of the current student with the new details:</p>
+<p><code>edit n/Max Emilian Verstappen maj/CS min/</code><br>
+The above command edits the current student with the new details:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Name : <code>Demo Lition</code></p>
+<p>Name : Max Emilian Verstappen`</p>
+</li>
+<li>
+<p>Major: CS</p>
+</li>
+<li>
+<p>Minor: [EMPTY]</p>
 </li>
 </ul>
 </div>
@@ -685,12 +726,15 @@ The above command edits the <code>Name</code> of the current student with the ne
 </ul>
 </div>
 <div class="paragraph">
-<p>The image displays the changes to expect after the successful execution of the edit command.</p>
+<p>The figure below displays the UI updates that you should expect to observed after the successful execution of the edit command.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/EditCommandExample.png" alt="EditCommandExample" width="790">
+<img src="images/EditCommandExample2.png" alt="EditCommandExample2" width="500">
 </div>
+</div>
+<div class="paragraph text-center">
+<p><em>Fig 3. Example of an edit command &amp; the expected UI output.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -699,20 +743,61 @@ The above command edits the <code>Name</code> of the current student with the ne
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Notice that the Name in the User Tab has changed.
+Notice that the Name, Major and Minor fields in the User Tab has changed
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-encryption"><a class="link" href="#data-encryption">3.13. Data Encryption</a></h3>
+<h3 id="logout-from-user-account-code-logout-code"><a class="link" href="#logout-from-user-account-code-logout-code">3.13. Logout from User Account : <code>logout</code></a></h3>
+<div class="paragraph">
+<p>Logouts from the current user account. Running this command also resets the application
+to its original state.
+Format: <code>logout</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>logout</code> (assuming that current user is logged in)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The figure below displays the expected UI updates after the successful execution of the logout command.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/LogoutCommandExample.png" alt="LogoutCommandExample" width="500">
+</div>
+</div>
+<div class="paragraph text-center">
+<p><em>Fig 4. Example of a logout command &amp; the expected UI output.</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Notice that the Data Fields in the User Tab has been reset to its original state as seen at start up.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-encryption"><a class="link" href="#data-encryption">3.14. Data Encryption</a></h3>
 <div class="paragraph">
 <p>Data stored using the <code>save</code> command is encrypted by default.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-module-preference-code-set-mod-code"><a class="link" href="#set-module-preference-code-set-mod-code">3.14. Set module preference: <code>set-mod</code></a></h3>
+<h3 id="set-module-preference-code-set-mod-code"><a class="link" href="#set-module-preference-code-set-mod-code">3.15. Set module preference: <code>set-mod</code></a></h3>
 <div class="paragraph">
 <p>Setting a preferred semester to take a module.<br>
 Format: <code>set-mod &lt;MOD_CODE&gt; &lt;SEMESTER&gt;</code></p>
@@ -730,7 +815,7 @@ Configures CS2103T to be taken in year 2 semester 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code"><a class="link" href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.15. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></h3>
+<h3 id="set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code"><a class="link" href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.16. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></h3>
 <div class="paragraph">
 <p>Setting the maximum number of semesters during candidature.<br>
 Format: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></p>
@@ -747,7 +832,7 @@ Format: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-theme-code-set-theme-code"><a class="link" href="#set-theme-code-set-theme-code">3.16. Set theme: <code>set-theme</code></a></h3>
+<h3 id="set-theme-code-set-theme-code"><a class="link" href="#set-theme-code-set-theme-code">3.17. Set theme: <code>set-theme</code></a></h3>
 <div class="paragraph">
 <p>Set a different theme based on a configuration file.<br>
 Format: <code>set-theme &lt;FILE_NAME&gt;.xml</code></p>
@@ -1132,7 +1217,7 @@ After removing, the database panel will display the updated list as shown below.
 <p><strong>Login</strong> : <code>login user/[USERNAME] pass/[PASSWORD] userData/[PATH_TO_DATA_FILE]</code></p>
 </li>
 <li>
-<p><strong>Register</strong> : <code>register user/[USERNAME] pass/[PASSWORD] n/[NAME] pic/[PATH_TO_PIC] enroll/[ENROLLMENT_DATE] maj/[MAJOR_CODE] min/[MINOR_CODE]</code></p>
+<p><strong>Register</strong> : <code>register user/[USERNAME] pass/[PASSWORD] n/[NAME] enroll/[ENROLLMENT_DATE] maj/[MAJOR_CODE] min/[MINOR_CODE]</code></p>
 </li>
 <li>
 <p><strong>Edit Student</strong> : <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code></p>
@@ -1166,4 +1251,4 @@ available/[&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;] d
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 15:57:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 08:25:32 UTC</div></div></div></body></html>
