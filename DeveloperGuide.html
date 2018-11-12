@@ -82,9 +82,11 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
-<li><a href="#adding-a-module">G.4. Adding a module</a></li>
-<li><a href="#editing-module-details">G.5. Editing Module Details</a></li>
+<li><a href="#saving-a-user">G.3. Saving a user</a></li>
+<li><a href="#modifying-of-user-data-file">G.4. Modifying of user data file</a></li>
+<li><a href="#saving-data">G.5. Saving data</a></li>
+<li><a href="#adding-a-module">G.6. Adding a module</a></li>
+<li><a href="#editing-module-details">G.7. Editing Module Details</a></li>
 </ul>
 </li>
 </ul>
@@ -1769,7 +1771,7 @@ another module just to store the other module codes. This can be heavy on memory
 <h3 id="save-user-feature"><a class="link" href="#save-user-feature">3.5. Save User Feature</a></h3>
 <div class="paragraph">
 <p>The save user feature involves mainly the saving process of a user&#8217;s attributes.
-A user can save their data only after they have logged in/registered an account.</p>
+A user can save their data only after they have logged in or registered an account.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1778,7 +1780,7 @@ A user can save their data only after they have logged in/registered an account.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Data refers to a user&#8217;s attributes listed in <code>SaveCommand</code> under the current implementation of the save user feature.
+Data refers to a user&#8217;s attributes listed in <code>SaveCommand</code> under the current implementation of the save user feature in the next section.
 </td>
 </tr>
 </table>
@@ -1795,16 +1797,16 @@ Data refers to a user&#8217;s attributes listed in <code>SaveCommand</code> unde
 <ul>
 <li>
 <p><code>SaveCommand</code><br>
-It stores the following attributes of a <code>User</code> object:<br></p>
+The <code>SaveCommand</code> stores the following attributes of a <code>User</code> object:<br></p>
 <div class="ulist">
 <ul>
 <li>
-<p>All user</p>
+<p>Attributes that exist in all user:</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Username<br>
-The username used for logging in.</p>
+The username of a user.</p>
 </li>
 <li>
 <p>Name<br>
@@ -1813,16 +1815,24 @@ The name of the user.</p>
 <li>
 <p>Role<br>
 The role of the user.</p>
-</li>
-<li>
-<p>Path to Profile Picture<br>
-The path to the user&#8217;s profile picture.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>Username</code> is unique to every user and is used for logging in. <code>Name</code> is non-unique and multiple users can use the same <code>Name</code>.
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Admin</p>
+<p>Attributes that only exist in an admin:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1830,14 +1840,14 @@ The path to the user&#8217;s profile picture.</p>
 The salary of an administrator.</p>
 </li>
 <li>
-<p>Employ Date<br>
+<p>Employment Date<br>
 The employment date of an administrator.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Student</p>
+<p>Attributes that only exist in a student:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1846,19 +1856,31 @@ The enrollment date of a student.</p>
 </li>
 <li>
 <p>Major(s)<br>
-A list of the student&#8217;s major.</p>
+A list of a student&#8217;s major.</p>
 </li>
 <li>
 <p>Minor(s)<br>
-A list of the student&#8217;s minor.</p>
+A list of a student&#8217;s minor.</p>
 </li>
 <li>
 <p>Modules Taken<br>
-A list of modules took by the student.</p>
+A list of modules took by a student.</p>
 </li>
 <li>
 <p>Modules Staged<br>
 A list of modules staged for the generation of candidature.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+A student must have <strong>at least one</strong> major and can have no minor.
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ul>
 </div>
@@ -1869,7 +1891,7 @@ A list of modules staged for the generation of candidature.</p>
 <li>
 <p><code>UserStorage</code><br>
 It provides methods to save the current user&#8217;s attributes as well as to load a file containing previously saved data.<br>
-Additionally, it implements the following operations:</p>
+<code>UserStorage</code> implements the following operations:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1887,7 +1909,7 @@ Additionally, it implements the following operations:</p>
 <h5 id="implementation-of-the-save-feature"><a class="link" href="#implementation-of-the-save-feature">Implementation of the save feature</a></h5>
 <div class="paragraph">
 <p>The <code>save</code> mechanism of modsUni is facilitated by <code>SaveCommand</code> class and is event-driven.
-It allows a user to save their data in modsUni as a XML file.</p>
+It allows a user to save their data as an XML file.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1902,8 +1924,7 @@ Both admin and student can use the save feature.
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>SaveCommand</code> class extends from the <code>Command</code> class.
-Figure 1 as shown below depicts the UML diagram for the <code>SaveCommand</code> class.</p>
+<p>The <code>SaveCommand</code> class extends from the <code>Command</code> class as shown below in Figure 1.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1914,12 +1935,12 @@ Figure 1 as shown below depicts the UML diagram for the <code>SaveCommand</code>
 <p><em>Figure 1. SaveCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>Parsing of command is performed by <code>SaveCommandParser</code>, which returns a <code>SaveCommand</code> object after parsing the save file path.
-The sequence diagram shown below in Figure 2 illustrates the interactions between the Logic &amp; Model components when the SaveCommand is being executed.</p>
+<p>The parsing of command is performed by <code>SaveCommandParser</code>, which returns a <code>SaveCommand</code> object after parsing the save file path.
+The sequence diagram shown below in Figure 2 illustrates the interactions between the Logic and Model components when the SaveCommand is being executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforSaveCommandLogicAndModel.png" alt="SDforSaveCommandLogicAndModel" width="900">
+<img src="images/SDforSaveCommandLogicAndModel.png" alt="SDforSaveCommandLogicAndModel" width="800">
 </div>
 </div>
 <div class="paragraph">
@@ -1928,7 +1949,7 @@ The sequence diagram shown below in Figure 2 illustrates the interactions betwee
 <div class="paragraph">
 <p>The <code>save</code> feature uses multiple components of the modsUni application.
 The sequence diagram shown below in Figure 3 illustrates the interactions between some of these components.
-As seen from the diagram, the <code>SaveCommand</code> is driven by the <code>SaveUserChangedEvent</code>.</p>
+In addition, the sequence diagram also illustrates that <code>SaveCommand</code> is driven by the <code>SaveUserChangedEvent</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1943,27 +1964,27 @@ As seen from the diagram, the <code>SaveCommand</code> is driven by the <code>Sa
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SequenceDiagramforSaveEventHandling.png" alt="SequenceDiagramforSaveEventHandling" width="650">
+<img src="images/SequenceDiagramforSaveEventHandling.png" alt="SequenceDiagramforSaveEventHandling" width="550">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 4. High-Level Sequence Diagram showing how the Storage component handles the <code>SaveUserChangedEvent</code> triggered by EventsCenter</em></p>
+<p><em>Figure 4. High-Level Sequence Diagram showing how the Storage component handles <code>SaveUserChangedEvent</code> which was triggered by EventsCenter</em></p>
 </div>
 <div class="paragraph">
-<p>The Storage component makes use of <code>XmlUserStorage</code> class to write <code>User</code> to the file specified by the file path.
+<p>The Storage component makes use of <code>XmlUserStorage</code> class to write <code>User</code> to a file specified by the file path.
 Both the conversion of <code>User</code> object to <code>XmlSerializableUser</code> as well as writing to file is shown in the following code snippet below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> saveUser(User user, Path filePath) <span class="directive">throws</span> <span class="exception">IOException</span> {
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> saveUser(User user, Path filePath, <span class="predefined-type">String</span> password) <span class="directive">throws</span> <span class="exception">IOException</span> {
     <span class="comment">// ... null checks ...</span>
     FileUtil.createIfMissing(filePath);
-    XmlFileStorage.saveDataToFile(filePath, <span class="keyword">new</span> XmlSerializableUser(user));
+    XmlFileStorage.saveDataToFile(filePath, <span class="keyword">new</span> XmlSerializableUser(user, password));
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The newly created <code>XmlSerializableUser</code> object is saved to the file using <code>XmlUtil#saveDataToFile(&#8230;&#8203;)</code> as shown in the code snipplets below:</p>
+<p><code>XmlFileStorage#saveDataToFile(&#8230;&#8203;)</code> utilizes <code>XmlUtil#saveDataToFile(&#8230;&#8203;)</code> to save the newly created <code>XmlSerializableUser</code> object to the file as shown in the code snipplets below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1986,7 +2007,7 @@ Both the conversion of <code>User</code> object to <code>XmlSerializableUser</co
 <p>A student will first log into their account and add their preferred modules.</p>
 </li>
 <li>
-<p>Upon issuing the command <code>save sp/userdata.xml</code>, the save command will call <code>Model#saveUserFile(&#8230;&#8203;)</code> which then raises <code>SaveUserChangedEvent</code>. This <code>SaveUserChangedEvent</code> will be handled by <code>StorageManager</code>.</p>
+<p>Upon issuing the command <code>save sp/userdata.xml</code>, the save command will call <code>Model#saveUserFile(&#8230;&#8203;)</code> which then raises <code>SaveUserChangedEvent</code>. This <code>SaveUserChangedEvent</code> is then handled by <code>StorageManager</code>.</p>
 </li>
 <li>
 <p><code>StorageManager</code> then utilizes <code>XmlUserStorage#saveUser(&#8230;&#8203;)</code> which saves the file to the file path specified by the user.</p>
@@ -2000,10 +2021,21 @@ Both the conversion of <code>User</code> object to <code>XmlSerializableUser</co
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A new registered <code>Student</code> would be initialized and automatically logged in which enables the student to perform the save command.<br>
+A newly registered <code>Student</code> would be initialized and automatically logged in which enables the student to perform the save command.<br>
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shown in Figure 5 summarizes what happens when a user executes the save command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SaveActivityDiagram.png" alt="SaveActivityDiagram" width="550">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 5. Activity Diagram for the save command</em></p>
 </div>
 </div>
 </div>
@@ -2014,11 +2046,11 @@ A new registered <code>Student</code> would be initialized and automatically log
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire <code>User</code> object.</p>
+<p><strong>Alternative 1 (current choice):</strong> Save every attribute of a <code>User</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Able to restore to any state of the user.</p>
+<p>Pros: Able to restore to any state of a user.</p>
 </li>
 <li>
 <p>Cons: Harder to implement as support for converting data of user to XML format needs to be added.</p>
@@ -2027,14 +2059,14 @@ A new registered <code>Student</code> would be initialized and automatically log
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Saves only the staged modules.</p>
+<p><strong>Alternative 2:</strong> Save only the staged modules.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Will use less storage space (saving only staged module vs saving all user data).</p>
 </li>
 <li>
-<p>Cons: Does not restore the state of the user entirely.</p>
+<p>Cons: Does not restore the state of a user entirely.</p>
 </li>
 </ul>
 </div>
@@ -2047,7 +2079,7 @@ A new registered <code>Student</code> would be initialized and automatically log
 <div class="sect2">
 <h3 id="data-security-feature"><a class="link" href="#data-security-feature">3.6. Data Security Feature</a></h3>
 <div class="paragraph">
-<p>The data security feature mainly involves the encryption of the user data file when using the <code>save</code> command and the decryption of a user data file when logging in using the <code>login</code> command.<br></p>
+<p>The data security feature involves mainly the encryption of the user data file when using the <code>save</code> command and the decryption of a user data file when logging in using the <code>login</code> command.<br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2069,7 +2101,7 @@ Advanced Encryption Standard (AES) is the algorithm used for encryption.
 <h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The data security feature is facilitated by <code>DataSecurityUtil</code> class.<br>
-It implements the following operations(s):</p>
+<code>DataSecurityUtil</code> implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2085,19 +2117,19 @@ It implements the following operations(s):</p>
 <p><code>DataSecurityUtil</code> class utilizes <code>javax.crypto.cipher</code> and <code>javax.crypto.spec.SecretKeySpec</code> packages for the operations mentioned above.</p>
 </div>
 <div class="paragraph">
-<p>The <code>Hashing</code> class is used to generate a SHA-1 hash to ensure that there are at least 16 bytes (128 bits) which are required to generate <code>SecretKeySpec</code>.</p>
+<p>The <code>Hashing</code> class is also used to generate an SHA-1 hash to ensure that there are at least 16 bytes (128 bits) which is required to generate <code>SecretKeySpec</code>.</p>
 </div>
 <div class="paragraph">
-<p>Both encryption and decryption is performed in <code>XMLAdaptedUser</code>.</p>
+<p>The encryption and decryption of user data are performed in <code>XMLAdaptedUser</code>.</p>
 </div>
 <div class="sect4">
 <h5 id="implementation-of-the-encryption-feature"><a class="link" href="#implementation-of-the-encryption-feature">Implementation of the encryption feature</a></h5>
 <div class="paragraph">
-<p>The encryption feature is integrated with the save user feature (3.6).</p>
+<p>The encryption feature is integrated with the <strong>Save User Feature</strong>.</p>
 </div>
 <div class="paragraph">
 <p>During the conversion of a <code>User</code> object to XML, the encryption is performed in <code>XMLAdapterUser</code>, right before the file is written locally.
-Currently, we only encrypt the <code>Username</code> (for all users) and <code>Salary</code> (for administrators).</p>
+Currently, only <code>Username</code> (for all users) and <code>Salary</code> (for administrators) is encrypted.</p>
 </div>
 <div class="paragraph">
 <p>The following code snippet shown below illustrates the encryption process:</p>
@@ -2107,14 +2139,12 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> XmlAdaptedUser(User user, <span class="predefined-type">String</span> password) {
     <span class="comment">// ... null checks ...</span>
 
-
     <span class="comment">// All users</span>
     <span class="local-variable">this</span>.username = DataSecurityUtil.bytesToBase64(DataSecurityUtil.encrypt(
             user.getUsername().toString().getBytes(), password));
     <span class="local-variable">this</span>.name = user.getName().toString();
     <span class="local-variable">this</span>.role = user.getRole().toString();
     <span class="local-variable">this</span>.pathToProfilePic = user.getPathToProfilePic().toString();
-
 
     <span class="comment">// Admin</span>
     <span class="keyword">if</span> (user.getRole() == <span class="predefined-type">Role</span>.ADMIN) {
@@ -2133,7 +2163,7 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SequenceDiagramforSaveEventHandlingWithEncryption.png" alt="SequenceDiagramforSaveEventHandlingWithEncryption" width="650">
+<img src="images/SequenceDiagramforSaveEventHandlingWithEncryption.png" alt="SequenceDiagramforSaveEventHandlingWithEncryption" width="550">
 </div>
 </div>
 <div class="paragraph">
@@ -2143,7 +2173,7 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 <div class="sect4">
 <h5 id="implementation-of-the-decryption-feature"><a class="link" href="#implementation-of-the-decryption-feature">Implementation of the decryption feature</a></h5>
 <div class="paragraph">
-<p>The decryption feature is integrated with the login feature under user account management(3.1).<br></p>
+<p>The decryption feature is integrated with the login feature under <strong>User Account Management</strong>.<br></p>
 </div>
 <div class="paragraph">
 <p>When <code>LoginCommand</code> calls <code>model.readUser(&#8230;&#8203;)</code> the loading of user file will commence and the decryption will occur in <code>XMLAdapterUser#toModelType(&#8230;&#8203;)</code>.</p>
@@ -2155,16 +2185,18 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> User toModelType(<span class="predefined-type">String</span> password) <span class="directive">throws</span> IllegalValueException, CorruptedFileException,
         <span class="exception">NoSuchPaddingException</span>, InvalidPasswordException, <span class="exception">NoSuchAlgorithmException</span>, <span class="exception">InvalidKeyException</span> {
+
     User user = <span class="predefined-constant">null</span>;
     checkMandatoryFields();
 
+    <span class="comment">// Applies to all user</span>
     <span class="predefined-type">String</span> decryptedUsername = decryptUsername(password);
 
+    <span class="comment">// Applies to only admin</span>
     <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="content">ADMIN</span><span class="delimiter">&quot;</span></span>.equals(role)) {
         checkAdminFields();
         <span class="predefined-type">String</span> decryptedSalary = decryptSalary(password);
-        user = <span class="keyword">new</span> Admin(<span class="keyword">new</span> Username(decryptedUsername), <span class="keyword">new</span> <span class="predefined-type">Name</span>(name), <span class="predefined-type">Role</span>.ADMIN, <span class="keyword">new</span> Salary(decryptedSalary),
-                <span class="keyword">new</span> EmployDate(employmentDate));
+        user = <span class="keyword">new</span> Admin(<span class="keyword">new</span> Username(decryptedUsername), <span class="keyword">new</span> <span class="predefined-type">Name</span>(name), <span class="predefined-type">Role</span>.ADMIN, <span class="keyword">new</span> Salary(decryptedSalary), <span class="keyword">new</span> EmployDate(employmentDate));
     }
     <span class="comment">// ... removed for brevity ...</span>
 
@@ -2173,7 +2205,7 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 </div>
 </div>
 <div class="paragraph">
-<p>The code snippets of <code>decryptUsername(&#8230;&#8203;)</code> and <code>decryptSalary(&#8230;&#8203;)</code> is as follows:</p>
+<p>The code snippets of <code>decryptUsername(&#8230;&#8203;)</code> and <code>decryptSalary(&#8230;&#8203;)</code> are shown below respectively:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2183,11 +2215,11 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
             DataSecurityUtil.base64ToBytes(username), password), StandardCharsets.UTF_8);
 }
 
- <span class="directive">private</span> <span class="predefined-type">String</span> decryptSalary(<span class="predefined-type">String</span> password) <span class="directive">throws</span> <span class="exception">NoSuchAlgorithmException</span>, <span class="exception">InvalidKeyException</span>,
-            InvalidPasswordException, CorruptedFileException, <span class="exception">NoSuchPaddingException</span> {
+<span class="directive">private</span> <span class="predefined-type">String</span> decryptSalary(<span class="predefined-type">String</span> password) <span class="directive">throws</span> <span class="exception">NoSuchAlgorithmException</span>, <span class="exception">InvalidKeyException</span>,
+        InvalidPasswordException, CorruptedFileException, <span class="exception">NoSuchPaddingException</span> {
     <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">String</span>(DataSecurityUtil.decrypt(
-            DataSecurityUtil.base64ToBytes(salary), password), StandardCharsets.UTF_8);
- }</code></pre>
+        DataSecurityUtil.base64ToBytes(salary), password), StandardCharsets.UTF_8);
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2195,11 +2227,22 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforSaveCommandLogicAndModelUserDecryption.png" alt="SDforSaveCommandLogicAndModelUserDecryption" width="900">
+<img src="images/SDforSaveCommandLogicAndModelUserDecryption.png" alt="SDforSaveCommandLogicAndModelUserDecryption" width="800">
 </div>
 </div>
 <div class="paragraph">
 <p><em>Figure 2. Sequence Diagram for the interaction between Logic Component and DataSecurityUtil when executing LoginCommand</em></p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shown in Figure 3 summarizes what happens in the decryption process when a user executes the login command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DecryptionActivityDiagram.png" alt="DecryptionActivityDiagram" width="550">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3. Activity Diagram for decryption feature in the login command</em></p>
 </div>
 </div>
 </div>
@@ -2210,14 +2253,14 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Implement as an in-built feature.</p>
+<p><strong>Alternative 1 (current choice):</strong> Implement as an inbuilt feature.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Ensures that the confidentiality of a user&#8217;s data file is preserved at all times.</p>
+<p>Pros: Confidentiality of a user&#8217;s data file is preserved at all times.</p>
 </li>
 <li>
-<p>Cons: Users do not have full control.</p>
+<p>Cons: User does not have full control over user data file.</p>
 </li>
 </ul>
 </div>
@@ -2227,10 +2270,10 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Users will have more control on the data security.</p>
+<p>Pros: User will have more control over data security.</p>
 </li>
 <li>
-<p>Cons: Unable to enforce the data security of the application.</p>
+<p>Cons: Enforcement of data security outside of the application would be harder.</p>
 </li>
 </ul>
 </div>
@@ -2247,7 +2290,7 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User does not need to supply additional information or file for encryption/decryption.</p>
+<p>Pros: User does not need to supply additional information or file for encryption or decryption.</p>
 </li>
 <li>
 <p>Cons: User is unable to decrypt their user data file if they forget their password.</p>
@@ -2260,10 +2303,44 @@ Currently, we only encrypt the <code>Username</code> (for all users) and <code>S
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: The key will be more secured compared to the key generated from alternative 1.</p>
+<p>Pros: The key will be more secured compared to the key generated from alternative one since a weak password that is susceptible to password cracking may be used by a user.</p>
 </li>
 <li>
 <p>Cons: User is unable to decrypt their user data file if the key file is lost or corrupted.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-what-fields-to-encrypt"><a class="link" href="#aspect-what-fields-to-encrypt">Aspect: What fields to encrypt</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Encrypt some fields (Username and Salary).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The encryption of username ensures that a malicious user is unable to correlate a specific user data file to a credential in the credential store.
+In addition, advance users can edit unencrypted fields in the user data file.</p>
+</li>
+<li>
+<p>Cons: The user data file will contain unencrypted information.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Encrypt every field.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user data file is secure since every field is encrypted.</p>
+</li>
+<li>
+<p>Cons: Advance user are unable to edit from the user data file manually.</p>
 </li>
 </ul>
 </div>
@@ -2298,7 +2375,7 @@ The following operation is used for the loading process:</p>
 <h5 id="implementation-of-the-save-feature-2"><a class="link" href="#implementation-of-the-save-feature-2">Implementation of the save feature</a></h5>
 <div class="paragraph">
 <p>The load mechanism of modsUni is facilitated by <code>LoginCommand</code> class and is event-driven.
-It allows a user to load their data in modsUni from a XML file.</p>
+It allows a user to load their data in modsUni from an XML file.</p>
 </div>
 <div class="paragraph">
 <p>The load feature uses multiple components of the modsUni application.
@@ -2343,7 +2420,7 @@ The conversion from <code>XmlSerializableUser</code> to <code>User</code> object
 </div>
 </div>
 <div class="paragraph">
-<p>The method <code>XmlFileStorage#loadUserDataFromSaveFile(&#8230;&#8203;)</code> as shown in the code snipplets below:</p>
+<p>The method <code>XmlFileStorage#loadUserDataFromSaveFile(&#8230;&#8203;)</code> as shown in the code snippets below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4076,7 +4153,124 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
+<h3 id="saving-a-user"><a class="link" href="#saving-a-user">G.3. Saving a user</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Saving a user</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: You must be logged in as a User (Admin or Student).</p>
+</li>
+<li>
+<p>Test case: <code>save sp/userdata.xml</code><br>
+Expected: You should see a success message at the bottom and a file should be created/overwritten.
+ In addition, the main panel should display your current user information.
+ The timestamp in the user tab should also be updated.</p>
+</li>
+<li>
+<p>Test case: <code>save sp/userdata</code> (without extension)<br>
+Expected: No data is saved. Error details shown at the bottom of the application.
+Timestamp in user tab should remain the same.</p>
+</li>
+<li>
+<p>Other incorrect save commands to try: <code>save sp</code>, <code>save sp/.xml.xml</code>, <code>save xx/userdata.xml</code><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="modifying-of-user-data-file"><a class="link" href="#modifying-of-user-data-file">G.4. Modifying of user data file</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify of admin data file</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: You must have an admin data file (the master admin is provided).</p>
+</li>
+<li>
+<p>Test case: Open up the admin file and edit the contents in the &lt;name&gt; tag. Now login as the admin using the updated user data file.<br>
+Expected: You should see a success login message at the bottom. In addition, you should see the updated name of the admin account. The timestamp in the user tab should be the time you logged in.</p>
+</li>
+<li>
+<p>Test case: Open up the admin file and edit the contents in the &lt;employmentDate&gt; tag (follow the original format of dd/mm/yyyy). Now login as the admin using the updated user data file.<br>
+Expected: You should see a success login message at the bottom. In addition, you should see the updated employment date data of the admin account. The timestamp in the user tab should be the time you logged in.</p>
+</li>
+<li>
+<p>Test case: Open up the admin file and change the order of tags (e.g. swap the order of name and role). Ensure that there are no extra spaces or empty lines.
+Now login as the admin using the updated user data file.<br>
+Expected: You should be able to login as per normal and see a success login message at the bottom. The timestamp in the user tab should be the time you logged in.</p>
+</li>
+<li>
+<p>Test case: Open up the admin file and duplicate the tags (e.g. add &lt;name&gt;master2&lt;/name&gt; below the existing &lt;name&gt;master&lt;/name&gt; tag). Ensure that there are no extra spaces or empty lines.
+Now login as the admin using the updated user data file.<br>
+   Expected: You should see a success login message at the bottom. In addition, you should see the admin name to be "master2". The timestamp in the user tab should be the time you logged in.
+   You can also duplicate restricted tags(username, role, employmentDate), however the furthest (from the first line) tag will be the one that is read. So you can have invalid values in prior duplicated tags.</p>
+</li>
+<li>
+<p>Test case: Open up the admin file and edit the contents in the &lt;username&gt; tag . Now login as the admin using the updated user data file.<br>
+Expected: You should see an error message at the bottom.</p>
+</li>
+<li>
+<p>Other invalid modification to try: removing the entire tag, modifying contents from role and salary <br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Modify of student data file</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: You must have a student data file (you can obtain one by registering an account and adding some modules to staged and taken).</p>
+</li>
+<li>
+<p>Test case: Open up the student file and edit the contents in the &lt;name&gt; tag. Now login as the student using the updated user data file.<br>
+Expected: You should see a success login message at the bottom. In addition, you should see the updated name of the student account. The timestamp in the user tab should be the time you logged in.</p>
+</li>
+<li>
+<p>Test case: Open up the student file and edit the contents in the &lt;enrollmentDate&gt; tag (follow the original format of dd/mm/yyyy). Now login as the student using the updated user data file.<br>
+Expected: You should see a success login message at the bottom. In addition, you should see the updated enrollment date data of the student account. The timestamp in the user tab should be the time you logged in.</p>
+</li>
+<li>
+<p>Test case: Open up the student file and edit the contents in the &lt;major&gt; and &lt;minor&gt; tag (you must follow the original format of [a, b, c], with comma and space in-between). Contraints are that you must have at least one major and can have zero minor. The inputs for major and minor must consist of only unaccented alphabetical letters (e.g. a-zA-Z). Now login as the student using the updated user data file.<br>
+Expected: You should see a success login message at the bottom. In addition, you should see the updated major or minor data of the student account. The timestamp in the user tab should be the time you logged in.</p>
+</li>
+<li>
+<p>Test case: Open up the student file and edit the &lt;lockModules&gt; or &lt;parsedPrereq&gt; tag from &lt;moduleStaged&gt; (e.g. instead of &lt;lockModules&gt;CS2030&lt;/lockModules&gt; it should look like &lt;lock&gt;CS2030&lt;/lock&gt; after editing). Now login as the student using the updated user data file.<br>
+Expected: You should see a success login message at the bottom. The timestamp in the user tab should be the time you logged in. However, that information will not be loaded and may cause generate feature to fail.</p>
+</li>
+<li>
+<p>Test case: Open up the student file and edit any contents in the &lt;moduleTaken&gt; or &lt;moduleStaged&gt; tag (it is recommended to start with &lt;code&gt; so you get a feel of the update). Now login as the student using the updated user data file.<br>
+Expected: You should see a success login message at the bottom. The timestamp in the user tab should be the time you logged in. Now navigate (switch tab/staged or switch tab/taken) staged or taken tab depending on where you change, you should see the updated module code.<br>
+Module information (represented by &lt;code&gt;, &lt;department&gt;, &lt;title&gt;, &lt;description&gt;, &lt;credit&gt;, &lt;isAvailableInSem1&gt;, &lt;isAvailableInSem2&gt;, &lt;isAvailableInSpecialTerm1&gt;, &lt;isAvailableInSpecialTerm2&gt;, &lt;lockedModules&gt;, &lt;parsedPrereq&gt;) are given as it is for testing purpose. If you change the information (module code/prerequisite), the application will generate based on the information in the user data.
+So the generate feature may fail depending on what you changed. You can create unique cases such as taking CS2030 without completing CS1010.
+An example would be to remove CS1010 as a prerequisite for CS2030 in the user data file. Now when log back in and add CS2030 to staged, you will be able to use the generate feature as expected even without having to add CS1010 to staged or taken.</p>
+</li>
+<li>
+<p>Test case: Open up the student file and edit the contents in the &lt;username&gt; tag . Now login as the student using the updated user data file.<br>
+Expected: You should see an error message at the bottom.</p>
+</li>
+<li>
+<p>Other invalid modification to try: removing the entire &lt;code&gt; tag from a module in &lt;modulesStaged&gt; or &lt;modulesTaken&gt;, remove characters from mandatory tags (code, department, title, description in &lt;modulesTaken or &lt;modulesStaged&gt;),  .<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">G.5. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4096,7 +4290,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-module"><a class="link" href="#adding-a-module">G.4. Adding a module</a></h3>
+<h3 id="adding-a-module"><a class="link" href="#adding-a-module">G.6. Adding a module</a></h3>
 <div class="paragraph">
 <p>Below are some test cases you can perform to test the <code>AddModuleToDatabaseCommand</code> for the database administration feature:</p>
 </div>
@@ -4134,7 +4328,7 @@ Expected: No new module is created. Error details should be shown in the Output 
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-module-details"><a class="link" href="#editing-module-details">G.5. Editing Module Details</a></h3>
+<h3 id="editing-module-details"><a class="link" href="#editing-module-details">G.7. Editing Module Details</a></h3>
 <div class="paragraph">
 <p>Below are some test cases you can perform to test the <code>EditModuleCommand</code> for the module database administration feature:</p>
 </div>
@@ -4180,4 +4374,4 @@ Expected: module information is not edited. Error details should be shown in the
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:57:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:37:52 UTC</div></div></div></body></html>

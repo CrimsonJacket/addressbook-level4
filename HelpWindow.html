@@ -296,7 +296,7 @@ the filtered database module list.</p>
 <div class="sect2">
 <h3 id="save"><a class="link" href="#save">3.7. Saving user data: <code>save</code></a></h3>
 <div class="paragraph">
-<p>Saves current user information for the restoration of a user when logging in.<br>
+<p>The save command stores the current user&#8217;s information locally to a file. The saved file is used during the login process to restore a user&#8217;s information.<br>
 Format: <code>save sp/&lt;FILE_NAME&gt;.xml</code></p>
 </div>
 <div class="paragraph">
@@ -306,7 +306,7 @@ Format: <code>save sp/&lt;FILE_NAME&gt;.xml</code></p>
 <ul>
 <li>
 <p><code>save sp/userdata.xml</code><br>
-Saves the current user data to the file name <code>userdata.xml</code>.</p>
+Saves the current user&#8217;s data to the file name <code>userdata.xml</code>.</p>
 </li>
 </ul>
 </div>
@@ -323,7 +323,7 @@ The prefix <code>"sp"</code> is the short form for <code>"save path"</code>.
 </table>
 </div>
 <div class="paragraph">
-<p>Figure 1 shows an example of the usage of the save command in the application.</p>
+<p>Figure 1 shows an example on the usage of the save command in the application.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -331,7 +331,7 @@ The prefix <code>"sp"</code> is the short form for <code>"save path"</code>.
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 1. An example of a save command</em></p>
+<p><em>Figure 1. An example of a save command typed in the CLI</em></p>
 </div>
 <div class="paragraph">
 <p>Upon entering the command, you will see the types of information stored as well as a successful message as shown in Figure 2.</p>
@@ -342,7 +342,7 @@ The prefix <code>"sp"</code> is the short form for <code>"save path"</code>.
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2. Saved information and successful message are displayed upon entering save command</em></p>
+<p><em>Figure 2. An example of the application displaying the saved information and successful message upon entering save command</em></p>
 </div>
 <div class="paragraph">
 <p>Upon entering the save command, a file depicted in Figure 3 will be generated.
@@ -366,7 +366,7 @@ Modifying the saved file may result in the loss of data that is unrecoverable. E
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 3. An example of a user&#8217;s information in a saved file</em></p>
+<p><em>Figure 3. An example of a saved file containing a user&#8217;s information</em></p>
 </div>
 </div>
 <div class="sect2">
@@ -1223,9 +1223,6 @@ After removing, the database panel will display the updated list as shown below.
 <p><strong>Edit Student</strong> : <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code></p>
 </li>
 <li>
-<p><strong>Encryption</strong> : <code>no-encrypt</code></p>
-</li>
-<li>
 <p><strong>Add Admin</strong> : <code>addAdmin user/&lt;USERNAME&gt; pass/&lt;PASSWORD&gt; n/&lt;NAME&gt; sp/&lt;SAVE_PATH&gt; salary/&lt;SALARY&gt; date/&lt;EMPLOYMENT_DATE&gt;</code></p>
 </li>
 <li>
@@ -1251,4 +1248,4 @@ available/[SEM1][SEM2][SPECIAL_TERM1][SPECIAL_TERM2] description/[DESCRIPTION] p
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:57:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:37:52 UTC</div></div></div></body></html>
