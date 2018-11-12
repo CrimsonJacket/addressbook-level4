@@ -3,11 +3,11 @@
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">modsUni</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W17-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Lin Deming - Project Portfolio</h1></div><div id="content"><div class="sect1">
 <h2 id="project-modsuni"><a class="link" href="#project-modsuni">PROJECT: ModsUni</a></h2>
 <div class="sectionbody">
-<hr>
+
 </div>
 </div>
 <div class="sect1">
-<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<h2 id="1-overview"><a class="link" href="#1-overview">1. Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>modsUni is a desktop timetable management application created by students for students. It incorporates a simple GUI with majority of its user interactions occurring in its in-built CLI.</p>
@@ -15,32 +15,145 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<h2 id="2-about-this-portfolio"><a class="link" href="#2-about-this-portfolio">2. About this portfolio</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project portfolio documents my contributions to the ModsUni project.
+It includes a summary of features that I implemented and other contributions to the project.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="3-summary-of-contributions"><a class="link" href="#3-summary-of-contributions">3. Summary of contributions</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: <strong>The ability to add/remove/edit modules</strong> was added.</p>
+<p><strong>Major enhancement</strong>: This enhancement added functionality to <strong>manage modules in the database.</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: It allows administrators to make changes to any module in the database.</p>
+<p>What it does: The add module feature adds a non-existing module to the database. Conversely, the remove module feature
+removes a existing module from the database. In addition, the edit module feature allows modification of the information
+of existing modules.</p>
 </li>
 <li>
-<p>Justification: This feature allows administrators to keep the module database up to date so that students can continue to generate schedules that are valid.</p>
+<p>Justification: When there is a change in module information, introduction of new modules or removal of modules, the
+database should match the changes. The administrator will then have to do modify the database to keep it up to date. The
+<code>addModuleDB</code>, <code>removeModuleDB</code> and <code>editModule</code> command allows the administrator to perform such tasks.</p>
+</li>
+<li>
+<p>Highlights: This enhancement is an end-to-end feature and makes use of almost all components of the software. Though
+the implementation of these features is intuitive and makes use of existing code wherever possible, it was challenging
+as it required the creation of a PrereqGenerator class (to handle parsing) from scratch.</p>
+</li>
+<li>
+<p>Relevant pull requests: <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/92">#92</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/123">#123</a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/186">#186</a></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: The show user command was added that show the list of usernames to facilitate user account management.</p>
+<p><strong>Minor enhancement</strong>: This enhancement added support for multiple administrator accounts.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: This enhancement allows logged in admin users to create new admin accounts. Similarly, they can choose to
+remove other admin users as well.</p>
+</li>
+<li>
+<p>Justification: Since the database have a large number of modules, administrator may find it difficult to manage the
+entire database by alone. Having the ability to assign new administrators to help spread the workload makes it much easier
+to manage the database.</p>
+</li>
+<li>
+<p>Highlights: This enhancement is an end-to-end feature and makes use of almost all components of the software, from
+<code>Storage</code> to <code>Ui</code>. It was challenging as the feature had to handle validation of different data types, to ensure that
+the feature functions sensibly.</p>
+</li>
+<li>
+<p>Relevant pull requests: <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/46">#46</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/169">#169</a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/186">#186</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Code contributed: [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=deming16&amp;sort=displayName&amp;since=2018-09-12&amp;until=2018-11-07&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Functional code</a>]</p>
+</li>
+<li>
+<p>Other contributions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management on GitHub:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated descriptions and labels of PRs (where necessary)</p>
+</li>
+<li>
+<p>Organised and assigned issues</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Refactored some existing <code>Person</code> fields to fit the new <code>User</code> fields (Pull request
+<a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/46">#46</a>)</p>
+</li>
+<li>
+<p>Updated existing test cases to fit new code (Pull request <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/92">#92</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the User Guide (Pull requests <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/55">#55</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/128">#128</a>, <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/204">#204</a>
+and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/267">#267</a>)</p>
+</li>
+<li>
+<p>Updated the Developer Guide (Pull requests <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/128">#128</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/142">#142</a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/204">#204</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reported bugs for other teams in the class (<a href="https://github.com/CS2103-AY1819S1-T12-1/main/issues/147">1</a>,
+<a href="https://github.com/CS2103-AY1819S1-T12-1/main/issues/153">2</a>, <a href="https://github.com/CS2103-AY1819S1-T12-1/main/issues/161">3</a> and
+<a href="https://github.com/CS2103-AY1819S1-T12-1/main/issues/135">4</a>)</p>
+</li>
+<li>
+<p>Reviewed PRs (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/131">#131</a> and
+<a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/184">#184</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<h2 id="4-contributions-to-the-user-guide"><a class="link" href="#4-contributions-to-the-user-guide">4. Contributions to the User Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -53,124 +166,18 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="add-a-new-administrator-account-code-addadmin-code"><a class="link" href="#add-a-new-administrator-account-code-addadmin-code">Add a new administrator account: <code>addAdmin</code></a></h3>
-<div class="paragraph">
-<p>Create and add a new adminstrator account.<br>
-Format: <code>addAdmin OPTION/INPUT&#8230;&#8203;</code><br></p>
-</div>
-<div class="paragraph">
-<p>Input fields:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Username : <code>user/&lt;USERNAME&gt;</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters and should not be blank.</p>
-</li>
-<li>
-<p>Password : <code>pass/&lt;PASSWORD&gt;</code>&#8201;&#8212;&#8201;It should contain alphanumeric and special characters</p>
-</li>
-<li>
-<p>Name : <code>n/&lt;NAME&gt;</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters and spaces and should not be blank.</p>
-</li>
-<li>
-<p>Save path : <code>sp/&lt;SAVE_PATH&gt;</code>&#8201;&#8212;&#8201;It should be a relative save path.</p>
-</li>
-<li>
-<p>Salary : <code>salary/&lt;SALARY&gt;</code>&#8201;&#8212;&#8201;It should contain only integers.</p>
-</li>
-<li>
-<p>Employment date : <code>date/&lt;EMPLOYMENTDATE&gt;</code>&#8201;&#8212;&#8201;it should be in the format DD/MM/YYYY</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addAdmin user/myUsername pass/Password#1 n/John Doe sp/exampleconfig.xml salary/3000 employ/30/09/2018</code><br>
-Creates a new administrator account with the following stated details.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="edit-the-currently-logged-in-administrator-account-code-editadmin-code"><a class="link" href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">Edit the currently logged in administrator account: <code>editAdmin</code></a></h3>
-<div class="paragraph">
-<p>Edit the details of the currently logged in administrator.<br>
-Format: <code>editAdmin OPTION/INPUT&#8230;&#8203;</code><br></p>
-</div>
-<div class="paragraph">
-<p>Input fields:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Name : <code>n/[NAME]</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters and spaces and should not be blank.</p>
-</li>
-<li>
-<p>Salary : <code>salary/[SALARY]</code>&#8201;&#8212;&#8201;It should contain only integers.</p>
-</li>
-<li>
-<p>Employment date : <code>employ/[EMPLOYMENT_DATE]</code>&#8201;&#8212;&#8201;it should be in the format DD/MM/YYYY</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>editAdmin n/john</code>
-Change the name of the logged in administrator to "john".</p>
-</li>
-<li>
-<p><code>editAdmin salary/3000 employ/01/01/2018</code>
-Change both the salary and employement date of the logged in administrator to "3000" and "01/01/2018" respectively.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="remove-a-existing-user-account-code-removeuser-code"><a class="link" href="#remove-a-existing-user-account-code-removeuser-code">Remove a existing user account: <code>removeUser</code></a></h3>
-<div class="paragraph">
-<p>Remove a currently existing user account.<br>
-Format: <code>removeAdmin &lt;USERNAME&gt;</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>removeAdmin Username</code><br>
-Removes a administrator account with username "Username" if it exists.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="show-the-list-of-usernames-code-showuser-code"><a class="link" href="#show-the-list-of-usernames-code-showuser-code">Show the list of usernames: <code>showUser</code></a></h3>
-<div class="paragraph">
-<p>Display the list of usernames on the main display.<br>
-Format: <code>showUser</code></p>
-</div>
-</div>
-<div class="sect2">
 <h3 id="add-a-new-module-to-database-code-addmoduledb-code"><a class="link" href="#add-a-new-module-to-database-code-addmoduledb-code">Add a new module to database: <code>addModuleDB</code></a></h3>
 <div class="paragraph">
 <p>Creates a new module and add it to the module database.<br>
 Format: <code>addModuleDB OPTION/INPUT&#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
-<p>Input fields <code>(Input restriction and validation coming in v1.4)</code>:</p>
+<p>Input fields:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Module code : <code>code/&lt;MODULE_CODE&gt;</code></p>
+<p>Module code : <code>code/&lt;MODULE_CODE&gt;</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters.</p>
 </li>
 <li>
 <p>Department : <code>department/&lt;DEPARTMENT&gt;</code></p>
@@ -185,7 +192,7 @@ Format: <code>addModuleDB OPTION/INPUT&#8230;&#8203;</code><br></p>
 <p>Credit : <code>credit/&lt;CREDIT&gt;</code></p>
 </li>
 <li>
-<p>Available semesters : <code>available/&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;</code></p>
+<p>Available semesters : <code>available/[SEM1][SEM2][SPECIAL_TERM1][SPECIAL_TERM2]</code></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -193,7 +200,9 @@ Format: <code>addModuleDB OPTION/INPUT&#8230;&#8203;</code><br></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For each entry enter '1' if the module will be available. Otherwise, enter '0'.
+For each entry enter '1' if the module will be available. Otherwise, enter '0'.<br>
+Only the first four digits will be taken into account and if there are less than four digits the remaining input will be
+'0' by default.
 </td>
 </tr>
 </table>
@@ -208,10 +217,10 @@ For each entry enter '1' if the module will be available. Otherwise, enter '0'.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH]</code><br>
-Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH])</code><br>
-Every branch should be enclosed in parentheses followed by <code>&amp;</code> or <code>|</code>, then the list of module codes or branches.
-The end of a module code should be indicated with a <code>,</code>.
+Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt;[MORE_MODULE_CODE,]][BRANCH][MORE_BRANCH]</code><br>
+Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt;[MORE_MODULE_CODE,]][BRANCH][MORE_BRANCH])</code><br>
+To represent no prerequisite, use an empty string or a string that consist of only '&amp;' or '|'.<br>
+To represent only 1 prerequisite, use '&amp;' or '|' followed by the module code.
 </td>
 </tr>
 </table>
@@ -232,6 +241,7 @@ Create and add a new module with module code "CS2103T" and the stated details to
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="edit-details-of-a-module-in-database-code-editmodule-code"><a class="link" href="#edit-details-of-a-module-in-database-code-editmodule-code">Edit details of a module in database: <code>editModule</code></a></h3>
@@ -240,12 +250,12 @@ Create and add a new module with module code "CS2103T" and the stated details to
 Format: <code>editModule &lt;INDEX&gt; OPTION/INPUT&#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
-<p>Input fields <code>(Input restriction and validation coming in v1.4)</code>:</p>
+<p>Input fields:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Module code : <code>code/[MODULE_CODE]</code></p>
+<p>Module code : <code>code/[MODULE_CODE]</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters.</p>
 </li>
 <li>
 <p>Department : <code>department/[DEPARTMENT]</code></p>
@@ -260,7 +270,7 @@ Format: <code>editModule &lt;INDEX&gt; OPTION/INPUT&#8230;&#8203;</code><br></p>
 <p>Credit : <code>credit/[CREDIT]</code></p>
 </li>
 <li>
-<p>Available semesters : <code>available/[&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;]</code></p>
+<p>Available semesters : <code>available/[SEM1][SEM2][SPECIAL_TERM1][SPECIAL_TERM2]</code></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -268,7 +278,9 @@ Format: <code>editModule &lt;INDEX&gt; OPTION/INPUT&#8230;&#8203;</code><br></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For each entry enter '1' if available, '0' if not
+For each entry enter '1' if the module will be available. Otherwise, enter '0'.<br>
+Only the first four digits will be taken into account and if there are less than four digits the remaining input will be
+'0' by default.
 </td>
 </tr>
 </table>
@@ -283,10 +295,10 @@ For each entry enter '1' if available, '0' if not
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH]</code><br>
-Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH])</code><br>
-Every branch should be enclosed in parentheses followed by <code>&amp;</code> or <code>|</code>, then the list of module codes or branches.
-The end of a module code should be indicated with a <code>,</code>.
+Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt;[MORE_MODULE_CODE,]][BRANCH][MORE_BRANCH]</code><br>
+Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt;[MORE_MODULE_CODE,]][BRANCH][MORE_BRANCH])</code><br>
+To represent no prerequisite, use an empty string or a string that consist of only '&amp;' or '|'.<br>
+To represent only 1 prerequisite, use '&amp;' or '|' followed by the module code.
 </td>
 </tr>
 </table>
@@ -300,12 +312,8 @@ The end of a module code should be indicated with a <code>,</code>.
 <div class="ulist">
 <ul>
 <li>
-<p><code>editModule 1 code/CS2105</code><br>
-Change the module code of module with index "1" to "CS2105".</p>
-</li>
-<li>
-<p><code>editModule 4 code/CS2103 credit/4</code><br>
-Change the module code and credit of module with index "4" to "CS2103" and "4" respectively.</p>
+<p><code>editModule 8 code/CS2103 credit/4</code><br>
+Change the module code and credit of module with index "8" to "CS2103" and "4" respectively.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -326,6 +334,7 @@ After editing, the database panel will display the updated list as shown below.
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="remove-a-existing-module-from-database-code-removemoduledb-code"><a class="link" href="#remove-a-existing-module-from-database-code-removemoduledb-code">Remove a existing module from database: <code>removeModuleDB</code></a></h3>
@@ -334,7 +343,7 @@ After editing, the database panel will display the updated list as shown below.
 Format: <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -361,11 +370,12 @@ After removing, the database panel will display the updated list as shown below.
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<h2 id="5-contributions-to-the-developer-guide"><a class="link" href="#5-contributions-to-the-developer-guide">5. Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -409,57 +419,7 @@ of the module database in an activity diagram.</p>
 <div class="paragraph">
 <p><em>Figure 1. Activity diagram for module database administration.</em></p>
 </div>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
-<div class="paragraph">
-<p>The Module database administration mechanism is facilitated by <code>ModuleList</code> in <code>Model</code> via the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>ModuleList#addModule(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;This method adds a module to the module list.</p>
-</li>
-<li>
-<p><code>ModuleList#removeModule(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;This method removes a module from the module list.</p>
-</li>
-<li>
-<p><code>ModuleList#hasModule(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;This method checks if the given module already exists.</p>
-</li>
-<li>
-<p><code>ModuleList#updateModule(&#8230;&#8203;)</code>&#8201;&#8212;&#8201;This method replace the specified target module with the given edited module.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-These operations are exposed in the <code>Model</code> interface as <code>Model#addModuleToDatabase(&#8230;&#8203;)</code>,
-<code>Model#removeModuleFromDatabase(&#8230;&#8203;)</code>, <code>Model#hasModuleInDatabase(&#8230;&#8203;)</code> and <code>Model#updateModule(&#8230;&#8203;)</code> respectively.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Each module database administration commands is facilitated by a command class in modsUni. The following list
-illustrates each command and their respective command class:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addModuleDB</code>&#8201;&#8212;&#8201;<code>AddModuleToDatabaseCommand</code></p>
-</li>
-<li>
-<p><code>removeModuleDB</code>&#8201;&#8212;&#8201;<code>RemoveModuleFromDatabaseCommand</code></p>
-</li>
-<li>
-<p><code>editModule</code>&#8201;&#8212;&#8201;<code>EditModuleCommand</code></p>
-</li>
-</ul>
-</div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p><strong>Adding module to database</strong></p>
 </div>
@@ -472,7 +432,7 @@ illustrates each command and their respective command class:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/AddModuleToDatabaseCommandUML.png" alt="AddModuleToDatabaseCommandUML" width="400">
+<img src="../images/AddModuleToDatabaseCommandUML.png" alt="AddModuleToDatabaseCommandUML" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -534,6 +494,65 @@ informing the admin that the module already exists, and the module is not added.
 </ol>
 </div>
 <div class="paragraph">
+<p>The code snippet below shows how user input is parsed into a <code>AddModuleToDatabaseCommand</code> object.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> AddModuleToDatabaseCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE, PREFIX_MODULE_DEPARTMENT, PREFIX_MODULE_TITLE,
+                        PREFIX_MODULE_DESCRIPTION, PREFIX_MODULE_CREDIT, PREFIX_MODULE_AVAILABLE, PREFIX_MODULE_PREREQ);
+
+        <span class="keyword">if</span> (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_DEPARTMENT, PREFIX_MODULE_TITLE,
+                PREFIX_MODULE_DESCRIPTION, PREFIX_MODULE_CREDIT, PREFIX_MODULE_AVAILABLE, PREFIX_MODULE_PREREQ)
+            || !argMultimap.getPreamble().isEmpty()) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddModuleToDatabaseCommand.MESSAGE_USAGE));
+        }
+
+        <span class="predefined-type">String</span> codeName = argMultimap.getValue(PREFIX_MODULE_CODE).get();
+        Code code = <span class="keyword">new</span> Code(codeName);
+        <span class="predefined-type">String</span> department = argMultimap.getValue(PREFIX_MODULE_DEPARTMENT).get();
+        <span class="predefined-type">String</span> title = argMultimap.getValue(PREFIX_MODULE_TITLE).get();
+        <span class="predefined-type">String</span> description = argMultimap.getValue(PREFIX_MODULE_DESCRIPTION).get();
+        <span class="type">int</span> credit = <span class="predefined-type">Integer</span>.parseInt(argMultimap.getValue(PREFIX_MODULE_CREDIT).get());
+        <span class="type">boolean</span><span class="type">[]</span> sems = getAvailableSems(argMultimap.getValue(PREFIX_MODULE_AVAILABLE).get());
+        Prereq prereq = ParserUtil.parsePrereq(argMultimap.getValue(PREFIX_MODULE_PREREQ).get());
+
+        Module module = <span class="keyword">new</span> Module(code, department, title, description, credit,
+                sems[<span class="integer">0</span>], sems[<span class="integer">1</span>], sems[<span class="integer">2</span>], sems[<span class="integer">3</span>], <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;Code&gt;(), prereq);
+
+        <span class="keyword">return</span> <span class="keyword">new</span> AddModuleToDatabaseCommand(module);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The created <code>Command</code> object then execute the command, shown in the code snippet below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> CommandResult execute(Model model, CommandHistory history) <span class="directive">throws</span> CommandException {
+        requireNonNull(model);
+        <span class="keyword">if</span> (model.getCurrentUser() == <span class="predefined-constant">null</span>) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NOT_LOGGED_IN);
+        }
+
+        <span class="keyword">if</span> (!model.isAdmin()) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NOT_ADMIN);
+        }
+
+        <span class="keyword">if</span> (model.hasModuleInDatabase(toAdd)) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_MODULE);
+        }
+
+        model.addModuleToDatabase(toAdd);
+
+        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SUCCESS));
+    }</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
 <p><strong>Deleting module from database</strong></p>
 </div>
 <div class="paragraph">
@@ -546,7 +565,7 @@ informing the admin that the module already exists, and the module is not added.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RemoveModuleFromDatabaseCommandUML.png" alt="RemoveModuleFromDatabaseCommandUML" width="400">
+<img src="../images/RemoveModuleFromDatabaseCommandUML.png" alt="RemoveModuleFromDatabaseCommandUML" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -647,7 +666,6 @@ diagram of the <code>EditModuleCommandParser</code>.</p>
 <div class="paragraph">
 <p><em>Figure 10. High-level sequence diagram of editing a module from database.</em></p>
 </div>
-</div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
@@ -721,4 +739,4 @@ another module just to store the other module codes. This can be heavy on memory
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 08:25:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:49:15 UTC</div></div></div></body></html>

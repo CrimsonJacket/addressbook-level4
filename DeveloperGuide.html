@@ -83,6 +83,8 @@
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
 <li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#adding-a-module">G.4. Adding a module</a></li>
+<li><a href="#editing-module-details">G.5. Editing Module Details</a></li>
 </ul>
 </li>
 </ul>
@@ -1457,7 +1459,7 @@ illustrates each command and their respective command class:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddModuleToDatabaseCommandUML.png" alt="AddModuleToDatabaseCommandUML" width="400">
+<img src="images/AddModuleToDatabaseCommandUML.png" alt="AddModuleToDatabaseCommandUML" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -1519,6 +1521,64 @@ informing the admin that the module already exists, and the module is not added.
 </ol>
 </div>
 <div class="paragraph">
+<p>The code snippet below shows how user input is parsed into a <code>AddModuleToDatabaseCommand</code> object.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> AddModuleToDatabaseCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE, PREFIX_MODULE_DEPARTMENT, PREFIX_MODULE_TITLE,
+                        PREFIX_MODULE_DESCRIPTION, PREFIX_MODULE_CREDIT, PREFIX_MODULE_AVAILABLE, PREFIX_MODULE_PREREQ);
+
+        <span class="keyword">if</span> (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_DEPARTMENT, PREFIX_MODULE_TITLE,
+                PREFIX_MODULE_DESCRIPTION, PREFIX_MODULE_CREDIT, PREFIX_MODULE_AVAILABLE, PREFIX_MODULE_PREREQ)
+            || !argMultimap.getPreamble().isEmpty()) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddModuleToDatabaseCommand.MESSAGE_USAGE));
+        }
+
+        <span class="predefined-type">String</span> codeName = argMultimap.getValue(PREFIX_MODULE_CODE).get();
+        Code code = <span class="keyword">new</span> Code(codeName);
+        <span class="predefined-type">String</span> department = argMultimap.getValue(PREFIX_MODULE_DEPARTMENT).get();
+        <span class="predefined-type">String</span> title = argMultimap.getValue(PREFIX_MODULE_TITLE).get();
+        <span class="predefined-type">String</span> description = argMultimap.getValue(PREFIX_MODULE_DESCRIPTION).get();
+        <span class="type">int</span> credit = <span class="predefined-type">Integer</span>.parseInt(argMultimap.getValue(PREFIX_MODULE_CREDIT).get());
+        <span class="type">boolean</span><span class="type">[]</span> sems = getAvailableSems(argMultimap.getValue(PREFIX_MODULE_AVAILABLE).get());
+        Prereq prereq = ParserUtil.parsePrereq(argMultimap.getValue(PREFIX_MODULE_PREREQ).get());
+
+        Module module = <span class="keyword">new</span> Module(code, department, title, description, credit,
+                sems[<span class="integer">0</span>], sems[<span class="integer">1</span>], sems[<span class="integer">2</span>], sems[<span class="integer">3</span>], <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;Code&gt;(), prereq);
+
+        <span class="keyword">return</span> <span class="keyword">new</span> AddModuleToDatabaseCommand(module);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The created <code>Command</code> object then execute the command, shown in the code snippet below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> CommandResult execute(Model model, CommandHistory history) <span class="directive">throws</span> CommandException {
+        requireNonNull(model);
+        <span class="keyword">if</span> (model.getCurrentUser() == <span class="predefined-constant">null</span>) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NOT_LOGGED_IN);
+        }
+
+        <span class="keyword">if</span> (!model.isAdmin()) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NOT_ADMIN);
+        }
+
+        <span class="keyword">if</span> (model.hasModuleInDatabase(toAdd)) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_MODULE);
+        }
+
+        model.addModuleToDatabase(toAdd);
+
+        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SUCCESS));
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p><strong>Deleting module from database</strong></p>
 </div>
 <div class="paragraph">
@@ -1531,7 +1591,7 @@ informing the admin that the module already exists, and the module is not added.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RemoveModuleFromDatabaseCommandUML.png" alt="RemoveModuleFromDatabaseCommandUML" width="400">
+<img src="images/RemoveModuleFromDatabaseCommandUML.png" alt="RemoveModuleFromDatabaseCommandUML" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -4035,5 +4095,89 @@ Expected: Similar to previous.</p>
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="adding-a-module"><a class="link" href="#adding-a-module">G.4. Adding a module</a></h3>
+<div class="paragraph">
+<p>Below are some test cases you can perform to test the <code>AddModuleToDatabaseCommand</code> for the database administration feature:</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 08:25:32 UTC</div></div></div></body></html>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The below test cases only cater to <code>Admin</code> accounts
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test case: <code>addModuleDB code/CS2103T department/Computing title/The New Module credit/4 available/1100
+           description/This course is newly offered by the school of computing. Visit the module website for more details
+           prereq/|(|CS1020,CS1020E,CS2020,)(&amp;CS2030,(|CS2040,CS2040C,))</code><br>
+Expected: A new module is created. The <code>Module</code> details as provided in the command should be automatically displayed in
+the database tab. A successful message should be displayed in the Output Display.
+Additionally, the module details is saved in <code>modules.xml</code>.
+ Examine <code>modules.xml</code> to determine if the module is indeed created.</p>
+</li>
+<li>
+<p>Prerequisite: A module with module code CS2103T already exists in <code>modules.xml</code><br>
+Test case: <code>addModuleDB code/CS2103T department/Computing title/The New Module credit/4 available/1100
+                        description/This course is newly offered by the school of computing. Visit the module website for more details
+                        prereq/|(|CS1020,CS1020E,CS2020,)(&amp;CS2030,(|CS2040,CS2040C,))</code><br>
+Expected: No new module is created. Error details should be shown in the Output Display. Rest of the UI remains unchanged.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-module-details"><a class="link" href="#editing-module-details">G.5. Editing Module Details</a></h3>
+<div class="paragraph">
+<p>Below are some test cases you can perform to test the <code>EditModuleCommand</code> for the module database administration feature:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The below test cases only cater to <code>Admin</code> accounts
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prerequisite: A module with index 1 already exists in the database tab.<br>
+Test case: <code>editModule 1 code/#CS1010</code><br>
+Expected: module information is not edited. Error details should be shown in the output dsiplay. Rest of the UI remains unchanged.</p>
+</li>
+<li>
+<p>Other incorrect <code>editModule</code> commands to try:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>editModule code/CS1010</code></p>
+</li>
+<li>
+<p><code>editModule 1 prereq/&amp;&amp;</code></p>
+</li>
+<li>
+<p><code>editModule 1 prereq/&amp;CS1010</code></p>
+</li>
+<li>
+<p><code>editModule 1 prereq/|CS1010,()</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:49:15 UTC</div></div></div></body></html>

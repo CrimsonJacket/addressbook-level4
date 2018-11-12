@@ -979,12 +979,12 @@ Format: <code>showUser</code></p>
 Format: <code>addModuleDB OPTION/INPUT&#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
-<p>Input fields <code>(Input restriction and validation coming in v1.4)</code>:</p>
+<p>Input fields:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Module code : <code>code/&lt;MODULE_CODE&gt;</code></p>
+<p>Module code : <code>code/&lt;MODULE_CODE&gt;</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters.</p>
 </li>
 <li>
 <p>Department : <code>department/&lt;DEPARTMENT&gt;</code></p>
@@ -999,7 +999,7 @@ Format: <code>addModuleDB OPTION/INPUT&#8230;&#8203;</code><br></p>
 <p>Credit : <code>credit/&lt;CREDIT&gt;</code></p>
 </li>
 <li>
-<p>Available semesters : <code>available/&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;</code></p>
+<p>Available semesters : <code>available/[SEM1][SEM2][SPECIAL_TERM1][SPECIAL_TERM2]</code></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1007,7 +1007,9 @@ Format: <code>addModuleDB OPTION/INPUT&#8230;&#8203;</code><br></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For each entry enter '1' if the module will be available. Otherwise, enter '0'.
+For each entry enter '1' if the module will be available. Otherwise, enter '0'.<br>
+Only the first four digits will be taken into account and if there are less than four digits the remaining input will be
+'0' by default.
 </td>
 </tr>
 </table>
@@ -1022,10 +1024,10 @@ For each entry enter '1' if the module will be available. Otherwise, enter '0'.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH]</code><br>
-Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH])</code><br>
-Every branch should be enclosed in parentheses followed by <code>&amp;</code> or <code>|</code>, then the list of module codes or branches.
-The end of a module code should be indicated with a <code>,</code>.
+Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt;[MORE_MODULE_CODE,]][BRANCH][MORE_BRANCH]</code><br>
+Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt;[MORE_MODULE_CODE,]][BRANCH][MORE_BRANCH])</code><br>
+To represent no prerequisite, use an empty string or a string that consist of only '&amp;' or '|'.<br>
+To represent only 1 prerequisite, use '&amp;' or '|' followed by the module code.
 </td>
 </tr>
 </table>
@@ -1054,12 +1056,12 @@ Create and add a new module with module code "CS2103T" and the stated details to
 Format: <code>editModule &lt;INDEX&gt; OPTION/INPUT&#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
-<p>Input fields <code>(Input restriction and validation coming in v1.4)</code>:</p>
+<p>Input fields:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Module code : <code>code/[MODULE_CODE]</code></p>
+<p>Module code : <code>code/[MODULE_CODE]</code>&#8201;&#8212;&#8201;It should contain only alphanumeric characters.</p>
 </li>
 <li>
 <p>Department : <code>department/[DEPARTMENT]</code></p>
@@ -1074,7 +1076,7 @@ Format: <code>editModule &lt;INDEX&gt; OPTION/INPUT&#8230;&#8203;</code><br></p>
 <p>Credit : <code>credit/[CREDIT]</code></p>
 </li>
 <li>
-<p>Available semesters : <code>available/[&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;]</code></p>
+<p>Available semesters : <code>available/[SEM1][SEM2][SPECIAL_TERM1][SPECIAL_TERM2]</code></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1082,7 +1084,9 @@ Format: <code>editModule &lt;INDEX&gt; OPTION/INPUT&#8230;&#8203;</code><br></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For each entry enter '1' if available, '0' if not
+For each entry enter '1' if the module will be available. Otherwise, enter '0'.<br>
+Only the first four digits will be taken into account and if there are less than four digits the remaining input will be
+'0' by default.
 </td>
 </tr>
 </table>
@@ -1097,10 +1101,10 @@ For each entry enter '1' if available, '0' if not
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH]</code><br>
-Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt; [MORE_MODULE_CODE,]]OR[BRANCH] [MORE_BRANCH])</code><br>
-Every branch should be enclosed in parentheses followed by <code>&amp;</code> or <code>|</code>, then the list of module codes or branches.
-The end of a module code should be indicated with a <code>,</code>.
+Format for PREREQ_STRING: <code>&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt;[MORE_MODULE_CODE,]][BRANCH][MORE_BRANCH]</code><br>
+Format for BRANCH: <code>(&lt;&amp;OR|&gt;[&lt;MODULE_CODE,&gt;[MORE_MODULE_CODE,]][BRANCH][MORE_BRANCH])</code><br>
+To represent no prerequisite, use an empty string or a string that consist of only '&amp;' or '|'.<br>
+To represent only 1 prerequisite, use '&amp;' or '|' followed by the module code.
 </td>
 </tr>
 </table>
@@ -1114,12 +1118,8 @@ The end of a module code should be indicated with a <code>,</code>.
 <div class="ulist">
 <ul>
 <li>
-<p><code>editModule 1 code/CS2105</code><br>
-Change the module code of module with index "1" to "CS2105".</p>
-</li>
-<li>
-<p><code>editModule 4 code/CS2103 credit/4</code><br>
-Change the module code and credit of module with index "4" to "CS2103" and "4" respectively.</p>
+<p><code>editModule 8 code/CS2103 credit/4</code><br>
+Change the module code and credit of module with index "8" to "CS2103" and "4" respectively.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1148,7 +1148,7 @@ After editing, the database panel will display the updated list as shown below.
 Format: <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1243,7 +1243,7 @@ available/&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt; des
 </li>
 <li>
 <p><strong>Edit Module in Database</strong> : <code>addModuleDB code/[MODULE_CODE] department/[DEPARTMENT] title/[TITLE] credit/[CREDIT]
-available/[&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;] description/[DESCRIPTION] prereq/[PREREQ_STRING]</code></p>
+available/[SEM1][SEM2][SPECIAL_TERM1][SPECIAL_TERM2] description/[DESCRIPTION] prereq/[PREREQ_STRING]</code></p>
 </li>
 <li>
 <p><strong>Remove Module from Database</strong> : <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
@@ -1251,4 +1251,4 @@ available/[&lt;SEM1&gt;&lt;SEM2&gt;&lt;SPECIAL_TERM1&gt;&lt;SPECIAL_TERM2&gt;] d
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 08:25:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:49:15 UTC</div></div></div></body></html>
