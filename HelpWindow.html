@@ -21,15 +21,12 @@
 <li><a href="#searching-for-a-module-in-the-database-code-search-code">3.6. Searching for a module in the database: <code>search</code></a></li>
 <li><a href="#save">3.7. Saving user data: <code>save</code></a></li>
 <li><a href="#switchtab">3.8. Switch left panel tabs: <code>switch</code></a></li>
-<li><a href="#generate-module-plan-code-generate-code">3.9. Generate module plan: <code>generate</code></a></li>
+<li><a href="#generate-schedule-code-generate-code">3.9. Generate schedule: <code>generate</code></a></li>
 <li><a href="#login-to-user-account-code-login-code">3.10. Login to User Account : <code>login</code></a></li>
 <li><a href="#register-a-student-account-code-register-code">3.11. Register a Student Account : <code>register</code></a></li>
 <li><a href="#edit-student-account-code-edit-code">3.12. Edit Student Account : <code>edit</code></a></li>
 <li><a href="#logout-from-user-account-code-logout-code">3.13. Logout from User Account : <code>logout</code></a></li>
 <li><a href="#data-encryption">3.14. Data Encryption</a></li>
-<li><a href="#set-module-preference-code-set-mod-code">3.15. Set module preference: <code>set-mod</code></a></li>
-<li><a href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.16. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></li>
-<li><a href="#set-theme-code-set-theme-code">3.17. Set theme: <code>set-theme</code></a></li>
 </ul>
 </li>
 <li><a href="#AdminFeatures">4. Administrator Features</a>
@@ -441,33 +438,100 @@ You do not need to be logged in to use the switch command.
 </div>
 </div>
 <div class="sect2">
-<h3 id="generate-module-plan-code-generate-code"><a class="link" href="#generate-module-plan-code-generate-code">3.9. Generate module plan: <code>generate</code></a></h3>
+<h3 id="generate-schedule-code-generate-code"><a class="link" href="#generate-schedule-code-generate-code">3.9. Generate schedule: <code>generate</code></a></h3>
 <div class="paragraph">
-<p>Generates a schedule based on the modules that have been added by the <code>addModuleS</code> command.<br>
+<p>Generates a schedule based on the modules that has been added using <code>addModuleS</code> command.<br>
 Format: <code>generate</code></p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command can only be executed when logged in using a student account.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:<br></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>generate</code> with missing prerequisites<br>
-List of modules with missing prerequisites would be shown to the user.</p>
+<p>To generate a schedule successfully, follow these steps.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>addModuleS CS1010 CS2030 CS2040 CS2103T</code></p>
+</li>
+<li>
+<p><code>generate</code><br>
+The schedule will be displayed as shown in figure 1 below.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/generateSuccess.png" alt="generateSuccess" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. An example of a schedule</em></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the command has executed successfully, the message in the red box will say "Generate success!".
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Only <code>Student</code> user accounts can execute the <code>generate</code> command.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>There are instances where the command will fail to generate a schedule. The following is a list of
+possible reasons why a failure might occur and the steps required to resolve it.</p>
+</div>
+<div class="paragraph">
+<p>Examples of possible failures:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Missing prerequisites</p>
+<div class="paragraph">
+<p>The following message will be shown for this failure.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/generateMissingPrereq.png" alt="generateMissingPrereq" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Error message shown when there are prerequisites are missing.</em></p>
+</div>
+<div class="paragraph">
+<p>Steps to rectify:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Execute <code>viewModule CS2030</code> to identify the missing prerequisite module.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/generateMissingPrereqShow.png" alt="generateMissingPrereqShow" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 3. Output of the <code>viewModule</code> command.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -476,11 +540,86 @@ Only <code>Student</code> user accounts can execute the <code>generate</code> co
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To generate successfully, modules and it&#8217;s prerequisites should be added to the staged/taken list before
-executing.
+The prerequisites are shown in the red box.
 </td>
 </tr>
 </table>
+</div>
+</li>
+<li>
+<p>Add the missing prerequisite module using <code>addModuleS CS1010</code>.</p>
+</li>
+<li>
+<p>Run the <code>generate</code> command again.</p>
+</li>
+<li>
+<p>Verify the application&#8217;s output with the image below. The green box should show the schedule and message in
+the red box should say "Generate success!".</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/generateMissingPrereqSuccess.png" alt="generateMissingPrereqSuccess" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4. Output when the schedule has been successfully generated.</em></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>No modules added to staged list</p>
+<div class="paragraph">
+<p>The following message will be shown for this failure.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/generateNoStagedModules.png" alt="generateNoStagedModules" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 5. Error message shown when there are no modules in the staged list.</em></p>
+</div>
+<div class="paragraph">
+<p>Steps to rectify:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a module to your staged list using <code>addModuleS CS1010</code>.</p>
+</li>
+<li>
+<p>Execute <code>switch tab/staged</code> to ensure that the module has been successfully added to your staged list.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/generateNoStagedModulesAdd.png" alt="generateNoStagedModulesAdd" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 6. Before and after ouput after adding a module to the staged list.</em></p>
+</div>
+</li>
+<li>
+<p>Run the <code>generate</code> command again.</p>
+<div style="page-break-after: always;"></div>
+</li>
+<li>
+<p>Verify the application&#8217;s output with the image below. The green box should show the schedule and
+message in
+the red box should say "Generate success!".</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/generateNoStagedModulesSuccess.png" alt="generateNoStagedModulesSuccess" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 7. Output when the schedule has been successfully generated.</em></p>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -794,58 +933,6 @@ Notice that the Data Fields in the User Tab has been reset to its original state
 <h3 id="data-encryption"><a class="link" href="#data-encryption">3.14. Data Encryption</a></h3>
 <div class="paragraph">
 <p>Data stored using the <code>save</code> command is encrypted by default.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="set-module-preference-code-set-mod-code"><a class="link" href="#set-module-preference-code-set-mod-code">3.15. Set module preference: <code>set-mod</code></a></h3>
-<div class="paragraph">
-<p>Setting a preferred semester to take a module.<br>
-Format: <code>set-mod &lt;MOD_CODE&gt; &lt;SEMESTER&gt;</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>set-mod CS2103T 3</code><br>
-Configures CS2103T to be taken in year 2 semester 1.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code"><a class="link" href="#set-maximum-number-of-semesters-code-set-max-sem-num_semesters-code">3.16. Set maximum number of semesters: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></a></h3>
-<div class="paragraph">
-<p>Setting the maximum number of semesters during candidature.<br>
-Format: <code>set-max-sem &lt;NUM_SEMESTERS&gt;</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>set-max-sem 6</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="set-theme-code-set-theme-code"><a class="link" href="#set-theme-code-set-theme-code">3.17. Set theme: <code>set-theme</code></a></h3>
-<div class="paragraph">
-<p>Set a different theme based on a configuration file.<br>
-Format: <code>set-theme &lt;FILE_NAME&gt;.xml</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>set-theme &lt;FILE_NAME&gt;.xml</code></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -1214,6 +1301,9 @@ After removing, the database panel will display the updated list as shown below.
 <p><strong>Save</strong> : <code>save sp/[FILE_NAME]</code></p>
 </li>
 <li>
+<p><strong>Generate Schedule</strong> : <code>generate</code></p>
+</li>
+<li>
 <p><strong>Login</strong> : <code>login user/[USERNAME] pass/[PASSWORD] userData/[PATH_TO_DATA_FILE]</code></p>
 </li>
 <li>
@@ -1248,4 +1338,4 @@ available/[SEM1][SEM2][SPECIAL_TERM1][SPECIAL_TERM2] description/[DESCRIPTION] p
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:37:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:11:05 UTC</div></div></div></body></html>

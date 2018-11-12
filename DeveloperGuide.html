@@ -30,7 +30,7 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#user-account-management">3.1. User Account Management</a></li>
-<li><a href="#generate">3.2. Generate</a></li>
+<li><a href="#generate-schedule-feature">3.2. Generate Schedule Feature</a></li>
 <li><a href="#user-module-management">3.3. User Module Management</a></li>
 <li><a href="#module-database-administration">3.4. Module Database Administration</a></li>
 <li><a href="#save-user-feature">3.5. Save User Feature</a></li>
@@ -81,12 +81,13 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-a-user">G.3. Saving a user</a></li>
-<li><a href="#modifying-of-user-data-file">G.4. Modifying of user data file</a></li>
-<li><a href="#saving-data">G.5. Saving data</a></li>
-<li><a href="#adding-a-module">G.6. Adding a module</a></li>
-<li><a href="#editing-module-details">G.7. Editing Module Details</a></li>
+<li><a href="#generating-a-schedule">G.2. Generating a schedule</a></li>
+<li><a href="#deleting-a-person">G.3. Deleting a person</a></li>
+<li><a href="#saving-a-user">G.4. Saving a user</a></li>
+<li><a href="#modifying-of-user-data-file">G.5. Modifying of user data file</a></li>
+<li><a href="#saving-data">G.6. Saving data</a></li>
+<li><a href="#adding-a-module">G.7. Adding a module</a></li>
+<li><a href="#editing-module-details">G.8. Editing Module Details</a></li>
 </ul>
 </li>
 </ul>
@@ -1025,10 +1026,10 @@ Upon the successful execute of the <code>edit</code> command, <code>UserTab</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="generate"><a class="link" href="#generate">3.2. Generate</a></h3>
+<h3 id="generate-schedule-feature"><a class="link" href="#generate-schedule-feature">3.2. Generate Schedule Feature</a></h3>
 <div class="paragraph">
-<p>Generate is a command for student users to generate a schedule containing the modules to take in each
-semester during their entire university candidature.</p>
+<p>This feature is for student users to generate a schedule containing the modules to take in each semester
+during their entire university candidature. It is executed using the <code>generate</code> command.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1037,55 +1038,148 @@ semester during their entire university candidature.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The generate command can only be executed by users of type <code>Student</code>.
+The <code>generate</code> command can only be executed by users of type <code>Student</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
 <p>The section below will describe in detail the current implementation and design considerations of the
-generate feature.</p>
+<code>generate</code> command.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The generate command is facilitated by the <code>GenerateCommand</code> class and the following methods in the Model
-class:</p>
+<p>The sequence diagram shown below in Figure 1 illustrates the interactions between some of these components
+ when the command is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SequenceDiagramforGenerate.png" alt="SequenceDiagramforGenerate" width=""200">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. High Level Sequence Diagram for <code>generate</code> command</em></p>
+</div>
+<div class="paragraph">
+<p>The command is facilitated by the following classes:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#isStudent()</code>&#8201;&#8212;&#8201;This method checks if the current user is a student.</p>
+<p><code>Generate</code> command class<br>
+The <code>Generate</code> command class extends from the <code>Command</code> class. Figure 2 below depicts the UML
+diagram for the <code>Generate</code> command class.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/GenerateCommandUML.png" alt="GenerateCommandUML" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. Generate command UML Diagram</em></p>
+</div>
 </li>
 <li>
-<p><code>Model#canGenerate()</code>&#8201;&#8212;&#8201;This method checks if it is possible to generate a schedule.</p>
+<p><code>Model</code> class<br>
+The following methods in the <code>Model</code> class are used in this command:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>isStudent()</code><br>
+This method checks if the current user is a student.</p>
 </li>
 <li>
-<p><code>Model#generateSchedule()</code>&#8201;&#8212;&#8201;This method generates a schedule.</p>
+<p><code>canGenerate()</code><br>
+This method checks if it is possible to generate a schedule.</p>
+</li>
+<li>
+<p><code>generateSchedule()</code><br>
+This method generates a schedule.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>It generates a schedule based on the student’s staged modules. It also makes use of the <code>Generate</code>
-class from the <code>Logic</code> package to create a schedule.</p>
-</div>
-<div class="paragraph">
-<p>The <code>GenerateCommand</code> class extends from the <code>Command</code> class. Figure 1 as shown below depicts the UML
-diagram for the <code>GenerateCommand</code> class.</p>
-</div>
-<div class="imageblock">
+</li>
+<li>
+<p><code>Generate</code> from the <code>Logic</code> package.<br>
+This class is used to encapsulate the processes for generating a schedule. The following methods are used
+in this command:<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>canGenerate(Student)</code><br>
+This methods checks if all the module prerequisites from the student&#8217;s staged list is met. It does this by
+merging the staged and taken module list together.<br>
+Using the merged list, it extracts out the list of module codes. Each module in the staged list is checked
+to see if the prerequisite condition can be met. The following code snippet shows this process:</p>
+<div class="listingblock">
 <div class="content">
-<img src="images/GenerateCommandUML.png" alt="GenerateCommandUML" width=""250">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> Optional&lt;<span class="predefined-type">List</span>&lt;Code&gt;&gt; canGenerate(Student student) {
+    <span class="predefined-type">List</span>&lt;Code&gt; cannotTakeCode = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+    <span class="predefined-type">List</span>&lt;Code&gt; codeChecklist = student.getTakenAndStageCode();
+    UniqueModuleList modulesStaged = student.getModulesStaged();
+    <span class="keyword">for</span> (Module module : modulesStaged) {
+        <span class="keyword">if</span> (!module.checkPrereq(codeChecklist)) {
+            cannotTakeCode.add(module.getCode());
+        }
+    }
+    <span class="comment">// return list of codes that failed to met prerequisite condition or an empty value if the list is empty.</span>
+}</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p><code>generateSchedule()</code><br>
+This method will create a schedule using modules that are in the student&#8217;s staged list.<br>
+It does this by going though the list of modules and removing those that satisfies the prerequisite condition. As it removes,
+the module code is added to a temporary list. This list is used during the checking of prerequisite
+conditions for the remaining modules.<br>
+The following code snippet will provide a clearer explanation of how the method works:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> SemesterList generateSchedule() {
+    SemesterList semesterList = <span class="keyword">new</span> SemesterList();
+    Semester newSemester = <span class="keyword">new</span> Semester();
+
+    <span class="predefined-type">List</span>&lt;Code&gt; taken = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+
+    <span class="keyword">while</span> (modulesStaged.size() &gt; <span class="integer">0</span>) {
+        <span class="keyword">for</span> (Module element : modulesStaged) {
+            <span class="keyword">if</span> (element.checkPrereq(taken)) {
+                <span class="comment">// Remove module from staged list</span>
+                <span class="comment">// Add module to semester and temporary list</span>
+            }
+        }
+
+        semesterList.addSemester(newSemester);
+        newSemester = <span class="keyword">new</span> Semester();
+    }
+    <span class="keyword">return</span> semesterList;
+}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This class is different from the <code>Generate</code> command class. The command class is for the execution of the
+command, while the current one is for creating the schedule.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="execution-phrase-of-the-code-generate-code-command"><a class="link" href="#execution-phrase-of-the-code-generate-code-command">Execution phrase of the <code>generate</code> command</a></h5>
 <div class="paragraph">
-<p><em>Figure 1. GenerateCommand UML Diagram</em></p>
-</div>
-<div class="paragraph">
-<p>In the execute method of the Generate command, it will first check if the current user is a Student. Next
-it will proceed on to check if all prerequisites of the student’s staged modules have been met. It does the
- prerequisite checks using the student’s taken module list. If the conditions are satisfactory, it will
- generate a schedule. Figure 2(shown below) shows the sequence diagram when executing the <code>GenerateCommand</code>.</p>
+<p>Figure 3 below shows an overview of the steps performed during the execution phrase of the command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1093,23 +1187,72 @@ it will proceed on to check if all prerequisites of the student’s staged modul
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
- <code>GenerateCommand</code>.</em></p>
+<p><em>Figure 3. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
+ <code>generate</code>.</em></p>
 </div>
 <div class="paragraph">
-<p><code>GenerateCommand</code> uses multiple components of the modsUni application. Upon completion of generating the
-schedule, two events will be posted. The first event is <code>MainWindowClearResourceEvent</code>. It will be posted to
-inform the current UI that is in the main window to clear it&#8217;s resources. The second event is
-<code>NewGenerateResultAvailableEvent</code>. This event will show the UI for the schedule in the main window.
-The sequence diagram shown below in Figure 3 illustrates the interactions between some of these components.</p>
+<p>In the execute method of the command, the following checks are performed:</p>
 </div>
-<div class="imageblock">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type of user account<br>
+This step checks if a user has logged in and the current user is a student. It is performed as only student
+accounts are able to generate a schedule.</p>
+</li>
+<li>
+<p>Modules in staged list<br>
+This step ensures that there modules are available to add into the schedule.</p>
+</li>
+<li>
+<p>Staged modules prerequisites<br>
+This step verifies that the prerequisites for all modules in the staged list are met. It is done to ensure
+ that it is possible to generate a schedule.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If any of the checks fails, an error will be thrown. The following code snippet illustrates the
+checking process:<br></p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="images/SequenceDiagramforGenerate.png" alt="SequenceDiagramforGenerate" width=""250">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (model.getCurrentUser() == <span class="predefined-constant">null</span>) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_ERROR);
+}
+
+<span class="keyword">if</span> (!model.isStudent()) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_INVALID_ROLE);
+}
+
+<span class="keyword">if</span> (!currentStudent.hasModuleToTake()) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NO_MODULES);
+}
+
+<span class="keyword">if</span> (cannotTakeCodes.isPresent()) {
+    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_FAILURE + cannotTakeCodes.toString());
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 3. High Level Sequence Diagram for the <code>generate</code> command</em></p>
+<p>After passing all the checks, the command will proceed on and generate a schedule. To display the schedule
+in the user interface, two events will be created.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>MainWindowClearResourceEvent</code><br>
+It is created to inform the current panel in the main window to clear it&#8217;s resources.</p>
+</li>
+<li>
+<p><code>NewGenerateResultAvailableEvent</code><br>
+This event will show the generated schedule in the main window.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>These events will be sent to <code>EventsCenter</code> to process and execute it.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="example-scenario-of-the-generate-command"><a class="link" href="#example-scenario-of-the-generate-command">Example scenario of the generate command</a></h5>
@@ -1131,7 +1274,8 @@ not registered an account or they are currently not logged in.</p>
 cs1010</code>.</p>
 </li>
 <li>
-<p>The user executes <code>login user/demo pass/P@ssw0rd</code> to log into account, followed by <code>addModuleS cs1010</code>.</p>
+<p>The user executes <code>login user/demo pass/P@ssw0rd userdata/saveFile.xml</code> to log into account, followed by
+<code>addModuleS cs1010</code>.</p>
 </li>
 </ul>
 </div>
@@ -1153,12 +1297,12 @@ also be added to the student&#8217;s staged module list, enabling the student to
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-to-generate-a-schedule"><a class="link" href="#aspect-how-to-generate-a-schedule">Aspect: How to generate a schedule</a></h5>
+<h5 id="aspect-placement-of-methods-for-generating-a-schedule"><a class="link" href="#aspect-placement-of-methods-for-generating-a-schedule">Aspect: Placement of methods for generating a schedule</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Using of a separate <code>Generate</code> class to encapsulate the logic for
-generating the schedule.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use a separate <code>Generate</code> class in the <code>Logic</code> package to
+encapsulate the processes for generating a schedule.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1179,6 +1323,41 @@ generating the schedule.</p>
 </li>
 <li>
 <p>Cons: It breaks the single responsibility principle of the <code>Student</code> model.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-checking-of-prerequisites-before-generating-a-schedule"><a class="link" href="#aspect-checking-of-prerequisites-before-generating-a-schedule">Aspect: Checking of prerequisites before generating a schedule</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Perform checks to ensure that all prerequisites for modules in staged
+list are fulfilled.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Ensures that the command will not cause an infinite loop.</p>
+</li>
+<li>
+<p>Cons: The command will not always be able to generate a schedule as students may forget to add in the
+prerequisite modules.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alterative 2:</strong> Assume that prerequisites for all modules are met.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces the time complexity of the command.</p>
+</li>
+<li>
+<p>Cons: The command might end up with an infinite loop as it keeps on trying to arrange the modules.</p>
 </li>
 </ul>
 </div>
@@ -4121,7 +4300,72 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
+<h3 id="generating-a-schedule"><a class="link" href="#generating-a-schedule">G.2. Generating a schedule</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generate a schedule using modules in the student&#8217;s staged list</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login using a student user account and download the sample modules database.</p>
+</li>
+<li>
+<p>Test case:<br></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>addModuleS cs2030 cs2040</code></p>
+</li>
+<li>
+<p><code>generate</code><br>
+Expected: Generate fail due to missing prerequisites.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case:<br></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>addModuleS cs1010</code></p>
+</li>
+<li>
+<p><code>generate</code><br>
+Expected: Successful execution of the generate command. Schedule will be shown in the panel on the right
+of the application.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Other failures that might occur:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Invalid user account<br>
+<code>login</code> using an admin account<br></p>
+</li>
+<li>
+<p>No logged in user<br>
+<code>generate</code> without logging in</p>
+</li>
+<li>
+<p>No modules in staged list<br>
+<code>generate</code> without adding modules to staged list</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.3. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4153,7 +4397,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-a-user"><a class="link" href="#saving-a-user">G.3. Saving a user</a></h3>
+<h3 id="saving-a-user"><a class="link" href="#saving-a-user">G.4. Saving a user</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4185,7 +4429,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="modifying-of-user-data-file"><a class="link" href="#modifying-of-user-data-file">G.4. Modifying of user data file</a></h3>
+<h3 id="modifying-of-user-data-file"><a class="link" href="#modifying-of-user-data-file">G.5. Modifying of user data file</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4270,7 +4514,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.5. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">G.6. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4290,7 +4534,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-module"><a class="link" href="#adding-a-module">G.6. Adding a module</a></h3>
+<h3 id="adding-a-module"><a class="link" href="#adding-a-module">G.7. Adding a module</a></h3>
 <div class="paragraph">
 <p>Below are some test cases you can perform to test the <code>AddModuleToDatabaseCommand</code> for the database administration feature:</p>
 </div>
@@ -4328,7 +4572,7 @@ Expected: No new module is created. Error details should be shown in the Output 
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-module-details"><a class="link" href="#editing-module-details">G.7. Editing Module Details</a></h3>
+<h3 id="editing-module-details"><a class="link" href="#editing-module-details">G.8. Editing Module Details</a></h3>
 <div class="paragraph">
 <p>Below are some test cases you can perform to test the <code>EditModuleCommand</code> for the module database administration feature:</p>
 </div>
@@ -4374,4 +4618,4 @@ Expected: module information is not edited. Error details should be shown in the
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:37:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:11:05 UTC</div></div></div></body></html>
