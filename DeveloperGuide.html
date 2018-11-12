@@ -1414,7 +1414,7 @@ It is the actor of the command. Add and remove commands are limited to a user wh
 <p><code>modulesTaken</code> represents the module student has taken before.</p>
 </li>
 <li>
-<p><code>modulesStaged</code> represents the module student wants to take later.</p>
+<p><code>modulesStaged</code> represents the module student is intending to take.</p>
 </li>
 </ul>
 </div>
@@ -1441,7 +1441,7 @@ A user is allowed to add only if:<br>
 the user has logged in<br>
 the user is a student<br>
 the module exists in the database at this moment<br>
-his staged/taken module list does not contains the module already
+both staged and taken module list do not contain the module already
 </td>
 </tr>
 </table>
@@ -1499,19 +1499,140 @@ The second is a <code>String</code> contains the duplicate code entered by user.
 <div class="paragraph">
 <p>Step 3. When the command is executed, <code>AddModuleToStudentStaged/TakenCommand</code> will call <code>Model#getCurrentUser()</code> and <code>Model#isStudent()</code> to check whether the user is a <code>Student</code>.<br>
 <code>Model#searchCodeInDatabase(&#8230;&#8203;)</code> to check whether the module exists in the database and update <code>toAdd</code> to the searched module,
-<code>Model#hasModuleStaged/Taken(&#8230;&#8203;)</code> to check whether the module has already existed in the student&#8217;s staged/taken module list,
+<code>Model#hasModuleStaged(&#8230;&#8203;)</code> and <code>Model#hasModuleTaken(&#8230;&#8203;)</code> to check whether the module has already existed in the student&#8217;s staged or taken module list,
 <code>Model#addModuleStaged/Taken(&#8230;&#8203;)</code> to finally add the module to the student&#8217;s staged/taken module list.</p>
 </div>
 <div class="paragraph">
-<p>Step 4. After the module is added, the command will post an <code>ShowStaged/TakenTabRequestEvent</code> to show the user updated staged/taken module list.<br>
+<p>Step 4. After the module is added, the command will post a <code>ShowStaged/TakenTabRequestEvent</code> to show the user updated staged/taken module list.<br>
 A <code>CommandResult</code> containing the log of execution result will be returned.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="implementation-of-the-remove-feature"><a class="link" href="#implementation-of-the-remove-feature">Implementation of the remove feature</a></h5>
+<div class="paragraph">
+<p>The <code>remove</code> feature is facilitated by the <code>RemoveModuleFromStudentStagedCommand</code> and <code>RemoveModuleFromStudentTakenCommand</code> class.
+It allows a user to remove modules from his staged/taken module list by giving their code.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A user is allowed to remove only if:<br>
+the user has logged in<br>
+the user is a student<br>
+the module exists in the database at this moment<br>
+his staged/taken module list contains the module need to be removed
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The implementation of <code>remove</code> feature is similar to <code>add</code> feature. They have generally the same mechanism, except remove
+command only use <code>Model#hasModuleStaged/Taken(&#8230;&#8203;)</code> to ensure the respective module list contains the module, while add
+command use both methods to ensure the ensure does not exist in neither module list. See Step 3 of the adding mechanism for reference.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="implementation-of-the-search-feature"><a class="link" href="#implementation-of-the-search-feature">Implementation of the search feature</a></h5>
+<div class="paragraph">
+<p>The <code>search</code> feature is facilitated by the <code>SearchCommand</code> class.
+It allows a user to search modules in the database using one or several prefixes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The command does not require user to login or register.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The command does not support using a substring for searching.<br>
+Eg. <code>search 1010</code> can not being used for searching "CS1010"
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The command only supports to search within database module list.<br>
+The design consideration is that it does not make sense to search staged or taken module list
+as the scale of these two lists tend to be small.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>SearchCommand</code> extends the <code>Command</code> class. Figure 4(shown below) depicts the UML representation of <code>SearchModule</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SearchCommandUML.png" alt="SearchCommandUML" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4. UML Diagram of <code>SearchCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>The Sequence Diagram shown below in Figure 5 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when <code>SearchCommand</code> is being executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforSearchCommandLogicAndModel.png" alt="SDforSearchCommandLogicAndModel" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 5. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>SearchCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 6 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforSearchCommandOverview.png" alt="SDforSearchCommandOverview" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 6. High-Level Sequence Diagram of search modules in database module list.</em></p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the searching mechanism behaves at each step:<br>
+Step 1. User enters the command, then <code>ModsUniParser</code> will handle it and create a <code>SearchCommandPraser</code>.
+<code>SearchCommandPraser</code> will use <code>CodeStartsKeywordsPredicate</code> to create a <code>predicate</code>. <code>SearchCommandPraser</code> then will
+use the <code>predicate</code> as a parameter to create a <code>SearchCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. When the command is executed, <code>SearchCommand</code> will call <code>Model#updateFilteredDatabaseModuleList(&#8230;&#8203;)</code> to use
+the <code>predicate</code> to filter <code>filteredDatabaseModules</code>. UI of <code>DatabaseModuleListPanel</code> will change accordingly.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The command will  post a <code>DatabaseTabRequestEvent</code> to show the user updated database module list.<br>
+A <code>CommandResult</code> containing the execution result will be returned.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-search-the-module-in-the-database"><a class="link" href="#aspect-search-the-module-in-the-database">Aspect: Search the module in the database</a></h5>
+<h5 id="aspect-how-to-search-database-using-code"><a class="link" href="#aspect-how-to-search-database-using-code">Aspect: How to search database using Code</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -4618,4 +4739,4 @@ Expected: module information is not edited. Error details should be shown in the
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:11:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:52:42 UTC</div></div></div></body></html>

@@ -1,52 +1,23 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>modsUni - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Introduction</title><link rel="stylesheet" href="./gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">modsUni</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W17-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>modsUni - User Guide</h1></div><div id="content"><div id="preamble">
-<div class="sectionbody">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">modsUni</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W17-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="paragraph">
+<p>C= modsUni - User Guide
+:site-section: UserGuide
+:toc:
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+:experimental:
+:repoURL: <a href="https://github.com/CS2103-AY1819S1-W17-2/main" class="bare">https://github.com/CS2103-AY1819S1-W17-2/main</a></p>
+</div>
 <div class="paragraph">
 <p>By: <code>Team W17-2</code>      Since: <code>Sep 2018</code>      Licence: <code>MIT</code></p>
 </div>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#quick-start">2. Quick Start</a></li>
-<li><a href="#Features">3. Features</a>
-<ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-module-to-student-s-staged-module-list-code-addmodules-code">3.2. Adding a module to student&#8217;s staged module list: <code>addModuleS</code></a></li>
-<li><a href="#adding-a-module-to-student-s-taken-module-list-code-addmodulet-code">3.3. Adding a module to student&#8217;s taken module list: <code>addModuleT</code></a></li>
-<li><a href="#deleting-a-module-from-student-s-staged-module-list-code-removemodules-code">3.4. Deleting a module from student&#8217;s staged module list: <code>removeModuleS</code></a></li>
-<li><a href="#deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code">3.5. Deleting a module from student&#8217;s taken module list: <code>removeModuleT</code></a></li>
-<li><a href="#searching-for-a-module-in-the-database-code-search-code">3.6. Searching for a module in the database: <code>search</code></a></li>
-<li><a href="#save">3.7. Saving user data: <code>save</code></a></li>
-<li><a href="#switchtab">3.8. Switch left panel tabs: <code>switch</code></a></li>
-<li><a href="#generate-schedule-code-generate-code">3.9. Generate schedule: <code>generate</code></a></li>
-<li><a href="#login-to-user-account-code-login-code">3.10. Login to User Account : <code>login</code></a></li>
-<li><a href="#register-a-student-account-code-register-code">3.11. Register a Student Account : <code>register</code></a></li>
-<li><a href="#edit-student-account-code-edit-code">3.12. Edit Student Account : <code>edit</code></a></li>
-<li><a href="#logout-from-user-account-code-logout-code">3.13. Logout from User Account : <code>logout</code></a></li>
-<li><a href="#data-encryption">3.14. Data Encryption</a></li>
-</ul>
-</li>
-<li><a href="#AdminFeatures">4. Administrator Features</a>
-<ul class="sectlevel2">
-<li><a href="#add-a-new-administrator-account-code-addadmin-code">4.1. Add a new administrator account: <code>addAdmin</code></a></li>
-<li><a href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">4.2. Edit the currently logged in administrator account: <code>editAdmin</code></a></li>
-<li><a href="#remove-a-existing-user-account-code-removeuser-code">4.3. Remove a existing user account: <code>removeUser</code></a></li>
-<li><a href="#show-the-list-of-usernames-code-showuser-code">4.4. Show the list of usernames: <code>showUser</code></a></li>
-<li><a href="#add-a-new-module-to-database-code-addmoduledb-code">4.5. Add a new module to database: <code>addModuleDB</code></a></li>
-<li><a href="#edit-details-of-a-module-in-database-code-editmodule-code">4.6. Edit details of a module in database: <code>editModule</code></a></li>
-<li><a href="#remove-a-existing-module-from-database-code-removemoduledb-code">4.7. Remove a existing module from database: <code>removeModuleDB</code></a></li>
-</ul>
-</li>
-<li><a href="#faq">5. FAQ</a></li>
-<li><a href="#command-summary">6. Command Summary</a></li>
-</ul>
-</div>
-</div>
 <div class="sect1">
-<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
+<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>modsUni is an application for NUS students who want to quickly generate a plan for the modules to take during their entire university life.<br></p>
@@ -56,12 +27,12 @@
 This way, you are able to use the application easily and effectively without compromising its aesthetics.<br></p>
 </div>
 <div class="paragraph">
-<p>Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>Interested? Jump to the <a href="#quick-start">Quick Start</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="quick-start"><a class="link" href="#quick-start">2. Quick Start</a></h2>
+<h2 id="quick-start"><a class="link" href="#quick-start">Quick Start</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -69,7 +40,7 @@ This way, you are able to use the application easily and effectively without com
 <p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>modsUni.jar</code> <a href="https://github.com/CS2103-AY1819S1-W17-2/main/releases">here</a>.</p>
+<p>Download the latest <code>modsUni.jar</code> <a href="{repoURL}/releases">here</a>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for modsUni.</p>
@@ -78,7 +49,7 @@ This way, you are able to use the application easily and effectively without com
 <p>Create a <code>data</code> folder in the home folder.</p>
 </li>
 <li>
-<p>Download the latest <code>modules.xml</code> <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master/data">here</a></p>
+<p>Download the latest <code>modules.xml</code> <a href="{repoURL}/tree/master/data">here</a></p>
 </li>
 <li>
 <p>Copy the XML file to the <code>data</code> folder.</p>
@@ -87,7 +58,7 @@ This way, you are able to use the application easily and effectively without com
 <p>Double-click <code>modsUni.jar</code> to start the app. The GUI should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
+<img src="Ui.png" alt="Ui" width="790">
 </div>
 </div>
 </li>
@@ -114,19 +85,19 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </ul>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
+<p>Refer to <a href="#Features">Features</a> for details of each command.</p>
 </div>
 <div class="paragraph">
 <p>To begin using administrator commands, login to the default master account with the following command:<br>
 <code>login user/master pass/Pass#123 userdata/masterconfig.xml</code><br></p>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="#AdminFeatures">Section 4, &#8220;Administrator Features&#8221;</a> for details of each admin command.</p>
+<p>Refer to <a href="#AdminFeatures">Administrator Features</a> for details of each admin command.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
+<h2 id="Features"><a class="link" href="#Features">Features</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section displays the current implemented features as well as features that will be implemented in the future.</p>
@@ -140,27 +111,27 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <ul>
 <li>
 <p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user.
-Using <code>addon &lt;MOD_CODE&gt;</code> as an example, you can issue the command <code>addon CS2103T</code> to add the module <code>CS2103T</code> for the generation of the candidature planner.</p>
+Using <code>addModuleS &lt;MOD_CODE&gt;</code> as an example, you can issue the command <code>addModuleS CS2103T</code> to add the module <code>CS2103T</code> to the staged module list.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>MOD_CODE [MORE MOD_CODES]</code> can be used as <code>add CS2103T CS2101</code> or as <code>add CS2103T</code>.</p>
+<p>Items in square brackets are optional e.g <code>MOD_CODE [MORE MOD_CODES]</code> can be used as <code>addModuleS CS2103T CS2101</code> or as <code>addModuleS CS2103T</code>.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
+<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
 <p>Gives the list of command available for the user to use.<br>
 Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-module-to-student-s-staged-module-list-code-addmodules-code"><a class="link" href="#adding-a-module-to-student-s-staged-module-list-code-addmodules-code">3.2. Adding a module to student&#8217;s staged module list: <code>addModuleS</code></a></h3>
+<h3 id="adding-a-module-to-student-s-staged-module-list-code-addmodules-code"><a class="link" href="#adding-a-module-to-student-s-staged-module-list-code-addmodules-code">Adding a module to student&#8217;s staged module list: <code>addModuleS</code></a></h3>
 <div class="paragraph">
-<p>Adds a module to the student’s staged module list.
-Staged list is the module list student about to take.<br>
+<p>Adds a module to the student&#8217;s staged module list.
+A staged module list is a list of modules a student is intending to take.<br>
 This command is case insensitive.<br>
 Format: <code>addModuleS &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 </div>
@@ -181,12 +152,80 @@ Both the above commands will have the same effect.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Figure 1 shows an example of the usage of addModuleS command in the application</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="AddModuleSCommandExample.png" alt="AddModuleSCommandExample" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. An example of an addModuleS command</em></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Only a student can execute this command. Please <code>register</code> or <code>login</code> as a student
+before executing.<br>
+Same for <code>addModuleT</code>, <code>removeModuleS</code> and <code>removeModuleT</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The module you added has not been saved. If you wish to save the module,
+use command <code>save</code> before <code>logout</code> or <code>exit</code>.<br>
+Same for <code>addModuleT</code>, <code>removeModuleS</code> and <code>removeModuleT</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To add the module successfully, you must ensure the module do not exist in
+neither your staged nor taken module list, and it should exist in our database module list.
+You can use <code>switch</code> or <code>showModule</code> to check.<br>
+Same for <code>addModuleT</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By executing add/remove command, the application will automatically display
+respective module list.<br>
+Apply to <code>addModuleS</code>, <code>addModuleT</code>, <code>removeModuleS</code>, <code>removeModuleT</code>.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-module-to-student-s-taken-module-list-code-addmodulet-code"><a class="link" href="#adding-a-module-to-student-s-taken-module-list-code-addmodulet-code">3.3. Adding a module to student&#8217;s taken module list: <code>addModuleT</code></a></h3>
+<h3 id="adding-a-module-to-student-s-taken-module-list-code-addmodulet-code"><a class="link" href="#adding-a-module-to-student-s-taken-module-list-code-addmodulet-code">Adding a module to student&#8217;s taken module list: <code>addModuleT</code></a></h3>
 <div class="paragraph">
 <p>Adds a module to the student’s taken module list.
-Taken list is the module list student about to take.<br>
+Taken list is the list of modules student has taken.<br>
 This command is case insensitive.<br>
 Format: <code>addModuleT &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 </div>
@@ -209,10 +248,10 @@ Both the above commands will have the same effect.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-module-from-student-s-staged-module-list-code-removemodules-code"><a class="link" href="#deleting-a-module-from-student-s-staged-module-list-code-removemodules-code">3.4. Deleting a module from student&#8217;s staged module list: <code>removeModuleS</code></a></h3>
+<h3 id="deleting-a-module-from-student-s-staged-module-list-code-removemodules-code"><a class="link" href="#deleting-a-module-from-student-s-staged-module-list-code-removemodules-code">Deleting a module from student&#8217;s staged module list: <code>removeModuleS</code></a></h3>
 <div class="paragraph">
 <p>Deletes a module from the student’s staged module list.
-Staged list is the module list student about to take.<br>
+A staged module list is a list of modules a student is intending to take.<br>
 This command is case insensitive.<br>
 Format: <code>removeModuleS &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 </div>
@@ -233,12 +272,25 @@ Both the above commands will have the same effect.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To delete the module successfully, you must ensure the module exists in
+both staged module list and our database module list.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code"><a class="link" href="#deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code">3.5. Deleting a module from student&#8217;s taken module list: <code>removeModuleT</code></a></h3>
+<h3 id="deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code"><a class="link" href="#deleting-a-module-from-student-s-taken-module-list-code-removemodulet-code">Deleting a module from student&#8217;s taken module list: <code>removeModuleT</code></a></h3>
 <div class="paragraph">
 <p>Deletes a module form the student’s taken module list.
-Taken list is the module list student about to take.<br>
+Taken list is the list of modules student has taken.<br>
 This command is case insensitive.<br>
 Format: <code>removeModuleT &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 </div>
@@ -259,16 +311,25 @@ Both the above commands will have the same effect.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>By executing the above add/remove command, the application will display
-the respective module list.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To delete the module successfully, you must ensure the module exists in
+both taken module list and our database module list.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="searching-for-a-module-in-the-database-code-search-code"><a class="link" href="#searching-for-a-module-in-the-database-code-search-code">3.6. Searching for a module in the database: <code>search</code></a></h3>
+<h3 id="searching-for-a-module-in-the-database-code-search-code"><a class="link" href="#searching-for-a-module-in-the-database-code-search-code">Searching for a module in the database: <code>search</code></a></h3>
 <div class="paragraph">
-<p>Search for all modules in the database that match the given prefix. Searching is case insensitive.<br>
-Format: <code>search &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
+<p>Searches for all modules in the database that match the given prefix. Searching is case insensitive.<br>
+Format: <code>search &lt;MOD_CODE_PREFIX&gt; [MORE MOD_CODE_PREFIX]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -276,22 +337,122 @@ Format: <code>search &lt;MOD_CODE&gt; [MORE MOD_CODE]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>search CS101 GEH</code><br>
-Returns a list of modules that begin with CS101 or GEH.</p>
+<p><code>search CS101 ACC</code><br>
+Returns a list of modules that begin with "CS101" or "ACC".</p>
 </li>
 <li>
-<p><code>search cs101 gEh</code><br>
+<p><code>search cs101 aCc</code><br>
 Returns the same result as above.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>By executing this command, the application will display
-the filtered database module list.</p>
+<p>Figure 1 shows an example of the usage of search command in the application</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="SearchCommandExample.png" alt="SearchCommandExample" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. An example of a search command</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command does not require user to <code>login</code> or <code>register</code> before executing.<br>
+Same for <code>list</code> and <code>showModule</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command does not support using a substring to search.<br>
+Eg. <code>search 1010</code> cannot search for "CS1010".
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By executing database related command, the application will automatically
+display the database module list. Apply to <code>search</code>, <code>list</code> and <code>showModule</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="save"><a class="link" href="#save">3.7. Saving user data: <code>save</code></a></h3>
+<h3 id="listing-all-modules-in-the-database-code-list-code"><a class="link" href="#listing-all-modules-in-the-database-code-list-code">Listing all modules in the database: <code>list</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all modules in the database module list.<br>
+Format: <code>list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="showing-the-detail-of-a-module-in-the-database-code-showmodule-code"><a class="link" href="#showing-the-detail-of-a-module-in-the-database-code-showmodule-code">Showing the detail of a module in the database: <code>showModule</code></a></h3>
+<div class="paragraph">
+<p>Shows the detailed information of a certain module in the database module list.<br>
+This command is case insensitive.<br>
+Format: <code>showModule &lt;MOD_CODE&gt;</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>showModule CS2103T</code><br>
+Displays the detailed information of module CS2103T.</p>
+</li>
+<li>
+<p><code>showModule cs2103T</code><br>
+Displays the same result as the above command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Figure 1 shows an example of the usage of showModule command in the application</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ShowModuleCommandExample.png" alt="ShowModuleCommandExample" width="450">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. An example of a showModule command</em></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Please use the full code name of the module to execute this command. If you are not sure
+the module code, use <code>search</code> command to get the full code name first.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="save"><a class="link" href="#save">Saving user data: <code>save</code></a></h3>
 <div class="paragraph">
 <p>The save command stores the current user&#8217;s information locally to a file. The saved file is used during the login process to restore a user&#8217;s information.<br>
 Format: <code>save sp/&lt;FILE_NAME&gt;.xml</code></p>
@@ -324,7 +485,7 @@ The prefix <code>"sp"</code> is the short form for <code>"save path"</code>.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SaveCommandExample.jpg" alt="SaveCommandExample" width="450">
+<img src="SaveCommandExample.jpg" alt="SaveCommandExample" width="450">
 </div>
 </div>
 <div class="paragraph">
@@ -335,7 +496,7 @@ The prefix <code>"sp"</code> is the short form for <code>"save path"</code>.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SaveCommandSuccessful.jpg" alt="SaveCommandSuccessful" width="450">
+<img src="SaveCommandSuccessful.jpg" alt="SaveCommandSuccessful" width="450">
 </div>
 </div>
 <div class="paragraph">
@@ -359,7 +520,7 @@ Modifying the saved file may result in the loss of data that is unrecoverable. E
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SaveFileExample.jpg" alt="SaveFileExample" width="400">
+<img src="SaveFileExample.jpg" alt="SaveFileExample" width="400">
 </div>
 </div>
 <div class="paragraph">
@@ -367,7 +528,7 @@ Modifying the saved file may result in the loss of data that is unrecoverable. E
 </div>
 </div>
 <div class="sect2">
-<h3 id="switchtab"><a class="link" href="#switchtab">3.8. Switch left panel tabs: <code>switch</code></a></h3>
+<h3 id="switchtab"><a class="link" href="#switchtab">Switch left panel tabs: <code>switch</code></a></h3>
 <div class="paragraph">
 <p>Switches to the selected tab on the left panel.<br>
 Format: <code>switch tab/&lt;OPTION&gt;</code></p>
@@ -419,7 +580,7 @@ You do not need to be logged in to use the switch command.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SwitchTabCommandExample.jpg" alt="SwitchTabCommandExample" width="450">
+<img src="SwitchTabCommandExample.jpg" alt="SwitchTabCommandExample" width="450">
 </div>
 </div>
 <div class="paragraph">
@@ -430,7 +591,7 @@ You do not need to be logged in to use the switch command.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SwitchTabCommandSuccessful.jpg" alt="SwitchTabCommandSuccessful" width="450">
+<img src="SwitchTabCommandSuccessful.jpg" alt="SwitchTabCommandSuccessful" width="450">
 </div>
 </div>
 <div class="paragraph">
@@ -438,7 +599,7 @@ You do not need to be logged in to use the switch command.
 </div>
 </div>
 <div class="sect2">
-<h3 id="generate-schedule-code-generate-code"><a class="link" href="#generate-schedule-code-generate-code">3.9. Generate schedule: <code>generate</code></a></h3>
+<h3 id="generate-schedule-code-generate-code"><a class="link" href="#generate-schedule-code-generate-code">Generate schedule: <code>generate</code></a></h3>
 <div class="paragraph">
 <p>Generates a schedule based on the modules that has been added using <code>addModuleS</code> command.<br>
 Format: <code>generate</code></p>
@@ -472,7 +633,7 @@ This command can only be executed when logged in using a student account.
 The schedule will be displayed as shown in figure 1 below.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/generateSuccess.png" alt="generateSuccess" width="600">
+<img src="generateSuccess.png" alt="generateSuccess" width="600">
 </div>
 </div>
 <div class="paragraph">
@@ -512,7 +673,7 @@ possible reasons why a failure might occur and the steps required to resolve it.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/generateMissingPrereq.png" alt="generateMissingPrereq" width="700">
+<img src="generateMissingPrereq.png" alt="generateMissingPrereq" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -527,7 +688,7 @@ possible reasons why a failure might occur and the steps required to resolve it.
 <p>Execute <code>viewModule CS2030</code> to identify the missing prerequisite module.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/generateMissingPrereqShow.png" alt="generateMissingPrereqShow" width="700">
+<img src="generateMissingPrereqShow.png" alt="generateMissingPrereqShow" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -557,7 +718,7 @@ The prerequisites are shown in the red box.
 the red box should say "Generate success!".</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/generateMissingPrereqSuccess.png" alt="generateMissingPrereqSuccess" width="700">
+<img src="generateMissingPrereqSuccess.png" alt="generateMissingPrereqSuccess" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -574,7 +735,7 @@ the red box should say "Generate success!".</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/generateNoStagedModules.png" alt="generateNoStagedModules" width="700">
+<img src="generateNoStagedModules.png" alt="generateNoStagedModules" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -592,7 +753,7 @@ the red box should say "Generate success!".</p>
 <p>Execute <code>switch tab/staged</code> to ensure that the module has been successfully added to your staged list.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/generateNoStagedModulesAdd.png" alt="generateNoStagedModulesAdd" width="700">
+<img src="generateNoStagedModulesAdd.png" alt="generateNoStagedModulesAdd" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -612,7 +773,7 @@ the red box should say "Generate success!".</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/generateNoStagedModulesSuccess.png" alt="generateNoStagedModulesSuccess" width="700">
+<img src="generateNoStagedModulesSuccess.png" alt="generateNoStagedModulesSuccess" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -623,7 +784,7 @@ the red box should say "Generate success!".</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="login-to-user-account-code-login-code"><a class="link" href="#login-to-user-account-code-login-code">3.10. Login to User Account : <code>login</code></a></h3>
+<h3 id="login-to-user-account-code-login-code"><a class="link" href="#login-to-user-account-code-login-code">Login to User Account : <code>login</code></a></h3>
 <div class="paragraph">
 <p>Login to the User Account with the corresponding credentials.<br>
 Format: <code>login user/&lt;USERNAME&gt; pass/&lt;PASSWORD&gt; userData/[PATH_TO_DATA_FILE]</code></p>
@@ -669,7 +830,7 @@ Specified <code>userdata/</code> option should specify a relative filepath.
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/LoginCommandExample2.png" alt="LoginCommandExample2" width="500">
+<img src="LoginCommandExample2.png" alt="LoginCommandExample2" width="500">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -689,7 +850,7 @@ Note that your details will automatically be displayed in the User Tab and a sim
 </div>
 </div>
 <div class="sect2">
-<h3 id="register-a-student-account-code-register-code"><a class="link" href="#register-a-student-account-code-register-code">3.11. Register a Student Account : <code>register</code></a></h3>
+<h3 id="register-a-student-account-code-register-code"><a class="link" href="#register-a-student-account-code-register-code">Register a Student Account : <code>register</code></a></h3>
 <div class="paragraph">
 <p>Register a Student Account with the input parameters.<br>
 Format: <code>register [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
@@ -773,7 +934,7 @@ The above command creates a student account with the following details:</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/RegisterCommandExample2.png" alt="RegisterCommandExample2" width="600">
+<img src="RegisterCommandExample2.png" alt="RegisterCommandExample2" width="600">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -794,7 +955,7 @@ updated.
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/RegisterCommandOutputDisplay.png" alt="RegisterCommandOutputDisplay" width="400">
+<img src="RegisterCommandOutputDisplay.png" alt="RegisterCommandOutputDisplay" width="400">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -809,14 +970,14 @@ updated.
 <td class="content">
 A temporary save file path is generated and used to save the details of the newly
 registered user. Do remember the location of the save file. You may choose to save
-the file in another location by executing the <code>save</code> command as detailed in <a href="#save">Section 3.7, &#8220;Saving user data: <code>save</code>&#8221;</a>.
+the file in another location by executing the <code>save</code> command as detailed in <a href="#save">Saving user data: <code>save</code></a>.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-student-account-code-edit-code"><a class="link" href="#edit-student-account-code-edit-code">3.12. Edit Student Account : <code>edit</code></a></h3>
+<h3 id="edit-student-account-code-edit-code"><a class="link" href="#edit-student-account-code-edit-code">Edit Student Account : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits the Student specific information as specified in the input parameters.<br>
 Format: <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
@@ -869,7 +1030,7 @@ The above command edits the current student with the new details:</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/EditCommandExample2.png" alt="EditCommandExample2" width="500">
+<img src="EditCommandExample2.png" alt="EditCommandExample2" width="500">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -889,7 +1050,7 @@ Notice that the Name, Major and Minor fields in the User Tab has changed
 </div>
 </div>
 <div class="sect2">
-<h3 id="logout-from-user-account-code-logout-code"><a class="link" href="#logout-from-user-account-code-logout-code">3.13. Logout from User Account : <code>logout</code></a></h3>
+<h3 id="logout-from-user-account-code-logout-code"><a class="link" href="#logout-from-user-account-code-logout-code">Logout from User Account : <code>logout</code></a></h3>
 <div class="paragraph">
 <p>Logouts from the current user account. Running this command also resets the application
 to its original state.
@@ -910,7 +1071,7 @@ Format: <code>logout</code></p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/LogoutCommandExample.png" alt="LogoutCommandExample" width="500">
+<img src="LogoutCommandExample.png" alt="LogoutCommandExample" width="500">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -930,7 +1091,7 @@ Notice that the Data Fields in the User Tab has been reset to its original state
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-encryption"><a class="link" href="#data-encryption">3.14. Data Encryption</a></h3>
+<h3 id="data-encryption"><a class="link" href="#data-encryption">Data Encryption</a></h3>
 <div class="paragraph">
 <p>Data stored using the <code>save</code> command is encrypted by default.</p>
 </div>
@@ -938,7 +1099,7 @@ Notice that the Data Fields in the User Tab has been reset to its original state
 </div>
 </div>
 <div class="sect1">
-<h2 id="AdminFeatures"><a class="link" href="#AdminFeatures">4. Administrator Features</a></h2>
+<h2 id="AdminFeatures"><a class="link" href="#AdminFeatures">Administrator Features</a></h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -954,7 +1115,7 @@ The commands in this section can only be executed when logged into an administra
 </table>
 </div>
 <div class="sect2">
-<h3 id="add-a-new-administrator-account-code-addadmin-code"><a class="link" href="#add-a-new-administrator-account-code-addadmin-code">4.1. Add a new administrator account: <code>addAdmin</code></a></h3>
+<h3 id="add-a-new-administrator-account-code-addadmin-code"><a class="link" href="#add-a-new-administrator-account-code-addadmin-code">Add a new administrator account: <code>addAdmin</code></a></h3>
 <div class="paragraph">
 <p>Create and add a new adminstrator account.<br>
 Format: <code>addAdmin OPTION/INPUT&#8230;&#8203;</code><br></p>
@@ -997,7 +1158,7 @@ Creates a new administrator account with the following stated details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-the-currently-logged-in-administrator-account-code-editadmin-code"><a class="link" href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">4.2. Edit the currently logged in administrator account: <code>editAdmin</code></a></h3>
+<h3 id="edit-the-currently-logged-in-administrator-account-code-editadmin-code"><a class="link" href="#edit-the-currently-logged-in-administrator-account-code-editadmin-code">Edit the currently logged in administrator account: <code>editAdmin</code></a></h3>
 <div class="paragraph">
 <p>Edit the details of the currently logged in administrator.<br>
 Format: <code>editAdmin OPTION/INPUT&#8230;&#8203;</code><br></p>
@@ -1035,7 +1196,7 @@ Change both the salary and employement date of the logged in administrator to "3
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-a-existing-user-account-code-removeuser-code"><a class="link" href="#remove-a-existing-user-account-code-removeuser-code">4.3. Remove a existing user account: <code>removeUser</code></a></h3>
+<h3 id="remove-a-existing-user-account-code-removeuser-code"><a class="link" href="#remove-a-existing-user-account-code-removeuser-code">Remove a existing user account: <code>removeUser</code></a></h3>
 <div class="paragraph">
 <p>Remove a currently existing user account.<br>
 Format: <code>removeAdmin &lt;USERNAME&gt;</code></p>
@@ -1053,14 +1214,14 @@ Removes a administrator account with username "Username" if it exists.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="show-the-list-of-usernames-code-showuser-code"><a class="link" href="#show-the-list-of-usernames-code-showuser-code">4.4. Show the list of usernames: <code>showUser</code></a></h3>
+<h3 id="show-the-list-of-usernames-code-showuser-code"><a class="link" href="#show-the-list-of-usernames-code-showuser-code">Show the list of usernames: <code>showUser</code></a></h3>
 <div class="paragraph">
 <p>Display the list of usernames on the main display.<br>
 Format: <code>showUser</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-new-module-to-database-code-addmoduledb-code"><a class="link" href="#add-a-new-module-to-database-code-addmoduledb-code">4.5. Add a new module to database: <code>addModuleDB</code></a></h3>
+<h3 id="add-a-new-module-to-database-code-addmoduledb-code"><a class="link" href="#add-a-new-module-to-database-code-addmoduledb-code">Add a new module to database: <code>addModuleDB</code></a></h3>
 <div class="paragraph">
 <p>Creates a new module and add it to the module database.<br>
 Format: <code>addModuleDB OPTION/INPUT&#8230;&#8203;</code><br></p>
@@ -1137,7 +1298,7 @@ Create and add a new module with module code "CS2103T" and the stated details to
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-details-of-a-module-in-database-code-editmodule-code"><a class="link" href="#edit-details-of-a-module-in-database-code-editmodule-code">4.6. Edit details of a module in database: <code>editModule</code></a></h3>
+<h3 id="edit-details-of-a-module-in-database-code-editmodule-code"><a class="link" href="#edit-details-of-a-module-in-database-code-editmodule-code">Edit details of a module in database: <code>editModule</code></a></h3>
 <div class="paragraph">
 <p>Edit the details of a module specified by its index in database panel in database.<br>
 Format: <code>editModule &lt;INDEX&gt; OPTION/INPUT&#8230;&#8203;</code><br></p>
@@ -1221,7 +1382,7 @@ After editing, the database panel will display the updated list as shown below.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/EditModuleCommandExample.png" alt="EditModuleCommandExample" width="700">
+<img src="EditModuleCommandExample.png" alt="EditModuleCommandExample" width="700">
 </div>
 </div>
 </li>
@@ -1229,7 +1390,7 @@ After editing, the database panel will display the updated list as shown below.
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-a-existing-module-from-database-code-removemoduledb-code"><a class="link" href="#remove-a-existing-module-from-database-code-removemoduledb-code">4.7. Remove a existing module from database: <code>removeModuleDB</code></a></h3>
+<h3 id="remove-a-existing-module-from-database-code-removemoduledb-code"><a class="link" href="#remove-a-existing-module-from-database-code-removemoduledb-code">Remove a existing module from database: <code>removeModuleDB</code></a></h3>
 <div class="paragraph">
 <p>Removes a existing module from the module database.<br>
 Format: <code>removeModuleDB &lt;MODULE_CODE&gt;</code></p>
@@ -1256,7 +1417,7 @@ After removing, the database panel will display the updated list as shown below.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RemoveModuleFromDatabaseCommandExample.png" alt="RemoveModuleFromDatabaseCommandExample" width="700">
+<img src="RemoveModuleFromDatabaseCommandExample.png" alt="RemoveModuleFromDatabaseCommandExample" width="700">
 </div>
 </div>
 </li>
@@ -1266,7 +1427,7 @@ After removing, the database panel will display the updated list as shown below.
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">5. FAQ</a></h2>
+<h2 id="faq"><a class="link" href="#faq">FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
@@ -1275,7 +1436,7 @@ After removing, the database panel will display the updated list as shown below.
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">Command Summary</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1292,10 +1453,16 @@ After removing, the database panel will display the updated list as shown below.
 <p><strong>Delete from Staged</strong>: <code>removeModuleS &lt;MOD_CODE&gt; [MORE_MOD_CODES]</code></p>
 </li>
 <li>
-<p><strong>Deleter from Taken</strong>: <code>removeModuleT &lt;MOD_CODE&gt; [MORE_MOD_CODES]</code></p>
+<p><strong>Delete from Taken</strong>: <code>removeModuleT &lt;MOD_CODE&gt; [MORE_MOD_CODES]</code></p>
 </li>
 <li>
-<p><strong>Search</strong> : <code>search &lt;KEYWORD&gt; [MORE_KEYWORDS]</code></p>
+<p><strong>Search</strong> : <code>search &lt;MOD_CODE_PREFIX&gt; [MORE MOD_CODE_PREFIX]</code></p>
+</li>
+<li>
+<p><strong>List</strong> : <code>list</code></p>
+</li>
+<li>
+<p><strong>Show Module</strong> : <code>showModule &lt;MOD_CODE&gt;</code></p>
 </li>
 <li>
 <p><strong>Save</strong> : <code>save sp/[FILE_NAME]</code></p>
@@ -1338,4 +1505,4 @@ available/[SEM1][SEM2][SPECIAL_TERM1][SPECIAL_TERM2] description/[DESCRIPTION] p
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:11:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:52:42 UTC</div></div></div></body></html>
