@@ -15,9 +15,12 @@ It aims to make the tedious process of planning your entire candidature easier a
 It provides students with the ability to view module details and manage their personal candidature plans.</p>
 </div>
 <div class="paragraph">
-<p>Targeted at individuals whom prefer the use of their keyboards over a click-and-point interface,
-it incorporates an in-built Command Line Interface(CLI) for majority of its user interactions and
+<p>Targeted at individuals who prefer the use of their keyboards over a click-and-point interface,
+it incorporates an in-built Command Line Interface(CLI) for the majority of its user interactions and
 a simple Graphical User Interface(GUI) for the displaying of output.</p>
+</div>
+<div class="paragraph">
+<p>This project is initiated by a team of 5. Tasked to morph an existing open-source project consisting of ~10k lines of base code to a completely distinct application.</p>
 </div>
 </div>
 </div>
@@ -47,7 +50,7 @@ Using a traditional account management system, users can expect a familiar and
 intuitive structure when managing their personal details.</p>
 </li>
 <li>
-<p>Justification: This enhancement enhances the general user experience, allowing users
+<p>Justification: This feature allows users
 to set user specific details and configurations for the application.</p>
 </li>
 <li>
@@ -61,7 +64,7 @@ This enhancement will give users the necessary control over their personal prefe
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement(s)</strong>: Standardized the <strong>User Interface</strong> of the application.</p>
+<p><strong>Minor enhancement(s)</strong>: Standardized the <strong>User Interface(UI)</strong> of the application.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -74,12 +77,10 @@ an easy-to-use and familiar tool, users can avoid the need to ascertain new proc
 procedures.</p>
 </li>
 <li>
-<p>Highlights: Switching of relevant panels will automatically be done after the successful
-execution of commands. This brings the focus of the users to the relevant display panels. It is
-also noted that commands have been included to allow users to set the front-most display panels manually.</p>
+<p>Highlights: Switching between relevant UI panels is automatic(after each successive command).</p>
 </li>
 <li>
-<p>Relevant pull requests: <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/161">#161</a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/189">#189</a></p>
+<p>Relevant pull requests:  <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/161">#161</a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/189">#189</a></p>
 </li>
 <li>
 <p>Code contributed: [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=crimsonjacket">Functional code</a>]</p>
@@ -99,7 +100,7 @@ also noted that commands have been included to allow users to set the front-most
 <p>Assumed responsibility as Team Lead, making critical decisions regarding the project development and overseeing task allocation and deadlines.</p>
 </li>
 <li>
-<p>Created <a href="https://github.com/CS2103-AY1819S1-W17-2/main/projects/1">Project Dashboard</a> on GitHub.
+<p>Managed <strong>Project Dashboard</strong> on GitHub.
 Utilized by the team to better manage individual tasks and visualize the various stages of development throughout the project.</p>
 </li>
 <li>
@@ -129,7 +130,7 @@ Utilized by the team to better manage individual tasks and visualize the various
 <div class="ulist">
 <ul>
 <li>
-<p>Included User Account Management Documentation to User Guide &amp; Developer Guide (PRs <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/56">#56</a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/127">#127</a>)</p>
+<p>Included User Account Management Documentation to User Guide &amp; Developer Guide (PRs <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/56">#56</a>, <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/127">#127</a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/280">#280</a>)</p>
 </li>
 <li>
 <p>Updated various Component Structures in DeveloperGuide (PRs <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/201">#201</a>)</p>
@@ -145,7 +146,7 @@ Utilized by the team to better manage individual tasks and visualize the various
 <p>Reviewed PRs(with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/119">#119</a>, <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/124">#124</a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/pull/200">#200</a></p>
 </li>
 <li>
-<p>Reported bugs and suggestions for other teams in the class (examples: <a href="https://github.com/CS2103-AY1819S1-W17-2/main/issues/181">1</a>, <a href="https://github.com/CS2103-AY1819S1-W17-2/main/issues/138">2</a>, <a href="https://github.com">3</a>)</p>
+<p>Reported bugs and suggestions for other teams in the class (examples: <a href="https://github.com/CS2103-AY1819S1-W17-2/main/issues/181">1</a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/issues/138">2</a>)</p>
 </li>
 </ul>
 </div>
@@ -187,101 +188,10 @@ Utilized by the team to better manage individual tasks and visualize the various
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="login-to-user-account-code-login-code"><a class="link" href="#login-to-user-account-code-login-code">Login to User Account : <code>login</code></a></h3>
-<div class="paragraph">
-<p>Login to the User Account with the corresponding credentials.<br>
-Format: <code>login user/&lt;USERNAME&gt; pass/&lt;PASSWORD&gt; userData/&lt;PATH_TO_DATA_FILE&gt;</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>login user/max33 pass/#Qwerty4321 userdata/max33.xml</code><br>
-The above command essentially sends a login request to <code>CredentialStore</code> with the following credential details:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Username : <code>max33</code></p>
-</li>
-<li>
-<p>Password : <code>#Qwerty4321</code></p>
-</li>
-<li>
-<p>Userdata : <code>max33.xml</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Specified <code>userdata/</code> option should specify a relative filepath.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The figure below displays the UI updates that you should expect to observed after the successful execution of a login command.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/LoginCommandExample2.png" alt="LoginCommandExample2" width="500">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Fig 1. Example of a Login Command and the expected UI output</em></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Note that your details will automatically be displayed in the User Tab and a simple successful message is displayed on the bottom right window.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
 <h3 id="register-a-student-account-code-register-code"><a class="link" href="#register-a-student-account-code-register-code">Register a Student Account : <code>register</code></a></h3>
 <div class="paragraph">
 <p>Register a Student Account with the input parameters.<br>
-Format: <code>register [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
-</div>
-<div class="paragraph">
-<p>Available Option:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Username : <code>user/&lt;USERNAME&gt;</code></p>
-</li>
-<li>
-<p>Password : <code>pass/&lt;PASSWORD&gt;</code></p>
-</li>
-<li>
-<p>Name : <code>n/[NAME]</code></p>
-</li>
-<li>
-<p>Enrollment Date: <code>enroll/&lt;ENROLLMENT_DATE&gt;</code></p>
-</li>
-<li>
-<p>Major(s) : <code>maj/[MAJOR_CODE] maj/[MAJOR_CODE]</code></p>
-</li>
-<li>
-<p>Minor(s) : <code>min/[MINOR_CODE] min/[MINOR_CODE]</code></p>
-</li>
-</ul>
+Format: <code>register `user/&lt;USERNAME&gt;</code> <code>pass/&lt;PASSWORD&gt;</code> <code>n/[NAME] `enroll/&lt;ENROLLMENT_DATE&gt;</code> <code>maj/[MAJOR_CODE] maj/[MAJOR_CODE]</code> <code>min/[MINOR_CODE] min/[MINOR_CODE]</code></p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -290,11 +200,7 @@ Format: <code>register [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The password must contain at least three character categories among the following:<br>
-- Uppercase characters (A-Z)<br>
-- Lowercase characters (a-z)<br>
-- Digits (0-9)<br>
-- Special characters (~!@#$%^&amp;*_-+=`|\(){}[]:;"'&lt;&gt;,.?/)
+The password must at least 8 characters long, containing at least 4 character categories, namely <em>Uppercase characters(A-Z)</em>, <em>Lowercase characters(a-z)</em>, <em>Digits (0-9)</em> and <em>Special characters (~!@#$%^&amp;*</em>-+=`|\(){}[]:;"'&lt;&gt;,.?/)_
 </td>
 </tr>
 </table>
@@ -305,43 +211,17 @@ The password must contain at least three character categories among the followin
 <div class="ulist">
 <ul>
 <li>
-<p><code>register user/max33 pass/#Qwerty4321 n/Max Verstappen enroll/15/03/2015 maj/CS maj/DA min/BA min/MA</code><br>
-The above command creates a student account with the following details:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Username : <code>max33</code></p>
-</li>
-<li>
-<p>Password : <code>#Qwerty4321</code></p>
-</li>
-<li>
-<p>Name : <code>Max Verstappen</code></p>
-</li>
-<li>
-<p>Enrollment Date: <code>15/03/2015&gt;</code></p>
-</li>
-<li>
-<p>Major(s) : <code>CS</code>, <code>DA</code></p>
-</li>
-<li>
-<p>Minor(s) : <code>BA</code>, <code>MA</code></p>
-</li>
-</ul>
-</div>
+<p><code>register user/max33 pass/#Qwerty4321 n/Max Verstappen enroll/15/03/2015 maj/CS maj/DA min/BA min/MA</code><br></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The figure below displays the UI updates that you should expect to observed after the successful execution of the register command.</p>
+<p>The figure below displays the UI updates that you should expect to observed after the successful execution of the aforementioned register command.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/RegisterCommandExample2.png" alt="RegisterCommandExample2" width="600">
+<img src="../images/RegisterCommandExample3.png" alt="RegisterCommandExample3" width="700">
 </div>
-</div>
-<div class="paragraph text-center">
-<p><em>Fig 2a. Example of a register command &amp; the expected UI output.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -362,7 +242,7 @@ updated.
 </div>
 </div>
 <div class="paragraph text-center">
-<p><em>Fig 2b. Expected Command Message after running register command.</em></p>
+<p><em>Fig 1c. Expected Command Message after running register command.</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -380,29 +260,51 @@ the file in another location by executing the <code>save</code> command as detai
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-student-account-code-edit-code"><a class="link" href="#edit-student-account-code-edit-code">Edit Student Account : <code>edit</code></a></h3>
+<h3 id="login-to-user-account-code-login-code"><a class="link" href="#login-to-user-account-code-login-code">Login to User Account : <code>login</code></a></h3>
 <div class="paragraph">
-<p>Edits the Student specific information as specified in the input parameters.<br>
-Format: <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
+<p>Login to the User Account with the corresponding credentials.<br>
+Format: <code>login user/&lt;USERNAME&gt; pass/&lt;PASSWORD&gt; userData/[PATH_TO_DATA_FILE]</code></p>
 </div>
 <div class="paragraph">
-<p>Available Options:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Edit Name : <code>n/[NAME]</code></p>
-</li>
-<li>
-<p>Edit Enrollment Date: <code>enroll/[ENROLLMENT_DATE]</code></p>
-</li>
-<li>
-<p>Edit Major : <code>maj/[MAJOR_CODE]</code></p>
-</li>
-<li>
-<p>Edit Minor : <code>min/[MINOR_CODE]</code></p>
+<p><code>login user/max33 pass/#Qwerty4321 userdata/max33.xml</code><br></p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Specified <code>userdata/</code> option should specify a relative filepath.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-student-account-code-edit-code"><a class="link" href="#edit-student-account-code-edit-code">Edit Student Account : <code>edit</code></a></h3>
+<div class="paragraph">
+<p>Edits the Student specific information as specified in the input parameters.<br>
+Format: <code>edit</code> <code>n/[NAME]</code> <code>enroll/[ENROLLMENT_DATE]</code> <code>maj/[MAJOR_CODE]</code> <code>min/[MINOR_CODE]</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Multiple entries of <code>maj/</code> and <code>min/</code> is allowed. Additionally, new details will <strong>overwrite</strong> existing details.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -411,87 +313,11 @@ Format: <code>edit [OPTION]/[INPUT]&#8230;&#8203;</code><br></p>
 <ul>
 <li>
 <p><code>edit n/Max Emilian Verstappen maj/CS min/</code><br>
-The above command edits the current student with the new details:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Name : Max Emilian Verstappen`</p>
-</li>
-<li>
-<p>Major: CS</p>
-</li>
-<li>
-<p>Minor: [EMPTY]</p>
+The above command edits the account details of the current current student account, with the new values for <code>Name</code>, <code>major</code> and <code>minor</code></p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The figure below displays the UI updates that you should expect to observed after the successful execution of the edit command.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/EditCommandExample2.png" alt="EditCommandExample2" width="500">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Fig 3. Example of an edit command &amp; the expected UI output.</em></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Notice that the Name, Major and Minor fields in the User Tab has changed
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logout-from-user-account-code-logout-code"><a class="link" href="#logout-from-user-account-code-logout-code">Logout from User Account : <code>logout</code></a></h3>
-<div class="paragraph">
-<p>Logouts from the current user account. Running this command also resets the application
-to its original state.
-Format: <code>logout</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>logout</code> (assuming that current user is logged in)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The figure below displays the expected UI updates after the successful execution of the logout command.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/LogoutCommandExample.png" alt="LogoutCommandExample" width="500">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Fig 4. Example of a logout command &amp; the expected UI output.</em></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Notice that the Data Fields in the User Tab has been reset to its original state as seen at start up.
-</td>
-</tr>
-</table>
-</div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -511,9 +337,10 @@ Notice that the Data Fields in the User Tab has been reset to its original state
 <div class="sect2">
 <h3 id="user-account-management"><a class="link" href="#user-account-management">User Account Management</a></h3>
 <div class="paragraph">
-<p>User Account Management involves mainly the authentication process of the users.
-Only once they are authenticated, will their respective user data be loaded into the application.
-Additionally, it is only by registering/logging in will users be able to access and manipulate their account details.<br>
+<p>User Account Management involves mainly the authentication process of the users. User data will only be loaded into the application after a successful login procedure.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it is only by registering/logging in will users be able to access and manipulate their account details.<br>
 This section will describe in detail the Current Implementation and the Design Considerations of the User Account Management feature.<br></p>
 </div>
 <div class="paragraph">
@@ -521,12 +348,13 @@ This section will describe in detail the Current Implementation and the Design C
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/ADforUserAccountManagement.png" alt="ADforUserAccountManagement" width="800">
+<img src="../images/ADforUserAccountManagement.png" alt="ADforUserAccountManagement" width="600">
 </div>
 </div>
 <div class="paragraph text-center">
 <p><em>Figure 1. Activity Diagram for User Account Management.</em></p>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
@@ -599,12 +427,13 @@ Refers to the application managers. It stores variables pertaining to an adminis
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p>Figure 2(shown below) is the Class Diagrams illustrating the inheritance between <code>User</code>, <code>Student</code> and <code>Admin</code></p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/UserClassDiagram.png" alt="UserClassDiagram" width="500">
+<img src="../images/UserClassDiagram2.png" alt="UserClassDiagram2" width="600">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -645,7 +474,7 @@ Registering only applies to students. For the creation of <code>Admin</code> Acc
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/RegisterCommandUML.png" alt="RegisterCommandUML" width="350">
+<img src="../images/RegisterCommandUML.png" alt="RegisterCommandUML" width="200">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -653,12 +482,15 @@ Registering only applies to students. For the creation of <code>Admin</code> Acc
 </div>
 <div class="paragraph">
 <p>Parsing of command is performed by <code>RegisterCommandParser</code>,
-which returns a <code>RegisterCommand</code> object after parsing Username, Password, Name, Path to Profile Picture, Enrollment Date, Major(s) and Minor(s).
-The Sequence Diagram shown below in Figure 4 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>RegisterCommand</code> is being executed.</p>
+which returns a <code>RegisterCommand</code> object after processing the user inputs.<br></p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Figure 4 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>RegisterCommand</code> is being executed.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/SDforRegisterCommandLogicAndModel.png" alt="SDforRegisterCommandLogicAndModel" width="900">
+<img src="../images/SDforRegisterCommandLogicAndModel.png" alt="SDforRegisterCommandLogicAndModel" width="600">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -679,8 +511,7 @@ The Sequence Diagram shown below in Figure 4 illustrates the interactions betwee
 <p>Given below is an example usage scenario and how the register mechanism behaves at each step:</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. At start up, the <code>currentUser</code> in <code>Model</code> is not yet instantiated,
-this would prevent any commands aside from <code>register</code> and <code>login</code> to be available to the user.<br></p>
+<p>Step 1. The user launches the application for the first time. Only <code>register</code> and <code>login</code> command is available this is because <code>currentUser</code> in <code>Model</code> is not yet instantiated.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -695,8 +526,40 @@ this would prevent any commands aside from <code>register</code> and <code>login
 </table>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>register user/demo &#8230;&#8203;</code> to register a new <code>Student</code> account.
-The <code>register</code> command will call <code>Model#addCredential(&#8230;&#8203;)</code> and <code>Model#setCurrentUser(&#8230;&#8203;)</code>.<br></p>
+<p>Step 2. The user executes <code>register user/demo &#8230;&#8203;</code> to register a new <code>Student</code> account.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>RegisterCommandParser</code> would process the user inputs and create a <code>Student</code>, <code>Credential</code> and <code>Path</code> object, which will be used to construct a <code>register</code> command.<br></p>
+</div>
+<div class="paragraph">
+<p>Below is a small code snippet of the aforementioned procedure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> RegisterCommand parse(<span class="predefined-type">String</span> userInput) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        <span class="comment">// initial prefix checks, omitted for brevity</span>
+
+        Username username = ParserUtil.parseUsername(argMultimap.getValue(PREFIX_USERNAME).get());
+        Password password = ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get());
+        <span class="predefined-type">Name</span> name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        EnrollmentDate enrollmentDate = ParserUtil.parseEnrollmentDate(
+            argMultimap.getValue(PREFIX_STUDENT_ENROLLMENT_DATE).get());
+        <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; majors = argMultimap.getAllValues(PREFIX_STUDENT_MAJOR);
+        <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; minors = argMultimap.getAllValues(PREFIX_STUDENT_MINOR);
+
+        User user = <span class="keyword">new</span> Student(username, name, <span class="predefined-type">Role</span>.STUDENT,
+            enrollmentDate, majors, minors);
+        Credential credential = <span class="keyword">new</span> Credential(username, password);
+
+        <span class="comment">// constructs and returns RegisterCommand, omitted for brevity</span>
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Step 4. The <code>register</code> command will next call <code>Model#addCredential(&#8230;&#8203;)</code> and <code>Model#setCurrentUser(&#8230;&#8203;)</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>Step 5. At this point, <code>Model</code> will insert a new entry in <code>CredentialStore</code> and indicate to <code>Storage</code> to commit the changes to file. Additionally, the event raised by the <code>register</code> command will be handled by <code>UI</code>, making the necessary changes to all UI elements.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -715,41 +578,11 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 <h5 id="implementation-of-the-login-feature"><a class="link" href="#implementation-of-the-login-feature">Implementation of the login feature</a></h5>
 <div class="paragraph">
 <p>The <code>login</code> feature is facilitated by the <code>LoginCommand</code> class.
-It allows for students to log into their existing modsUni account, granting them access to their respective user data.<br></p>
+It allows for students to log into their existing modsUni account.<br></p>
 </div>
 <div class="paragraph">
-<p>The <code>LoginCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML representation of the <code>LoginCommand</code>.<br></p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/LoginCommandUML.png" alt="LoginCommandUML" width="350">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 1. UML Diagram of <code>LoginCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Parsing of command is performed by <code>LoginCommandParser</code>, which returns a <code>LoginCommand</code> after parsing the username and password inputs.
-The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>LoginCommand</code> is being executed.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/SDforLoginCommandLogicAndModel.png" alt="SDforLoginCommandLogicAndModel" width="900">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>LoginCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Figure 3 below shows the high-level sequence diagram of the command execution.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/SDforLoginCommandOverview.png" alt="SDforLoginCommandOverview" width="800">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 3. High-Level Sequence Diagram of the login process.</em></p>
+<p>The <code>LoginCommand</code> extends the <code>Command</code> class.
+Parsing of command is performed by <code>LoginCommandParser</code>, which returns a <code>LoginCommand</code> after parsing the username and password inputs.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the login mechanism behaves at each step:</p>
@@ -757,111 +590,18 @@ The Sequence Diagram shown below in Figure 2 illustrates the interactions betwee
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The user launches the application. As explained earlier, since the <code>currentUser</code> in <code>Model</code> is not yet instantiated,
-the user will only be able to execute either the <code>register</code> or <code>login</code> command.<br></p>
+<p>The user launches the application. As explained earlier, only <code>register</code> and <code>login</code> command are available.<br></p>
 </li>
 <li>
-<p>Having already registered an account, the user can proceed to execute <code>login user/demo pass/#Qwerty123</code> to log in to their account.
+<p>The user can proceed to execute a <code>login</code> command to log in to their account.
 The <code>login</code> command will call <code>Model#isVerifiedCredential(&#8230;&#8203;)</code> to determine if the user input matches a credential in <code>CredentialStore</code>.<br></p>
 </li>
 <li>
-<p>Should the credential be valid and verified, a <code>User</code> will be loaded from a the default <code>userData.xml</code> file.
-Subseqently, the <code>Model#setCurrentUser(&#8230;&#8203;)</code> will be called to set the loaded user data as the <code>currentUser</code>.<br></p>
+<p>Should the credential be valid and verified, a <code>User</code> will be loaded from a the userdata file provided.
+Subsequently, the <code>Model#setCurrentUser(&#8230;&#8203;)</code> will be called to set the loaded user data as the <code>currentUser</code>.<br></p>
 </li>
 <li>
 <p>Should the credential not be valid or does not match an existing credential in the <code>CredentialStore</code>, the user will simply be shown a failure message.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="implementation-of-the-edit-feature"><a class="link" href="#implementation-of-the-edit-feature">Implementation of the edit feature</a></h5>
-<div class="paragraph">
-<p>The <code>edit</code> feature is facilitated by the <code>EditStudentCommand</code> class.
-It allows for students to edit their existing modsUni account, granting them the ability
-to modify personal details.<br></p>
-</div>
-<div class="paragraph">
-<p>The <code>EditStudentCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML representation of the <code>EditStudentCommand</code>.<br></p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/EditStudentCommandUML.png" alt="EditStudentCommandUML" width="350">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 1. UML Diagram of <code>EditStudentCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Parsing the command is performed by <code>EditStudentCommandParser</code>, which returns a <code>EditCommand</code> after parsing the user input.
-The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>EditStudentCommand</code> is being executed.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/SDforEditStudentCommandLogicAndModel.png" alt="SDforEditStudentCommandLogicAndModel" width="900">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>EditStudentCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Figure 3 below shows the high-level sequence diagram of the command execution:</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/SDforEditStudentCommand.png" alt="SDforEditStudentCommand" width="800">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 3. High-Level Sequence Diagram of the edit process.</em></p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the edit mechanism behaves at each step:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user launches the application. Depending on whether the user already has an account registered, he would proceed to login.<br></p>
-</li>
-<li>
-<p>Now that the <code>currentUser</code> is being loaded. The student can proceed to execute an edit command <code>edit n/demo enroll/03/08/2017</code><br>
-At this point,<code>ModsUniParser</code> would instantiate <code>EditStudentCommandParser</code> which would parse the <code>edit</code> command.</p>
-</li>
-<li>
-<p><code>EditStudentCommandParser</code> would instantiate <code>EditStudentDescriptor</code>. <code>EditStudentDescriptor</code> contains the respective user details that is provided in the user input.<br></p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>EditStudentDescriptor</code> contains <strong>only</strong> the details as provided in the user input and will be used in <code>EditCommand#execute()</code> to update <code>currentUser</code>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p><code>EditStudentCommandParser</code> would return a <code>EditCommand</code> with the descriptor class. Subsequently, <code>EditCommand#execute()</code> would be called.</p>
-</li>
-<li>
-<p>At this point, <code>EditCommand#createEditedStudent(&#8230;&#8203;)</code> would be called constructing a new Student object, with the <code>currentUser</code> and the descriptor.</p>
-</li>
-<li>
-<p>Finally, <code>Model#setCurrentUser(&#8230;&#8203;)</code> would be called to update <code>currentUser</code> with the new details.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Upon the successful execute of the <code>edit</code> command, <code>UserTab</code> would also be updated with the new user details.
-</td>
-</tr>
-</table>
-</div>
 </li>
 </ol>
 </div>
@@ -938,4 +678,4 @@ Upon the successful execute of the <code>edit</code> command, <code>UserTab</cod
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:27:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:29:08 UTC</div></div></div></body></html>

@@ -30,7 +30,7 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#user-account-management">3.1. User Account Management</a></li>
-<li><a href="#generate-schedule-feature">3.2. Generate Schedule Feature</a></li>
+<li><a href="#generate">3.2. Generate</a></li>
 <li><a href="#user-module-management">3.3. User Module Management</a></li>
 <li><a href="#module-database-administration">3.4. Module Database Administration</a></li>
 <li><a href="#save-user-feature">3.5. Save User Feature</a></li>
@@ -67,23 +67,24 @@
 <li><a href="#managing-dependencies">6.6. Managing Dependencies</a></li>
 </ul>
 </li>
-<li><a href="#product-scope">Appendix A: Product Scope</a></li>
-<li><a href="#user-stories">Appendix B: User Stories</a></li>
-<li><a href="#use-cases">Appendix C: Use Cases</a></li>
-<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
-<li><a href="#glossary">Appendix E: Glossary</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
+<li><a href="#GetStartedProgramming">Appendix A: Suggested Programming Tasks to Get Started</a>
 <ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#registering-a-student-account">F.2. Registering a Student Account</a></li>
-<li><a href="#logging-in-into-a-student-account">F.3. Logging in into a Student Account</a></li>
-<li><a href="#editing-student-details">F.4. Editing Student Details</a></li>
-<li><a href="#logging-out-from-account">F.5. Logging out from account</a></li>
-<li><a href="#generating-a-schedule">F.6. Generating a schedule</a></li>
-<li><a href="#saving-a-user">F.7. Saving a user</a></li>
-<li><a href="#modifying-of-user-data-file">F.8. Modifying of user data file</a></li>
-<li><a href="#adding-a-module">F.9. Adding a module</a></li>
-<li><a href="#editing-module-details">F.10. Editing module details</a></li>
+<li><a href="#GetStartedProgramming-EachComponent">A.1. Improving each component</a></li>
+<li><a href="#GetStartedProgramming-RemarkCommand">A.2. Creating a new command: <code>remark</code></a></li>
+</ul>
+</li>
+<li><a href="#product-scope">Appendix B: Product Scope</a></li>
+<li><a href="#user-stories">Appendix C: User Stories</a></li>
+<li><a href="#use-cases">Appendix D: Use Cases</a></li>
+<li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
+<li><a href="#glossary">Appendix F: Glossary</a></li>
+<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
+<ul class="sectlevel2">
+<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
+<li><a href="#registering-a-student-account">G.2. Registering a Student Account</a></li>
+<li><a href="#logging-in-into-a-student-account">G.3. Logging in into a Student Account</a></li>
+<li><a href="#editing-student-details">G.4. Editing Student Details</a></li>
+<li><a href="#logging-out-from-account">G.5. Logging out from account</a></li>
 </ul>
 </li>
 </ul>
@@ -302,7 +303,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <p>Get some sense of the overall design by reading <a href="#Design-Architecture">Section 2.1, &#8220;Architecture&#8221;</a>.</p>
 </li>
 <li>
-<p>Take a look at <a href="#GetStartedProgramming">[GetStartedProgramming]</a>.</p>
+<p>Take a look at <a href="#GetStartedProgramming">Appendix A, <em>Suggested Programming Tasks to Get Started</em></a>.</p>
 </li>
 </ol>
 </div>
@@ -595,12 +596,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="sect2">
 <h3 id="user-account-management"><a class="link" href="#user-account-management">3.1. User Account Management</a></h3>
 <div class="paragraph">
-<p>User Account Management involves mainly the authentication process of the users.
-Only once they are authenticated, will their respective user data be loaded into the application.</p>
+<p>User Account Management involves mainly the authentication process of the users. User data will only be loaded into the application after a successful login procedure.</p>
 </div>
 <div class="paragraph">
-<p>+
-Additionally, it is only by registering/logging in will users be able to access and manipulate their account details.<br>
+<p>Additionally, it is only by registering/logging in will users be able to access and manipulate their account details.<br>
 This section will describe in detail the Current Implementation and the Design Considerations of the User Account Management feature.<br></p>
 </div>
 <div class="paragraph">
@@ -608,12 +607,13 @@ This section will describe in detail the Current Implementation and the Design C
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/ADforUserAccountManagement.png" alt="ADforUserAccountManagement" width="800">
+<img src="images/ADforUserAccountManagement.png" alt="ADforUserAccountManagement" width="600">
 </div>
 </div>
 <div class="paragraph text-center">
 <p><em>Figure 1. Activity Diagram for User Account Management.</em></p>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
@@ -686,12 +686,13 @@ Refers to the application managers. It stores variables pertaining to an adminis
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p>Figure 2(shown below) is the Class Diagrams illustrating the inheritance between <code>User</code>, <code>Student</code> and <code>Admin</code></p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/UserClassDiagram.png" alt="UserClassDiagram" width="500">
+<img src="images/UserClassDiagram2.png" alt="UserClassDiagram2" width="600">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -732,7 +733,7 @@ Registering only applies to students. For the creation of <code>Admin</code> Acc
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/RegisterCommandUML.png" alt="RegisterCommandUML" width="350">
+<img src="images/RegisterCommandUML.png" alt="RegisterCommandUML" width="200">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -740,12 +741,15 @@ Registering only applies to students. For the creation of <code>Admin</code> Acc
 </div>
 <div class="paragraph">
 <p>Parsing of command is performed by <code>RegisterCommandParser</code>,
-which returns a <code>RegisterCommand</code> object after parsing Username, Password, Name, Path to Profile Picture, Enrollment Date, Major(s) and Minor(s).
-The Sequence Diagram shown below in Figure 4 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>RegisterCommand</code> is being executed.</p>
+which returns a <code>RegisterCommand</code> object after processing the user inputs.<br></p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Figure 4 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>RegisterCommand</code> is being executed.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/SDforRegisterCommandLogicAndModel.png" alt="SDforRegisterCommandLogicAndModel" width="900">
+<img src="images/SDforRegisterCommandLogicAndModel.png" alt="SDforRegisterCommandLogicAndModel" width="600">
 </div>
 </div>
 <div class="paragraph text-center">
@@ -833,41 +837,11 @@ A new <code>Student</code> would be initialized and automatically set as the <co
 <h5 id="implementation-of-the-login-feature"><a class="link" href="#implementation-of-the-login-feature">Implementation of the login feature</a></h5>
 <div class="paragraph">
 <p>The <code>login</code> feature is facilitated by the <code>LoginCommand</code> class.
-It allows for students to log into their existing modsUni account, granting them access to their respective user data.<br></p>
+It allows for students to log into their existing modsUni account.<br></p>
 </div>
 <div class="paragraph">
-<p>The <code>LoginCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML representation of the <code>LoginCommand</code>.<br></p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="images/LoginCommandUML.png" alt="LoginCommandUML" width="350">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 1. UML Diagram of <code>LoginCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Parsing of command is performed by <code>LoginCommandParser</code>, which returns a <code>LoginCommand</code> after parsing the username and password inputs.
-The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>LoginCommand</code> is being executed.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="images/SDforLoginCommandLogicAndModel.png" alt="SDforLoginCommandLogicAndModel" width="900">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>LoginCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Figure 3 below shows the high-level sequence diagram of the command execution.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="images/SDforLoginCommandOverviewWithLoad.png" alt="SDforLoginCommandOverviewWithLoad" width="800">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 3. High-Level Sequence Diagram of the login process.</em></p>
+<p>The <code>LoginCommand</code> extends the <code>Command</code> class.
+Parsing of command is performed by <code>LoginCommandParser</code>, which returns a <code>LoginCommand</code> after parsing the username and password inputs.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the login mechanism behaves at each step:</p>
@@ -875,111 +849,18 @@ The Sequence Diagram shown below in Figure 2 illustrates the interactions betwee
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The user launches the application. As explained earlier, since the <code>currentUser</code> in <code>Model</code> is not yet instantiated,
-the user will only be able to execute either the <code>register</code> or <code>login</code> command.<br></p>
+<p>The user launches the application. As explained earlier, only <code>register</code> and <code>login</code> command are available.<br></p>
 </li>
 <li>
-<p>Having already registered an account, the user can proceed to execute <code>login user/demo pass/#Qwerty123</code> to log in to their account.
+<p>The user can proceed to execute a <code>login</code> command to log in to their account.
 The <code>login</code> command will call <code>Model#isVerifiedCredential(&#8230;&#8203;)</code> to determine if the user input matches a credential in <code>CredentialStore</code>.<br></p>
 </li>
 <li>
-<p>Should the credential be valid and verified, a <code>User</code> will be loaded from a the default <code>userData.xml</code> file.
+<p>Should the credential be valid and verified, a <code>User</code> will be loaded from a the userdata file provided.
 Subsequently, the <code>Model#setCurrentUser(&#8230;&#8203;)</code> will be called to set the loaded user data as the <code>currentUser</code>.<br></p>
 </li>
 <li>
 <p>Should the credential not be valid or does not match an existing credential in the <code>CredentialStore</code>, the user will simply be shown a failure message.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect4">
-<h5 id="implementation-of-the-edit-feature"><a class="link" href="#implementation-of-the-edit-feature">Implementation of the edit feature</a></h5>
-<div class="paragraph">
-<p>The <code>edit</code> feature is facilitated by the <code>EditStudentCommand</code> class.
-It allows for students to edit their existing modsUni account, granting them the ability
-to modify personal details.<br></p>
-</div>
-<div class="paragraph">
-<p>The <code>EditStudentCommand</code> extends the <code>Command</code> class. Figure 1(shown below) depicts the UML representation of the <code>EditStudentCommand</code>.<br></p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="images/EditStudentCommandUML.png" alt="EditStudentCommandUML" width="350">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 1. UML Diagram of <code>EditStudentCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Parsing the command is performed by <code>EditStudentCommandParser</code>, which returns a <code>EditCommand</code> after parsing the user input.
-The Sequence Diagram shown below in Figure 2 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when the <code>EditStudentCommand</code> is being executed.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="images/SDforEditStudentCommandLogicAndModel.png" alt="SDforEditStudentCommandLogicAndModel" width="900">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 2. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>EditStudentCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Figure 3 below shows the high-level sequence diagram of the command execution:</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="images/SDforEditStudentCommand.png" alt="SDforEditStudentCommand" width="800">
-</div>
-</div>
-<div class="paragraph text-center">
-<p><em>Figure 3. High-Level Sequence Diagram of the edit process.</em></p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the edit mechanism behaves at each step:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user launches the application. Depending on whether the user already has an account registered, he would proceed to login.<br></p>
-</li>
-<li>
-<p>Now that the <code>currentUser</code> is being loaded. The student can proceed to execute an edit command <code>edit n/demo enroll/03/08/2017</code><br>
-At this point,<code>ModsUniParser</code> would instantiate <code>EditStudentCommandParser</code> which would parse the <code>edit</code> command.</p>
-</li>
-<li>
-<p><code>EditStudentCommandParser</code> would instantiate <code>EditStudentDescriptor</code>. <code>EditStudentDescriptor</code> contains the respective user details that is provided in the user input.<br></p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>EditStudentDescriptor</code> contains <strong>only</strong> the details as provided in the user input and will be used in <code>EditCommand#execute()</code> to update <code>currentUser</code>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p><code>EditStudentCommandParser</code> would return a <code>EditCommand</code> with the descriptor class. Subsequently, <code>EditCommand#execute()</code> would be called.</p>
-</li>
-<li>
-<p>At this point, <code>EditCommand#createEditedStudent(&#8230;&#8203;)</code> would be called constructing a new Student object, with the <code>currentUser</code> and the descriptor.</p>
-</li>
-<li>
-<p>Finally, <code>Model#setCurrentUser(&#8230;&#8203;)</code> would be called to update <code>currentUser</code> with the new details.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Upon the successful execute of the <code>edit</code> command, <code>UserTab</code> would also be updated with the new user details.
-</td>
-</tr>
-</table>
-</div>
 </li>
 </ol>
 </div>
@@ -1056,10 +937,10 @@ Upon the successful execute of the <code>edit</code> command, <code>UserTab</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="generate-schedule-feature"><a class="link" href="#generate-schedule-feature">3.2. Generate Schedule Feature</a></h3>
+<h3 id="generate"><a class="link" href="#generate">3.2. Generate</a></h3>
 <div class="paragraph">
-<p>This feature is for student users to generate a schedule containing the modules to take in each semester
-during their entire university candidature. It is executed using the <code>generate</code> command.</p>
+<p>Generate is a command for student users to generate a schedule containing the modules to take in each
+semester during their entire university candidature.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1068,148 +949,55 @@ during their entire university candidature. It is executed using the <code>gener
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <code>generate</code> command can only be executed by users of type <code>Student</code>.
+The generate command can only be executed by users of type <code>Student</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
 <p>The section below will describe in detail the current implementation and design considerations of the
-<code>generate</code> command.</p>
+generate feature.</p>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The sequence diagram shown below in Figure 1 illustrates the interactions between some of these components
- when the command is executed.</p>
+<p>The generate command is facilitated by the <code>GenerateCommand</code> class and the following methods in the Model
+class:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#isStudent()</code>&#8201;&#8212;&#8201;This method checks if the current user is a student.</p>
+</li>
+<li>
+<p><code>Model#canGenerate()</code>&#8201;&#8212;&#8201;This method checks if it is possible to generate a schedule.</p>
+</li>
+<li>
+<p><code>Model#generateSchedule()</code>&#8201;&#8212;&#8201;This method generates a schedule.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It generates a schedule based on the student’s staged modules. It also makes use of the <code>Generate</code>
+class from the <code>Logic</code> package to create a schedule.</p>
+</div>
+<div class="paragraph">
+<p>The <code>GenerateCommand</code> class extends from the <code>Command</code> class. Figure 1 as shown below depicts the UML
+diagram for the <code>GenerateCommand</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SequenceDiagramforGenerate.png" alt="SequenceDiagramforGenerate" width=""200">
+<img src="images/GenerateCommandUML.png" alt="GenerateCommandUML" width=""250">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 1. High Level Sequence Diagram for <code>generate</code> command</em></p>
+<p><em>Figure 1. GenerateCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>The command is facilitated by the following classes:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Generate</code> command class<br>
-The <code>Generate</code> command class extends from the <code>Command</code> class. Figure 2 below depicts the UML
-diagram for the <code>Generate</code> command class.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/GenerateCommandUML.png" alt="GenerateCommandUML" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 2. Generate command UML Diagram</em></p>
-</div>
-</li>
-<li>
-<p><code>Model</code> class<br>
-The following methods in the <code>Model</code> class are used in this command:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>isStudent()</code><br>
-This method checks if the current user is a student.</p>
-</li>
-<li>
-<p><code>canGenerate()</code><br>
-This method checks if it is possible to generate a schedule.</p>
-</li>
-<li>
-<p><code>generateSchedule()</code><br>
-This method generates a schedule.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>Generate</code> from the <code>Logic</code> package.<br>
-This class is used to encapsulate the processes for generating a schedule. The following methods are used
-in this command:<br></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>canGenerate(Student)</code><br>
-This methods checks if all the module prerequisites from the student&#8217;s staged list is met. It does this by
-merging the staged and taken module list together.<br>
-Using the merged list, it extracts out the list of module codes. Each module in the staged list is checked
-to see if the prerequisite condition can be met. The following code snippet shows this process:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> Optional&lt;<span class="predefined-type">List</span>&lt;Code&gt;&gt; canGenerate(Student student) {
-    <span class="predefined-type">List</span>&lt;Code&gt; cannotTakeCode = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
-    <span class="predefined-type">List</span>&lt;Code&gt; codeChecklist = student.getTakenAndStageCode();
-    UniqueModuleList modulesStaged = student.getModulesStaged();
-    <span class="keyword">for</span> (Module module : modulesStaged) {
-        <span class="keyword">if</span> (!module.checkPrereq(codeChecklist)) {
-            cannotTakeCode.add(module.getCode());
-        }
-    }
-    <span class="comment">// return list of codes that failed to met prerequisite condition or an empty value if the list is empty.</span>
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p><code>generateSchedule()</code><br>
-This method will create a schedule using modules that are in the student&#8217;s staged list.<br>
-It does this by going though the list of modules and removing those that satisfies the prerequisite condition. As it removes,
-the module code is added to a temporary list. This list is used during the checking of prerequisite
-conditions for the remaining modules.<br>
-The following code snippet will provide a clearer explanation of how the method works:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> SemesterList generateSchedule() {
-    SemesterList semesterList = <span class="keyword">new</span> SemesterList();
-    Semester newSemester = <span class="keyword">new</span> Semester();
-
-    <span class="predefined-type">List</span>&lt;Code&gt; taken = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
-
-    <span class="keyword">while</span> (modulesStaged.size() &gt; <span class="integer">0</span>) {
-        <span class="keyword">for</span> (Module element : modulesStaged) {
-            <span class="keyword">if</span> (element.checkPrereq(taken)) {
-                <span class="comment">// Remove module from staged list</span>
-                <span class="comment">// Add module to semester and temporary list</span>
-            }
-        }
-
-        semesterList.addSemester(newSemester);
-        newSemester = <span class="keyword">new</span> Semester();
-    }
-    <span class="keyword">return</span> semesterList;
-}</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This class is different from the <code>Generate</code> command class. The command class is for the execution of the
-command, while the current one is for creating the schedule.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect4">
-<h5 id="execution-phase-of-the-code-generate-code-command"><a class="link" href="#execution-phase-of-the-code-generate-code-command">Execution phase of the <code>generate</code> command</a></h5>
-<div class="paragraph">
-<p>Figure 3 below shows an overview of the steps performed during the execution phase of the command.</p>
+<p>In the execute method of the Generate command, it will first check if the current user is a Student. Next
+it will proceed on to check if all prerequisites of the student’s staged modules have been met. It does the
+ prerequisite checks using the student’s taken module list. If the conditions are satisfactory, it will
+ generate a schedule. Figure 2(shown below) shows the sequence diagram when executing the <code>GenerateCommand</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1217,72 +1005,23 @@ command, while the current one is for creating the schedule.
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 3. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
- <code>generate</code>.</em></p>
+<p><em>Figure 2. Sequence diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing
+ <code>GenerateCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>In the execute method of the command, the following checks are performed:</p>
+<p><code>GenerateCommand</code> uses multiple components of the modsUni application. Upon completion of generating the
+schedule, two events will be posted. The first event is <code>MainWindowClearResourceEvent</code>. It will be posted to
+inform the current UI that is in the main window to clear it&#8217;s resources. The second event is
+<code>NewGenerateResultAvailableEvent</code>. This event will show the UI for the schedule in the main window.
+The sequence diagram shown below in Figure 3 illustrates the interactions between some of these components.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Type of user account<br>
-This step checks if a user has logged in and the current user is a student. It is performed as only student
-accounts are able to generate a schedule.</p>
-</li>
-<li>
-<p>Modules in staged list<br>
-This step ensures that there modules are available to add into the schedule.</p>
-</li>
-<li>
-<p>Staged modules prerequisites<br>
-This step verifies that the prerequisites for all modules in the staged list are met. It is done to ensure
- that it is possible to generate a schedule.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>If any of the checks fails, an error will be thrown. The following code snippet illustrates the
-checking process:<br></p>
-</div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">if</span> (model.getCurrentUser() == <span class="predefined-constant">null</span>) {
-    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_ERROR);
-}
-
-<span class="keyword">if</span> (!model.isStudent()) {
-    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_INVALID_ROLE);
-}
-
-<span class="keyword">if</span> (!currentStudent.hasModuleToTake()) {
-    <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NO_MODULES);
-}
-
-<span class="keyword">if</span> (cannotTakeCodes.isPresent()) {
-    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(MESSAGE_FAILURE + cannotTakeCodes.toString());
-}</code></pre>
+<img src="images/SequenceDiagramforGenerate.png" alt="SequenceDiagramforGenerate" width=""250">
 </div>
 </div>
 <div class="paragraph">
-<p>After passing all the checks, the command will proceed on and generate a schedule. To display the schedule
-in the user interface, two events will be created.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>MainWindowClearResourceEvent</code><br>
-It is created to inform the current panel in the main window to clear it&#8217;s resources.</p>
-</li>
-<li>
-<p><code>NewGenerateResultAvailableEvent</code><br>
-This event will show the generated schedule in the main window.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>These events will be sent to <code>EventsCenter</code> to process and execute it.</p>
-</div>
+<p><em>Figure 3. High Level Sequence Diagram for the <code>generate</code> command</em></p>
 </div>
 <div class="sect4">
 <h5 id="example-scenario-of-the-generate-command"><a class="link" href="#example-scenario-of-the-generate-command">Example scenario of the generate command</a></h5>
@@ -1304,8 +1043,7 @@ not registered an account or they are currently not logged in.</p>
 cs1010</code>.</p>
 </li>
 <li>
-<p>The user executes <code>login user/demo pass/P@ssw0rd userdata/saveFile.xml</code> to log into account, followed by
-<code>addModuleS cs1010</code>.</p>
+<p>The user executes <code>login user/demo pass/P@ssw0rd</code> to log into account, followed by <code>addModuleS cs1010</code>.</p>
 </li>
 </ul>
 </div>
@@ -1327,12 +1065,12 @@ also be added to the student&#8217;s staged module list, enabling the student to
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-placement-of-methods-for-generating-a-schedule"><a class="link" href="#aspect-placement-of-methods-for-generating-a-schedule">Aspect: Placement of methods for generating a schedule</a></h5>
+<h5 id="aspect-how-to-generate-a-schedule"><a class="link" href="#aspect-how-to-generate-a-schedule">Aspect: How to generate a schedule</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use a separate <code>Generate</code> class in the <code>Logic</code> package to
-encapsulate the processes for generating a schedule.</p>
+<p><strong>Alternative 1 (current choice):</strong> Using of a separate <code>Generate</code> class to encapsulate the logic for
+generating the schedule.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1353,41 +1091,6 @@ encapsulate the processes for generating a schedule.</p>
 </li>
 <li>
 <p>Cons: It breaks the single responsibility principle of the <code>Student</code> model.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-checking-of-prerequisites-before-generating-a-schedule"><a class="link" href="#aspect-checking-of-prerequisites-before-generating-a-schedule">Aspect: Checking of prerequisites before generating a schedule</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Perform checks to ensure that all prerequisites for modules in staged
-list are fulfilled.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Ensures that the command will not cause an infinite loop.</p>
-</li>
-<li>
-<p>Cons: The command will not always be able to generate a schedule as students may forget to add in the
-prerequisite modules.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alterative 2:</strong> Assume that prerequisites for all modules are met.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Reduces the time complexity of the command.</p>
-</li>
-<li>
-<p>Cons: The command might end up with an infinite loop as it keeps on trying to arrange the modules.</p>
 </li>
 </ul>
 </div>
@@ -1444,7 +1147,7 @@ It is the actor of the command. Add and remove commands are limited to a user wh
 <p><code>modulesTaken</code> represents the module student has taken before.</p>
 </li>
 <li>
-<p><code>modulesStaged</code> represents the module student is intending to take.</p>
+<p><code>modulesStaged</code> represents the module student wants to take later.</p>
 </li>
 </ul>
 </div>
@@ -1471,7 +1174,7 @@ A user is allowed to add only if:<br>
 the user has logged in<br>
 the user is a student<br>
 the module exists in the database at this moment<br>
-both staged and taken module list do not contain the module already
+his staged/taken module list does not contains the module already
 </td>
 </tr>
 </table>
@@ -1529,140 +1232,19 @@ The second is a <code>String</code> contains the duplicate code entered by user.
 <div class="paragraph">
 <p>Step 3. When the command is executed, <code>AddModuleToStudentStaged/TakenCommand</code> will call <code>Model#getCurrentUser()</code> and <code>Model#isStudent()</code> to check whether the user is a <code>Student</code>.<br>
 <code>Model#searchCodeInDatabase(&#8230;&#8203;)</code> to check whether the module exists in the database and update <code>toAdd</code> to the searched module,
-<code>Model#hasModuleStaged(&#8230;&#8203;)</code> and <code>Model#hasModuleTaken(&#8230;&#8203;)</code> to check whether the module has already existed in the student&#8217;s staged or taken module list,
+<code>Model#hasModuleStaged/Taken(&#8230;&#8203;)</code> to check whether the module has already existed in the student&#8217;s staged/taken module list,
 <code>Model#addModuleStaged/Taken(&#8230;&#8203;)</code> to finally add the module to the student&#8217;s staged/taken module list.</p>
 </div>
 <div class="paragraph">
-<p>Step 4. After the module is added, the command will post a <code>ShowStaged/TakenTabRequestEvent</code> to show the user updated staged/taken module list.<br>
+<p>Step 4. After the module is added, the command will post an <code>ShowStaged/TakenTabRequestEvent</code> to show the user updated staged/taken module list.<br>
 A <code>CommandResult</code> containing the log of execution result will be returned.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="implementation-of-the-remove-feature"><a class="link" href="#implementation-of-the-remove-feature">Implementation of the remove feature</a></h5>
-<div class="paragraph">
-<p>The <code>remove</code> feature is facilitated by the <code>RemoveModuleFromStudentStagedCommand</code> and <code>RemoveModuleFromStudentTakenCommand</code> class.
-It allows a user to remove modules from his staged/taken module list by giving their code.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A user is allowed to remove only if:<br>
-the user has logged in<br>
-the user is a student<br>
-the module exists in the database at this moment<br>
-his staged/taken module list contains the module need to be removed
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The implementation of <code>remove</code> feature is similar to <code>add</code> feature. They have generally the same mechanism, except remove
-command only use <code>Model#hasModuleStaged/Taken(&#8230;&#8203;)</code> to ensure the respective module list contains the module, while add
-command use both methods to ensure the ensure does not exist in neither module list. See Step 3 of the adding mechanism for reference.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="implementation-of-the-search-feature"><a class="link" href="#implementation-of-the-search-feature">Implementation of the search feature</a></h5>
-<div class="paragraph">
-<p>The <code>search</code> feature is facilitated by the <code>SearchCommand</code> class.
-It allows a user to search modules in the database using one or several prefixes.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The command does not require user to login or register.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The command does not support using a substring for searching.<br>
-Eg. <code>search 1010</code> can not being used for searching "CS1010"
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The command only supports to search within database module list.<br>
-The design consideration is that it does not make sense to search staged or taken module list
-as the scale of these two lists tend to be small.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>SearchCommand</code> extends the <code>Command</code> class. Figure 4(shown below) depicts the UML representation of <code>SearchModule</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SearchCommandUML.png" alt="SearchCommandUML" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 4. UML Diagram of <code>SearchCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>The Sequence Diagram shown below in Figure 5 illustrates the interactions between the <code>Logic</code> &amp; <code>Model</code> components when <code>SearchCommand</code> is being executed.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SDforSearchCommandLogicAndModel.png" alt="SDforSearchCommandLogicAndModel" width="900">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 5. Sequence Diagram for the interaction between <code>Logic</code> and <code>Model</code> Components when executing <code>SearchCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Figure 6 below shows the high-level sequence diagram of the command execution.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SDforSearchCommandOverview.png" alt="SDforSearchCommandOverview" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 6. High-Level Sequence Diagram of search modules in database module list.</em></p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the searching mechanism behaves at each step:<br>
-Step 1. User enters the command, then <code>ModsUniParser</code> will handle it and create a <code>SearchCommandPraser</code>.
-<code>SearchCommandPraser</code> will use <code>CodeStartsKeywordsPredicate</code> to create a <code>predicate</code>. <code>SearchCommandPraser</code> then will
-use the <code>predicate</code> as a parameter to create a <code>SearchCommand</code>.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. When the command is executed, <code>SearchCommand</code> will call <code>Model#updateFilteredDatabaseModuleList(&#8230;&#8203;)</code> to use
-the <code>predicate</code> to filter <code>filteredDatabaseModules</code>. UI of <code>DatabaseModuleListPanel</code> will change accordingly.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. The command will  post a <code>DatabaseTabRequestEvent</code> to show the user updated database module list.<br>
-A <code>CommandResult</code> containing the execution result will be returned.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-to-search-database-using-code"><a class="link" href="#aspect-how-to-search-database-using-code">Aspect: How to search database using Code</a></h5>
+<h5 id="aspect-search-the-module-in-the-database"><a class="link" href="#aspect-search-the-module-in-the-database">Aspect: Search the module in the database</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1791,7 +1373,7 @@ illustrates each command and their respective command class:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/AddModuleToDatabaseCommandUML.png" alt="AddModuleToDatabaseCommandUML" width="300">
+<img src="images/AddModuleToDatabaseCommandUML.png" alt="AddModuleToDatabaseCommandUML" width="400">
 </div>
 </div>
 <div class="paragraph">
@@ -1833,7 +1415,7 @@ sequence diagram of the <code>AddModuleToDatabaseCommandParser</code>.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For this example usage scenario, we assume that module "CS2109" did not exist in the database initially.
+For this example usage scenario, we assume that module "CS2109" did not exist in initially.
 </td>
 </tr>
 </table>
@@ -1853,64 +1435,6 @@ informing the admin that the module already exists, and the module is not added.
 </ol>
 </div>
 <div class="paragraph">
-<p>The code snippet below shows how user input is parsed into a <code>AddModuleToDatabaseCommand</code> object.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> AddModuleToDatabaseCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE, PREFIX_MODULE_DEPARTMENT, PREFIX_MODULE_TITLE,
-                        PREFIX_MODULE_DESCRIPTION, PREFIX_MODULE_CREDIT, PREFIX_MODULE_AVAILABLE, PREFIX_MODULE_PREREQ);
-
-        <span class="keyword">if</span> (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_DEPARTMENT, PREFIX_MODULE_TITLE,
-                PREFIX_MODULE_DESCRIPTION, PREFIX_MODULE_CREDIT, PREFIX_MODULE_AVAILABLE, PREFIX_MODULE_PREREQ)
-            || !argMultimap.getPreamble().isEmpty()) {
-            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(<span class="predefined-type">String</span>.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddModuleToDatabaseCommand.MESSAGE_USAGE));
-        }
-
-        <span class="predefined-type">String</span> codeName = argMultimap.getValue(PREFIX_MODULE_CODE).get();
-        Code code = <span class="keyword">new</span> Code(codeName);
-        <span class="predefined-type">String</span> department = argMultimap.getValue(PREFIX_MODULE_DEPARTMENT).get();
-        <span class="predefined-type">String</span> title = argMultimap.getValue(PREFIX_MODULE_TITLE).get();
-        <span class="predefined-type">String</span> description = argMultimap.getValue(PREFIX_MODULE_DESCRIPTION).get();
-        <span class="type">int</span> credit = <span class="predefined-type">Integer</span>.parseInt(argMultimap.getValue(PREFIX_MODULE_CREDIT).get());
-        <span class="type">boolean</span><span class="type">[]</span> sems = getAvailableSems(argMultimap.getValue(PREFIX_MODULE_AVAILABLE).get());
-        Prereq prereq = ParserUtil.parsePrereq(argMultimap.getValue(PREFIX_MODULE_PREREQ).get());
-
-        Module module = <span class="keyword">new</span> Module(code, department, title, description, credit,
-                sems[<span class="integer">0</span>], sems[<span class="integer">1</span>], sems[<span class="integer">2</span>], sems[<span class="integer">3</span>], <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;Code&gt;(), prereq);
-
-        <span class="keyword">return</span> <span class="keyword">new</span> AddModuleToDatabaseCommand(module);
-    }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The created <code>Command</code> object then execute the command, shown in the code snippet below.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> CommandResult execute(Model model, CommandHistory history) <span class="directive">throws</span> CommandException {
-        requireNonNull(model);
-        <span class="keyword">if</span> (model.getCurrentUser() == <span class="predefined-constant">null</span>) {
-            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NOT_LOGGED_IN);
-        }
-
-        <span class="keyword">if</span> (!model.isAdmin()) {
-            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_NOT_ADMIN);
-        }
-
-        <span class="keyword">if</span> (model.hasModuleInDatabase(toAdd)) {
-            <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_MODULE);
-        }
-
-        model.addModuleToDatabase(toAdd);
-
-        <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_SUCCESS));
-    }</code></pre>
-</div>
-</div>
-<div class="paragraph">
 <p><strong>Deleting module from database</strong></p>
 </div>
 <div class="paragraph">
@@ -1923,7 +1447,7 @@ informing the admin that the module already exists, and the module is not added.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RemoveModuleFromDatabaseCommandUML.png" alt="RemoveModuleFromDatabaseCommandUML" width="300">
+<img src="images/RemoveModuleFromDatabaseCommandUML.png" alt="RemoveModuleFromDatabaseCommandUML" width="400">
 </div>
 </div>
 <div class="paragraph">
@@ -2101,7 +1625,7 @@ another module just to store the other module codes. This can be heavy on memory
 <h3 id="save-user-feature"><a class="link" href="#save-user-feature">3.5. Save User Feature</a></h3>
 <div class="paragraph">
 <p>The save user feature involves mainly the saving process of a user&#8217;s attributes.
-A user can save their data only after they have logged in or registered an account.</p>
+A user can save their data only after they have logged in/registered an account.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2110,7 +1634,7 @@ A user can save their data only after they have logged in or registered an accou
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Data refers to a user&#8217;s attributes listed in <code>SaveCommand</code> under the current implementation of the save user feature in the next section.
+Data refers to a user&#8217;s attributes listed in <code>SaveCommand</code> under the current implementation of the save user feature.
 </td>
 </tr>
 </table>
@@ -2127,16 +1651,16 @@ Data refers to a user&#8217;s attributes listed in <code>SaveCommand</code> unde
 <ul>
 <li>
 <p><code>SaveCommand</code><br>
-The <code>SaveCommand</code> stores the following attributes of a <code>User</code> object:<br></p>
+It stores the following attributes of a <code>User</code> object:<br></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Attributes that exist in all user:</p>
+<p>All user</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Username<br>
-The username of a user.</p>
+The username used for logging in.</p>
 </li>
 <li>
 <p>Name<br>
@@ -2145,24 +1669,16 @@ The name of the user.</p>
 <li>
 <p>Role<br>
 The role of the user.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>Username</code> is unique to every user and is used for logging in. <code>Name</code> is non-unique and multiple users can use the same <code>Name</code>.
-</td>
-</tr>
-</table>
-</div>
+</li>
+<li>
+<p>Path to Profile Picture<br>
+The path to the user&#8217;s profile picture.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Attributes that only exist in an admin:</p>
+<p>Admin</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2170,14 +1686,14 @@ The role of the user.</p>
 The salary of an administrator.</p>
 </li>
 <li>
-<p>Employment Date<br>
+<p>Employ Date<br>
 The employment date of an administrator.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Attributes that only exist in a student:</p>
+<p>Student</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2186,31 +1702,19 @@ The enrollment date of a student.</p>
 </li>
 <li>
 <p>Major(s)<br>
-A list of a student&#8217;s major.</p>
+A list of the student&#8217;s major.</p>
 </li>
 <li>
 <p>Minor(s)<br>
-A list of a student&#8217;s minor.</p>
+A list of the student&#8217;s minor.</p>
 </li>
 <li>
 <p>Modules Taken<br>
-A list of modules took by a student.</p>
+A list of modules took by the student.</p>
 </li>
 <li>
 <p>Modules Staged<br>
 A list of modules staged for the generation of candidature.</p>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-A student must have <strong>at least one</strong> major and can have no minor.
-</td>
-</tr>
-</table>
-</div>
 </li>
 </ul>
 </div>
@@ -2221,7 +1725,7 @@ A student must have <strong>at least one</strong> major and can have no minor.
 <li>
 <p><code>UserStorage</code><br>
 It provides methods to save the current user&#8217;s attributes as well as to load a file containing previously saved data.<br>
-<code>UserStorage</code> implements the following operations:</p>
+Additionally, it implements the following operations:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2239,7 +1743,7 @@ It provides methods to save the current user&#8217;s attributes as well as to lo
 <h5 id="implementation-of-the-save-feature"><a class="link" href="#implementation-of-the-save-feature">Implementation of the save feature</a></h5>
 <div class="paragraph">
 <p>The <code>save</code> mechanism of modsUni is facilitated by <code>SaveCommand</code> class and is event-driven.
-It allows a user to save their data as an XML file.</p>
+It allows a user to save their data in modsUni as a XML file.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2254,7 +1758,8 @@ Both admin and student can use the save feature.
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>SaveCommand</code> class extends from the <code>Command</code> class as shown below in Figure 1.</p>
+<p>The <code>SaveCommand</code> class extends from the <code>Command</code> class.
+Figure 1 as shown below depicts the UML diagram for the <code>SaveCommand</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2265,12 +1770,12 @@ Both admin and student can use the save feature.
 <p><em>Figure 1. SaveCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>The parsing of command is performed by <code>SaveCommandParser</code>, which returns a <code>SaveCommand</code> object after parsing the save file path.
-The sequence diagram shown below in Figure 2 illustrates the interactions between the Logic and Model components when the SaveCommand is being executed.</p>
+<p>Parsing of command is performed by <code>SaveCommandParser</code>, which returns a <code>SaveCommand</code> object after parsing the save file path.
+The sequence diagram shown below in Figure 2 illustrates the interactions between the Logic &amp; Model components when the SaveCommand is being executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforSaveCommandLogicAndModel.png" alt="SDforSaveCommandLogicAndModel" width="800">
+<img src="images/SDforSaveCommandLogicAndModel.png" alt="SDforSaveCommandLogicAndModel" width="900">
 </div>
 </div>
 <div class="paragraph">
@@ -2279,7 +1784,7 @@ The sequence diagram shown below in Figure 2 illustrates the interactions betwee
 <div class="paragraph">
 <p>The <code>save</code> feature uses multiple components of the modsUni application.
 The sequence diagram shown below in Figure 3 illustrates the interactions between some of these components.
-In addition, the sequence diagram also illustrates that <code>SaveCommand</code> is driven by the <code>SaveUserChangedEvent</code>.</p>
+As seen from the diagram, the <code>SaveCommand</code> is driven by the <code>SaveUserChangedEvent</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2294,27 +1799,27 @@ In addition, the sequence diagram also illustrates that <code>SaveCommand</code>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SequenceDiagramforSaveEventHandling.png" alt="SequenceDiagramforSaveEventHandling" width="550">
+<img src="images/SequenceDiagramforSaveEventHandling.png" alt="SequenceDiagramforSaveEventHandling" width="650">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 4. High-Level Sequence Diagram showing how the Storage component handles <code>SaveUserChangedEvent</code> which was triggered by EventsCenter</em></p>
+<p><em>Figure 4. High-Level Sequence Diagram showing how the Storage component handles the <code>SaveUserChangedEvent</code> triggered by EventsCenter</em></p>
 </div>
 <div class="paragraph">
-<p>The Storage component makes use of <code>XmlUserStorage</code> class to write <code>User</code> to a file specified by the file path.
+<p>The Storage component makes use of <code>XmlUserStorage</code> class to write <code>User</code> to the file specified by the file path.
 Both the conversion of <code>User</code> object to <code>XmlSerializableUser</code> as well as writing to file is shown in the following code snippet below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> saveUser(User user, Path filePath, <span class="predefined-type">String</span> password) <span class="directive">throws</span> <span class="exception">IOException</span> {
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> saveUser(User user, Path filePath) <span class="directive">throws</span> <span class="exception">IOException</span> {
     <span class="comment">// ... null checks ...</span>
     FileUtil.createIfMissing(filePath);
-    XmlFileStorage.saveDataToFile(filePath, <span class="keyword">new</span> XmlSerializableUser(user, password));
+    XmlFileStorage.saveDataToFile(filePath, <span class="keyword">new</span> XmlSerializableUser(user));
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>XmlFileStorage#saveDataToFile(&#8230;&#8203;)</code> utilizes <code>XmlUtil#saveDataToFile(&#8230;&#8203;)</code> to save the newly created <code>XmlSerializableUser</code> object to the file as shown in the code snipplets below:</p>
+<p>The newly created <code>XmlSerializableUser</code> object is saved to the file using <code>XmlUtil#saveDataToFile(&#8230;&#8203;)</code> as shown in the code snipplets below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2337,7 +1842,7 @@ Both the conversion of <code>User</code> object to <code>XmlSerializableUser</co
 <p>A student will first log into their account and add their preferred modules.</p>
 </li>
 <li>
-<p>Upon issuing the command <code>save sp/userdata.xml</code>, the save command will call <code>Model#saveUserFile(&#8230;&#8203;)</code> which then raises <code>SaveUserChangedEvent</code>. This <code>SaveUserChangedEvent</code> is then handled by <code>StorageManager</code>.</p>
+<p>Upon issuing the command <code>save sp/userdata.xml</code>, the save command will call <code>Model#saveUserFile(&#8230;&#8203;)</code> which then raises <code>SaveUserChangedEvent</code>. This <code>SaveUserChangedEvent</code> will be handled by <code>StorageManager</code>.</p>
 </li>
 <li>
 <p><code>StorageManager</code> then utilizes <code>XmlUserStorage#saveUser(&#8230;&#8203;)</code> which saves the file to the file path specified by the user.</p>
@@ -2351,21 +1856,10 @@ Both the conversion of <code>User</code> object to <code>XmlSerializableUser</co
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A newly registered <code>Student</code> would be initialized and automatically logged in which enables the student to perform the save command.<br>
+A new registered <code>Student</code> would be initialized and automatically logged in which enables the student to perform the save command.<br>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>The following activity diagram shown in Figure 5 summarizes what happens when a user executes the save command.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SaveActivityDiagram.png" alt="SaveActivityDiagram" width="550">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 5. Activity Diagram for the save command</em></p>
 </div>
 </div>
 </div>
@@ -2376,11 +1870,11 @@ A newly registered <code>Student</code> would be initialized and automatically l
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Save every attribute of a <code>User</code>.</p>
+<p><strong>Alternative 1 (current choice):</strong> Saves the entire <code>User</code> object.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Able to restore to any state of a user.</p>
+<p>Pros: Able to restore to any state of the user.</p>
 </li>
 <li>
 <p>Cons: Harder to implement as support for converting data of user to XML format needs to be added.</p>
@@ -2389,14 +1883,14 @@ A newly registered <code>Student</code> would be initialized and automatically l
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Save only the staged modules.</p>
+<p><strong>Alternative 2:</strong> Saves only the staged modules.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Will use less storage space (saving only staged module vs saving all user data).</p>
 </li>
 <li>
-<p>Cons: Does not restore the state of a user entirely.</p>
+<p>Cons: Does not restore the state of the user entirely.</p>
 </li>
 </ul>
 </div>
@@ -2409,7 +1903,7 @@ A newly registered <code>Student</code> would be initialized and automatically l
 <div class="sect2">
 <h3 id="data-security-feature"><a class="link" href="#data-security-feature">3.6. Data Security Feature</a></h3>
 <div class="paragraph">
-<p>The data security feature involves mainly the encryption of the user data file when using the <code>save</code> command and the decryption of a user data file when logging in using the <code>login</code> command.<br></p>
+<p>The data security feature mainly involves the encryption of the user data file when using the <code>save</code> command and the decryption of a user data file when logging in using the <code>login</code> command.<br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2431,7 +1925,7 @@ Advanced Encryption Standard (AES) is the algorithm used for encryption.
 <h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The data security feature is facilitated by <code>DataSecurityUtil</code> class.<br>
-<code>DataSecurityUtil</code> implements the following operations:</p>
+It implements the following operations(s):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2447,19 +1941,19 @@ Advanced Encryption Standard (AES) is the algorithm used for encryption.
 <p><code>DataSecurityUtil</code> class utilizes <code>javax.crypto.cipher</code> and <code>javax.crypto.spec.SecretKeySpec</code> packages for the operations mentioned above.</p>
 </div>
 <div class="paragraph">
-<p>The <code>Hashing</code> class is also used to generate an SHA-1 hash to ensure that there are at least 16 bytes (128 bits) which is required to generate <code>SecretKeySpec</code>.</p>
+<p>The <code>Hashing</code> class is used to generate a SHA-1 hash to ensure that there are at least 16 bytes (128 bits) which are required to generate <code>SecretKeySpec</code>.</p>
 </div>
 <div class="paragraph">
-<p>The encryption and decryption of user data are performed in <code>XMLAdaptedUser</code>.</p>
+<p>Both encryption and decryption is performed in <code>XMLAdaptedUser</code>.</p>
 </div>
 <div class="sect4">
 <h5 id="implementation-of-the-encryption-feature"><a class="link" href="#implementation-of-the-encryption-feature">Implementation of the encryption feature</a></h5>
 <div class="paragraph">
-<p>The encryption feature is integrated with the <strong>Save User Feature</strong>.</p>
+<p>The encryption feature is integrated with the save user feature (3.6).</p>
 </div>
 <div class="paragraph">
 <p>During the conversion of a <code>User</code> object to XML, the encryption is performed in <code>XMLAdapterUser</code>, right before the file is written locally.
-Currently, only <code>Username</code> (for all users) and <code>Salary</code> (for administrators) is encrypted.</p>
+Currently, we only encrypt the <code>Username</code> (for all users) and <code>Salary</code> (for administrators).</p>
 </div>
 <div class="paragraph">
 <p>The following code snippet shown below illustrates the encryption process:</p>
@@ -2469,12 +1963,14 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> XmlAdaptedUser(User user, <span class="predefined-type">String</span> password) {
     <span class="comment">// ... null checks ...</span>
 
+
     <span class="comment">// All users</span>
     <span class="local-variable">this</span>.username = DataSecurityUtil.bytesToBase64(DataSecurityUtil.encrypt(
             user.getUsername().toString().getBytes(), password));
     <span class="local-variable">this</span>.name = user.getName().toString();
     <span class="local-variable">this</span>.role = user.getRole().toString();
     <span class="local-variable">this</span>.pathToProfilePic = user.getPathToProfilePic().toString();
+
 
     <span class="comment">// Admin</span>
     <span class="keyword">if</span> (user.getRole() == <span class="predefined-type">Role</span>.ADMIN) {
@@ -2493,7 +1989,7 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SequenceDiagramforSaveEventHandlingWithEncryption.png" alt="SequenceDiagramforSaveEventHandlingWithEncryption" width="550">
+<img src="images/SequenceDiagramforSaveEventHandlingWithEncryption.png" alt="SequenceDiagramforSaveEventHandlingWithEncryption" width="650">
 </div>
 </div>
 <div class="paragraph">
@@ -2503,7 +1999,7 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 <div class="sect4">
 <h5 id="implementation-of-the-decryption-feature"><a class="link" href="#implementation-of-the-decryption-feature">Implementation of the decryption feature</a></h5>
 <div class="paragraph">
-<p>The decryption feature is integrated with the login feature under <strong>User Account Management</strong>.<br></p>
+<p>The decryption feature is integrated with the login feature under user account management(3.1).<br></p>
 </div>
 <div class="paragraph">
 <p>When <code>LoginCommand</code> calls <code>model.readUser(&#8230;&#8203;)</code> the loading of user file will commence and the decryption will occur in <code>XMLAdapterUser#toModelType(&#8230;&#8203;)</code>.</p>
@@ -2515,18 +2011,16 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> User toModelType(<span class="predefined-type">String</span> password) <span class="directive">throws</span> IllegalValueException, CorruptedFileException,
         <span class="exception">NoSuchPaddingException</span>, InvalidPasswordException, <span class="exception">NoSuchAlgorithmException</span>, <span class="exception">InvalidKeyException</span> {
-
     User user = <span class="predefined-constant">null</span>;
     checkMandatoryFields();
 
-    <span class="comment">// Applies to all user</span>
     <span class="predefined-type">String</span> decryptedUsername = decryptUsername(password);
 
-    <span class="comment">// Applies to only admin</span>
     <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="content">ADMIN</span><span class="delimiter">&quot;</span></span>.equals(role)) {
         checkAdminFields();
         <span class="predefined-type">String</span> decryptedSalary = decryptSalary(password);
-        user = <span class="keyword">new</span> Admin(<span class="keyword">new</span> Username(decryptedUsername), <span class="keyword">new</span> <span class="predefined-type">Name</span>(name), <span class="predefined-type">Role</span>.ADMIN, <span class="keyword">new</span> Salary(decryptedSalary), <span class="keyword">new</span> EmployDate(employmentDate));
+        user = <span class="keyword">new</span> Admin(<span class="keyword">new</span> Username(decryptedUsername), <span class="keyword">new</span> <span class="predefined-type">Name</span>(name), <span class="predefined-type">Role</span>.ADMIN, <span class="keyword">new</span> Salary(decryptedSalary),
+                <span class="keyword">new</span> EmployDate(employmentDate));
     }
     <span class="comment">// ... removed for brevity ...</span>
 
@@ -2535,7 +2029,7 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 </div>
 </div>
 <div class="paragraph">
-<p>The code snippets of <code>decryptUsername(&#8230;&#8203;)</code> and <code>decryptSalary(&#8230;&#8203;)</code> are shown below respectively:</p>
+<p>The code snippets of <code>decryptUsername(&#8230;&#8203;)</code> and <code>decryptSalary(&#8230;&#8203;)</code> is as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2545,11 +2039,11 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
             DataSecurityUtil.base64ToBytes(username), password), StandardCharsets.UTF_8);
 }
 
-<span class="directive">private</span> <span class="predefined-type">String</span> decryptSalary(<span class="predefined-type">String</span> password) <span class="directive">throws</span> <span class="exception">NoSuchAlgorithmException</span>, <span class="exception">InvalidKeyException</span>,
-        InvalidPasswordException, CorruptedFileException, <span class="exception">NoSuchPaddingException</span> {
+ <span class="directive">private</span> <span class="predefined-type">String</span> decryptSalary(<span class="predefined-type">String</span> password) <span class="directive">throws</span> <span class="exception">NoSuchAlgorithmException</span>, <span class="exception">InvalidKeyException</span>,
+            InvalidPasswordException, CorruptedFileException, <span class="exception">NoSuchPaddingException</span> {
     <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">String</span>(DataSecurityUtil.decrypt(
-        DataSecurityUtil.base64ToBytes(salary), password), StandardCharsets.UTF_8);
-}</code></pre>
+            DataSecurityUtil.base64ToBytes(salary), password), StandardCharsets.UTF_8);
+ }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2557,22 +2051,11 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforSaveCommandLogicAndModelUserDecryption.png" alt="SDforSaveCommandLogicAndModelUserDecryption" width="800">
+<img src="images/SDforSaveCommandLogicAndModelUserDecryption.png" alt="SDforSaveCommandLogicAndModelUserDecryption" width="900">
 </div>
 </div>
 <div class="paragraph">
 <p><em>Figure 2. Sequence Diagram for the interaction between Logic Component and DataSecurityUtil when executing LoginCommand</em></p>
-</div>
-<div class="paragraph">
-<p>The following activity diagram shown in Figure 3 summarizes what happens in the decryption process when a user executes the login command.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/DecryptionActivityDiagram.png" alt="DecryptionActivityDiagram" width="550">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 3. Activity Diagram for decryption feature in the login command</em></p>
 </div>
 </div>
 </div>
@@ -2583,14 +2066,14 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Implement as an inbuilt feature.</p>
+<p><strong>Alternative 1 (current choice):</strong> Implement as an in-built feature.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Confidentiality of a user&#8217;s data file is preserved at all times.</p>
+<p>Pros: Ensures that the confidentiality of a user&#8217;s data file is preserved at all times.</p>
 </li>
 <li>
-<p>Cons: User does not have full control over user data file.</p>
+<p>Cons: Users do not have full control.</p>
 </li>
 </ul>
 </div>
@@ -2600,10 +2083,10 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User will have more control over data security.</p>
+<p>Pros: Users will have more control on the data security.</p>
 </li>
 <li>
-<p>Cons: Enforcement of data security outside of the application would be harder.</p>
+<p>Cons: Unable to enforce the data security of the application.</p>
 </li>
 </ul>
 </div>
@@ -2620,7 +2103,7 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User does not need to supply additional information or file for encryption or decryption.</p>
+<p>Pros: User does not need to supply additional information or file for encryption/decryption.</p>
 </li>
 <li>
 <p>Cons: User is unable to decrypt their user data file if they forget their password.</p>
@@ -2633,44 +2116,10 @@ Currently, only <code>Username</code> (for all users) and <code>Salary</code> (f
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: The key will be more secured compared to the key generated from alternative one since a weak password that is susceptible to password cracking may be used by a user.</p>
+<p>Pros: The key will be more secured compared to the key generated from alternative 1.</p>
 </li>
 <li>
 <p>Cons: User is unable to decrypt their user data file if the key file is lost or corrupted.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-what-fields-to-encrypt"><a class="link" href="#aspect-what-fields-to-encrypt">Aspect: What fields to encrypt</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Encrypt some fields (Username and Salary).</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: The encryption of username ensures that a malicious user is unable to correlate a specific user data file to a credential in the credential store.
-In addition, advance users can edit unencrypted fields in the user data file.</p>
-</li>
-<li>
-<p>Cons: The user data file will contain unencrypted information.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Encrypt every field.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: The user data file is secure since every field is encrypted.</p>
-</li>
-<li>
-<p>Cons: Advance user are unable to edit from the user data file manually.</p>
 </li>
 </ul>
 </div>
@@ -2705,12 +2154,11 @@ The following operation is used for the loading process:</p>
 <h5 id="implementation-of-the-save-feature-2"><a class="link" href="#implementation-of-the-save-feature-2">Implementation of the save feature</a></h5>
 <div class="paragraph">
 <p>The load mechanism of modsUni is facilitated by <code>LoginCommand</code> class and is event-driven.
-It allows a user to load their data in modsUni from an XML file.</p>
+It allows a user to load their data in modsUni from a XML file.</p>
 </div>
 <div class="paragraph">
 <p>The load feature uses multiple components of the modsUni application.
-Parsing of command is performed by <code>LoginCommandParser</code>, which returns a <code>LoginCommand</code> object after parsing
-the save file path.</p>
+Parsing of command is performed by LoginCommandParser, which returns a LoginCommand object after parsing the save file path.</p>
 </div>
 <div class="paragraph">
 <p>The sequence diagram shown below in Figure 1 illustrates the interactions between some of these components.</p>
@@ -2751,7 +2199,7 @@ The conversion from <code>XmlSerializableUser</code> to <code>User</code> object
 </div>
 </div>
 <div class="paragraph">
-<p>The method <code>XmlFileStorage#loadUserDataFromSaveFile(&#8230;&#8203;)</code> as shown in the code snippets below:</p>
+<p>The method <code>XmlFileStorage#loadUserDataFromSaveFile(&#8230;&#8203;)</code> as shown in the code snipplets below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3250,8 +2698,7 @@ e.g. <code>seedu.modsuni.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.6. Managing Dependencies</a></h3>
 <div class="paragraph">
-<p>A project often depends on third-party libraries. For example, modsUni depends on the <a href="http://wiki.fasterxml" class="bare">http://wiki.fasterxml</a>
-.com/JacksonHome[Jackson library] for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
+<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
 b. Require developers to download those libraries manually (this creates extra work for developers)</p>
 </div>
@@ -3259,7 +2706,726 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-scope"><a class="link" href="#product-scope">Appendix A: Product Scope</a></h2>
+<h2 id="GetStartedProgramming"><a class="link" href="#GetStartedProgramming">Appendix A: Suggested Programming Tasks to Get Started</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Suggested path for new programmers:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>First, add small local-impact (i.e. the impact of the change does not go beyond the component) enhancements to one component at a time. Some suggestions are given in <a href="#GetStartedProgramming-EachComponent">Section A.1, &#8220;Improving each component&#8221;</a>.</p>
+</li>
+<li>
+<p>Next, add a feature that touches multiple components to learn how to implement an end-to-end feature across all components. <a href="#GetStartedProgramming-RemarkCommand">Section A.2, &#8220;Creating a new command: <code>remark</code>&#8221;</a> explains how to go about adding such a feature.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="GetStartedProgramming-EachComponent"><a class="link" href="#GetStartedProgramming-EachComponent">A.1. Improving each component</a></h3>
+<div class="paragraph">
+<p>Each individual exercise in this section is component-based (i.e. you would not need to modify the other components to get it to work).</p>
+</div>
+<h4 id="code-logic-code-component" class="discrete"><code>Logic</code> component</h4>
+<div class="paragraph">
+<p><strong>Scenario:</strong> You are in charge of <code>logic</code>. During dog-fooding, your team realize that it is troublesome for the user to type the whole command in order to execute a command. Your team devise some strategies to help cut down the amount of typing necessary, and one of the suggestions was to implement aliases for the command words. Your job is to implement such aliases.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic Component&#8221;</a> before attempting to modify the <code>Logic</code> component.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clear</code>, the user can also type <code>c</code> to remove all persons in the list.</p>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Hints</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/logic/commands/FindCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/logic/commands/DeleteCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
+</li>
+<li>
+<p><a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/logic/parser/ModsUniParser.java"><code>ModsUniParser</code></a> is responsible for analyzing command words.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Solution</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Modify the switch statement in <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/logic/parser/ModsUniParser.java"><code>ModsUniParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
+</li>
+<li>
+<p>Add new tests for each of the aliases that you have added.</p>
+</li>
+<li>
+<p>Update the user guide to document the new aliases.</p>
+</li>
+<li>
+<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/785">PR</a> for the full solution.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h4 id="code-model-code-component" class="discrete"><code>Model</code> component</h4>
+<div class="paragraph">
+<p><strong>Scenario:</strong> You are in charge of <code>model</code>. One day, the <code>logic</code>-in-charge approaches you for help. He wants to implement a command such that a student is able to remove all modules in a particular module list, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model Component&#8221;</a> before attempting to modify the <code>Model</code> component.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a <code>removeAllStagedModules()</code> method.</p>
+</li>
+<li>
+<p>Add a <code>removeAllTakenModules()</code> method.</p>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Hints</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/model/Model.java"><code>Model</code></a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/model/user/student/Student.java"><code>Student</code></a> API need to be updated.</p>
+</li>
+<li>
+<p>Think about how you can use SLAP to design the method. Where should we place the main logic of deleting the modules?</p>
+</li>
+<li>
+<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/model/ModelManager.java"><code>AddressBook</code></a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/model/user/student/Student.java"><code>Student</code></a> classes can be used to implement the module list removal logic. <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/model/ModelManager.java"><code>ModelManager</code></a> allows you to update the various module lists, and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/model/user/student/Student.java"><code>Student</code></a> allows you to update the module lists.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Solution</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Implement a <code>removeAllXXXModules()</code> method in <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/model/ModelManager.java"><code>ModelManager</code></a>. Reinitialise the respective list.</p>
+</li>
+<li>
+<p>Add a new API method <code>removeAllXXXModules()</code> in <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/modsuni/model/student/Student.java"><code>Student</code></a>. Your <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a> should call <code>Student#removeAllXXXModules()</code>.</p>
+</li>
+<li>
+<p>Add new tests for each of the new public methods that you have added.</p>
+</li>
+<li>
+<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/790">PR</a> for the full solution.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h4 id="code-ui-code-component" class="discrete"><code>Ui</code> component</h4>
+<div class="paragraph">
+<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your address book application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last person in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI Component&#8221;</a> before attempting to modify the <code>UI</code> component.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use different colors for different tags inside person cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow.</p>
+<div class="paragraph">
+<p><strong>Before</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/getting-started-ui-tag-before.png" alt="getting started ui tag before" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>After</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/getting-started-ui-tag-after.png" alt="getting started ui tag after" width="300">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Hints</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The tag labels are created inside <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/PersonCard.java">the <code>PersonCard</code> constructor</a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
+</li>
+<li>
+<p>Use the .css attribute <code>-fx-background-color</code> to add a color.</p>
+</li>
+<li>
+<p>You may wish to modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/resources/view/DarkTheme.css"><code>DarkTheme.css</code></a> to include some pre-defined colors using css, especially if you have experience with web-based css.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Solution</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You can modify the existing test methods for <code>PersonCard</code> 's to include testing the tag&#8217;s color as well.</p>
+</li>
+<li>
+<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/798">PR</a> for the full solution.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The PR uses the hash code of the tag names to generate a color. This is deliberately designed to ensure consistent colors each time the application runs. You may wish to expand on this design to include additional features, such as allowing users to set their own tag colors, and directly saving the colors to storage, so that tags retain their colors even if the hash code algorithm changes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
+<div class="paragraph">
+<p><strong>Before</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/getting-started-ui-result-before.png" alt="getting started ui result before" width="200">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>After</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/getting-started-ui-result-after.png" alt="getting started ui result after" width="200">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Hints</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> is raised by <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> which also knows whether the result is a success or failure, and is caught by <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> which is where we want to change the style to.</p>
+</li>
+<li>
+<p>Refer to <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> for an example on how to display an error.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Solution</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> 's constructor so that users of the event can indicate whether an error has occurred.</p>
+</li>
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay#handleNewResultAvailableEvent(NewResultAvailableEvent)</code></a> to react to this event appropriately.</p>
+</li>
+<li>
+<p>You can write two different kinds of tests to ensure that the functionality works:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The unit tests for <code>ResultDisplay</code> can be modified to include verification of the color.</p>
+</li>
+<li>
+<p>The system tests <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest#assertCommandBoxShowsDefaultStyle() and AddressBookSystemTest#assertCommandBoxShowsErrorStyle()</code></a> to include verification for <code>ResultDisplay</code> as well.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/799">PR</a> for the full solution.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Do read the commits one at a time if you feel overwhelmed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Modify the <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
+<div class="paragraph">
+<p><strong>Before</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/getting-started-ui-status-before.png" alt="getting started ui status before" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>After</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/getting-started-ui-status-after.png" alt="getting started ui status after" width="500">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Hints</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
+</li>
+<li>
+<p><a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Solution</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Modify the constructor of <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
+</li>
+<li>
+<p>Use <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
+</li>
+<li>
+<p>For tests, modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/guitests/guihandles/StatusBarFooterHandle.java"><code>StatusBarFooterHandle</code></a> by adding a state-saving functionality for the total number of people status, just like what we did for save location and sync status.</p>
+</li>
+<li>
+<p>For system tests, modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest</code></a> to also verify the new total number of persons status bar.</p>
+</li>
+<li>
+<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/803">PR</a> for the full solution.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<h4 id="code-storage-code-component" class="discrete"><code>Storage</code> component</h4>
+<div class="paragraph">
+<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving the address book to the cloud. However, the current implementation of the application constantly saves the address book after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the address book storage.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage Component&#8221;</a> before attempting to modify the <code>Storage</code> component.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a new method <code>backupAddressBook(ReadOnlyAddressBook)</code>, so that the address book can be saved in a fixed temporary location.</p>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Hint</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the API method in <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/storage/AddressBookStorage.java"><code>AddressBookStorage</code></a> interface.</p>
+</li>
+<li>
+<p>Implement the logic in <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> and <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/storage/XmlAddressBookStorage.java"><code>XmlAddressBookStorage</code></a> class.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Solution</p>
+<div class="ulist">
+<ul>
+<li>
+<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/594">PR</a> for the full solution.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="GetStartedProgramming-RemarkCommand"><a class="link" href="#GetStartedProgramming-RemarkCommand">A.2. Creating a new command: <code>remark</code></a></h3>
+<div class="paragraph">
+<p>By creating this command, you will get a chance to learn how to implement a feature end-to-end, touching all major components of the app.</p>
+</div>
+<div class="paragraph">
+<p><strong>Scenario:</strong> You are a software maintainer for <code>addressbook</code>, as the former developer team has moved on to new projects. The current users of your application have a list of new feature requests that they hope the software will eventually have. The most popular request is to allow adding additional comments/notes about a particular contact, by providing a flexible <code>remark</code> field for each contact, rather than relying on tags alone. After designing the specification for the <code>remark</code> command, you are convinced that this feature is worth implementing. Your job is to implement the <code>remark</code> command.</p>
+</div>
+<div class="sect3">
+<h4 id="description"><a class="link" href="#description">A.2.1. Description</a></h4>
+<div class="paragraph">
+<p>Edits the remark for a person specified in the <code>INDEX</code>.<br>
+Format: <code>remark INDEX r/[REMARK]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>remark 1 r/Likes to drink coffee.</code><br>
+Edits the remark for the first person to <code>Likes to drink coffee.</code></p>
+</li>
+<li>
+<p><code>remark 1 r/</code><br>
+Removes the remark for the first person.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="step-by-step-instructions"><a class="link" href="#step-by-step-instructions">A.2.2. Step-by-step Instructions</a></h4>
+<div class="sect4">
+<h5 id="step-1-logic-teach-the-app-to-accept-remark-which-does-nothing"><a class="link" href="#step-1-logic-teach-the-app-to-accept-remark-which-does-nothing">[Step 1] Logic: Teach the app to accept 'remark' which does nothing</a></h5>
+<div class="paragraph">
+<p>Let&#8217;s start by teaching the application how to parse a <code>remark</code> command. We will add the logic of <code>remark</code> later.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/logic/commands/Command.java"><code>Command</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
+</li>
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>RemarkCommandTest</code> that tests that <code>execute()</code> throws an Exception.</p>
+</li>
+<li>
+<p>Add new test method to <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-2-logic-teach-the-app-to-accept-remark-arguments"><a class="link" href="#step-2-logic-teach-the-app-to-accept-remark-arguments">[Step 2] Logic: Teach the app to accept 'remark' arguments</a></h5>
+<div class="paragraph">
+<p>Let&#8217;s teach the application to parse arguments that our <code>remark</code> command will accept. E.g. <code>1 r/Likes to drink coffee.</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <code>RemarkCommand</code> to take in an <code>Index</code> and <code>String</code> and print those two parameters as the error message.</p>
+</li>
+<li>
+<p>Add <code>RemarkCommandParser</code> that knows how to parse two arguments, one index and one with prefix 'r/'.</p>
+</li>
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <code>RemarkCommandTest</code> to test the <code>RemarkCommand#equals()</code> method.</p>
+</li>
+<li>
+<p>Add <code>RemarkCommandParserTest</code> that tests different boundary values
+for <code>RemarkCommandParser</code>.</p>
+</li>
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code">[Step 3] Ui: Add a placeholder for remark in <code>PersonCard</code></a></h5>
+<div class="paragraph">
+<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a <code>Label</code> with any random text inside <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
+</li>
+<li>
+<p>Add FXML annotation in <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/guitests/guihandles/PersonCardHandle.java"><code>PersonCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-4-model-add-code-remark-code-class"><a class="link" href="#step-4-model-add-code-remark-code-class">[Step 4] Model: Add <code>Remark</code> class</a></h5>
+<div class="paragraph">
+<p>We have to properly encapsulate the remark in our <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
+</li>
+<li>
+<p>Modify <code>RemarkCommand</code> to now take in a <code>Remark</code> instead of a <code>String</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add test for <code>Remark</code>, to test the <code>Remark#equals()</code> method.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-5-model-modify-code-person-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-person-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>Person</code> to support a <code>Remark</code> field</a></h5>
+<div class="paragraph">
+<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>getRemark()</code> in <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
+</li>
+<li>
+<p>You may assume that the user will not be able to use the <code>add</code> and <code>edit</code> commands to modify the remarks field (i.e. the person will be created without a remark).</p>
+</li>
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>addressBook.xml</code> so that the application will load the sample data when you launch it.)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class">[Step 6] Storage: Add <code>Remark</code> field to <code>XmlAdaptedPerson</code> class</a></h5>
+<div class="paragraph">
+<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a new Xml field for <code>Remark</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fix <code>invalidAndValidPersonAddressBook.xml</code>, <code>typicalPersonsAddressBook.xml</code>, <code>validAddressBook.xml</code> etc., such that the XML tests will not fail due to a missing <code>&lt;remark&gt;</code> element.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-6b-test-add-withremark-for-code-personbuilder-code"><a class="link" href="#step-6b-test-add-withremark-for-code-personbuilder-code">[Step 6b] Test: Add withRemark() for <code>PersonBuilder</code></a></h5>
+<div class="paragraph">
+<p>Since <code>Person</code> can now have a <code>Remark</code>, we should add a helper method to <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/seedu/address/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>, so that users are able to create remarks when building a <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a new method <code>withRemark()</code> for <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/seedu/address/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>. This method will create a new <code>Remark</code> for the person that it is currently building.</p>
+</li>
+<li>
+<p>Try and use the method on any sample <code>Person</code> in <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/seedu/address/testutil/TypicalPersons.java"><code>TypicalPersons</code></a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-7-ui-connect-code-remark-code-field-to-code-personcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-personcard-code">[Step 7] Ui: Connect <code>Remark</code> field to <code>PersonCard</code></a></h5>
+<div class="paragraph">
+<p>Our remark label in <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>'s constructor to bind the <code>Remark</code> field to the <code>Person</code> 's remark.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-2/main/tree/master//src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the now-functioning remark label.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-8-logic-implement-code-remarkcommand-execute-code-logic"><a class="link" href="#step-8-logic-implement-code-remarkcommand-execute-code-logic">[Step 8] Logic: Implement <code>RemarkCommand#execute()</code> logic</a></h5>
+<div class="paragraph">
+<p>We now have everything set up&#8230;&#8203; but we still can&#8217;t modify the remarks. Let&#8217;s finish it up by adding in actual logic for our <code>remark</code> command.</p>
+</div>
+<div class="paragraph">
+<p><strong>Main:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Replace the logic in <code>RemarkCommand#execute()</code> (that currently just throws an <code>Exception</code>), with the actual logic to modify the remarks of a person.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Update <code>RemarkCommandTest</code> to test that the <code>execute()</code> logic works.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="full-solution"><a class="link" href="#full-solution">A.2.3. Full Solution</a></h4>
+<div class="paragraph">
+<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/599">PR</a> for the step-by-step solution.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="product-scope"><a class="link" href="#product-scope">Appendix B: Product Scope</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Target user profile</strong>:
@@ -3272,7 +3438,7 @@ A candidature planner for NUS Undergraduates to assist them in their module plan
 </div>
 </div>
 <div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix C: User Stories</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
@@ -3478,7 +3644,7 @@ A candidature planner for NUS Undergraduates to assist them in their module plan
 </div>
 </div>
 <div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>modsUni</code> and the <strong>Actor</strong> is the <code>NUS Undergraduate</code>, unless specified otherwise)</p>
@@ -3621,7 +3787,7 @@ Use case ends.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -3648,7 +3814,7 @@ Use case ends.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
+<h2 id="glossary"><a class="link" href="#glossary">Appendix F: Glossary</a></h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
@@ -3678,7 +3844,7 @@ Each module has its own code and module name, when coupled acts as an unique ide
 </div>
 </div>
 <div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a></h2>
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
@@ -3696,7 +3862,7 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">F.1. Launch and Shutdown</a></h3>
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3731,7 +3897,7 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="registering-a-student-account"><a class="link" href="#registering-a-student-account">F.2. Registering a Student Account</a></h3>
+<h3 id="registering-a-student-account"><a class="link" href="#registering-a-student-account">G.2. Registering a Student Account</a></h3>
 <div class="paragraph">
 <p>Below are some test cases you can perform to test the <code>RegisterCommand</code> for User Account Management feature.</p>
 </div>
@@ -3753,22 +3919,6 @@ The below test cases only cater to <code>Student</code> accounts
 <p>Test case: <code>register user/max33 pass/#Qwerty4321 n/Max Verstappen enroll/15/03/2015 maj/CS maj/DA min/BA min/MA</code><br>
 Expected: A new account is created. The <code>Student</code> details as provided in the command should be automatically displayed in <code>UserTab</code>. A successful message should be displayed in the Output Display. Additionally, a save location is provided to the user. Examine the project&#8217;s root folder to determine if the file is indeed created.</p>
 </li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Do note that registering a <code>Student</code> account is possible without any <code>min/</code> parameters. This is in consideration that certain students do not have any minors
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
 <li>
 <p>Test case: <code>register user/m@x33 pass/#Qwerty4321 n/Max Verstappen enroll/15/03/2015 maj/CS maj/DA min/BA min/MA</code><br>
 Expected: No new account is created. A invalid <code>Username</code> error should be shown in the the Output Display. Rest of the UI remains unchanged.</p>
@@ -3801,14 +3951,14 @@ Expected: No new account is created. Error details should be shown in the Output
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-in-into-a-student-account"><a class="link" href="#logging-in-into-a-student-account">F.3. Logging in into a Student Account</a></h3>
+<h3 id="logging-in-into-a-student-account"><a class="link" href="#logging-in-into-a-student-account">G.3. Logging in into a Student Account</a></h3>
 <div class="paragraph">
 <p>Below are some test cases you can perform to test the <code>LoginCommand</code> for User Account Management feature.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Prerequisite: A student account should already be registered(i.e. an account registered under <code>max33</code>) and the respective userdata file be available.<br>
+<p>Prerequisite: A student account should already be registered(i.e. max33) and the respective userdata file be available.<br>
 Test case: <code>login user/max33 pass/#Qwerty4321 userdata/max33.xml</code><br>
 Expected: Student will be logged in. The <code>Student</code> details will be loaded from the file provided and will be displayed in the application(in their respective tabs). Additionally, a successful message will be displayed in the Output Display.</p>
 </li>
@@ -3848,7 +3998,7 @@ Expected: User will not be logged in. Error details should be shown in the Outpu
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-student-details"><a class="link" href="#editing-student-details">F.4. Editing Student Details</a></h3>
+<h3 id="editing-student-details"><a class="link" href="#editing-student-details">G.4. Editing Student Details</a></h3>
 <div class="paragraph">
 <p>Below are some test cases you can perform to test the <code>EditStudentCommand</code> for the User Account Management feature.</p>
 </div>
@@ -3869,7 +4019,7 @@ Expected: <code>Student</code> details will be updated accordingly. The new deta
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-out-from-account"><a class="link" href="#logging-out-from-account">F.5. Logging out from account</a></h3>
+<h3 id="logging-out-from-account"><a class="link" href="#logging-out-from-account">G.5. Logging out from account</a></h3>
 <div class="paragraph">
 <p>Below are the test case you can perform to test the <code>LogoutCommand</code> for the User Account Management feature.</p>
 </div>
@@ -3888,272 +4038,6 @@ Expected: <code>Student</code> details will be updated accordingly. The new deta
 <p>Prerequisite: No user should be logged in.<br>
 Test case: <code>logout</code><br>
 Expected: Logout attempt will fail. Error details would be shown in the Output Display. Rest of the UI remains unchanged.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="generating-a-schedule"><a class="link" href="#generating-a-schedule">F.6. Generating a schedule</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Generate a schedule using modules in the student&#8217;s staged list</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Prerequisites: Login using a student user account and download the sample modules database.</p>
-</li>
-<li>
-<p>Test case:<br></p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p><code>addModuleS cs2030 cs2040</code></p>
-</li>
-<li>
-<p><code>generate</code><br>
-Expected: Generate fail due to missing prerequisites.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Test case:<br></p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p><code>addModuleS cs1010</code></p>
-</li>
-<li>
-<p><code>generate</code><br>
-Expected: Successful execution of the generate command. Schedule will be shown in the panel on the right
-of the application.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Other failures that might occur:</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Invalid user account<br>
-<code>login</code> using an admin account<br></p>
-</li>
-<li>
-<p>No logged in user<br>
-<code>generate</code> without logging in</p>
-</li>
-<li>
-<p>No modules in staged list<br>
-<code>generate</code> without adding modules to staged list</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="saving-a-user"><a class="link" href="#saving-a-user">F.7. Saving a user</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Saving a user</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Prerequisites: You must be logged in as a User (Admin or Student).</p>
-</li>
-<li>
-<p>Test case: <code>save sp/userdata.xml</code><br>
-Expected: You should see a success message at the bottom and a file should be created/overwritten.
- In addition, the main panel should display your current user information.
- The timestamp in the user tab should also be updated.</p>
-</li>
-<li>
-<p>Test case: <code>save sp/userdata</code> (without extension)<br>
-Expected: No data is saved. Error details shown at the bottom of the application.
-Timestamp in user tab should remain the same.</p>
-</li>
-<li>
-<p>Other incorrect save commands to try: <code>save sp</code>, <code>save sp/.xml.xml</code>, <code>save xx/userdata.xml</code><br>
-Expected: Similar to previous.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="modifying-of-user-data-file"><a class="link" href="#modifying-of-user-data-file">F.8. Modifying of user data file</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Modify of admin data file</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Prerequisites: You must have an admin data file (the master admin is provided).</p>
-</li>
-<li>
-<p>Test case: Open up the admin file and edit the contents in the &lt;name&gt; tag. Now login as the admin using the updated user data file.<br>
-Expected: You should see a success login message at the bottom. In addition, you should see the updated name of the admin account. The timestamp in the user tab should be the time you logged in.</p>
-</li>
-<li>
-<p>Test case: Open up the admin file and edit the contents in the &lt;employmentDate&gt; tag (follow the original format of dd/mm/yyyy). Now login as the admin using the updated user data file.<br>
-Expected: You should see a success login message at the bottom. In addition, you should see the updated employment date data of the admin account. The timestamp in the user tab should be the time you logged in.</p>
-</li>
-<li>
-<p>Test case: Open up the admin file and change the order of tags (e.g. swap the order of name and role). Ensure that there are no extra spaces or empty lines.
-Now login as the admin using the updated user data file.<br>
-Expected: You should be able to login as per normal and see a success login message at the bottom. The timestamp in the user tab should be the time you logged in.</p>
-</li>
-<li>
-<p>Test case: Open up the admin file and duplicate the tags (e.g. add &lt;name&gt;master2&lt;/name&gt; below the existing &lt;name&gt;master&lt;/name&gt; tag). Ensure that there are no extra spaces or empty lines.
-Now login as the admin using the updated user data file.<br>
-   Expected: You should see a success login message at the bottom. In addition, you should see the admin name to be "master2". The timestamp in the user tab should be the time you logged in.
-   You can also duplicate restricted tags(username, role, employmentDate), however the furthest (from the first line) tag will be the one that is read. So you can have invalid values in prior duplicated tags.</p>
-</li>
-<li>
-<p>Test case: Open up the admin file and edit the contents in the &lt;username&gt; tag . Now login as the admin using the updated user data file.<br>
-Expected: You should see an error message at the bottom.</p>
-</li>
-<li>
-<p>Other invalid modification to try: removing the entire tag, modifying contents from role and salary <br>
-Expected: Similar to previous.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Modify of student data file</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Prerequisites: You must have a student data file (you can obtain one by registering an account and adding some modules to staged and taken).</p>
-</li>
-<li>
-<p>Test case: Open up the student file and edit the contents in the &lt;name&gt; tag. Now login as the student using the updated user data file.<br>
-Expected: You should see a success login message at the bottom. In addition, you should see the updated name of the student account. The timestamp in the user tab should be the time you logged in.</p>
-</li>
-<li>
-<p>Test case: Open up the student file and edit the contents in the &lt;enrollmentDate&gt; tag (follow the original format of dd/mm/yyyy). Now login as the student using the updated user data file.<br>
-Expected: You should see a success login message at the bottom. In addition, you should see the updated enrollment date data of the student account. The timestamp in the user tab should be the time you logged in.</p>
-</li>
-<li>
-<p>Test case: Open up the student file and edit the contents in the &lt;major&gt; and &lt;minor&gt; tag (you must follow the original format of [a, b, c], with comma and space in-between). Contraints are that you must have at least one major and can have zero minor. The inputs for major and minor must consist of only unaccented alphabetical letters (e.g. a-zA-Z). Now login as the student using the updated user data file.<br>
-Expected: You should see a success login message at the bottom. In addition, you should see the updated major or minor data of the student account. The timestamp in the user tab should be the time you logged in.</p>
-</li>
-<li>
-<p>Test case: Open up the student file and edit the &lt;lockModules&gt; or &lt;parsedPrereq&gt; tag from &lt;moduleStaged&gt; (e.g. instead of &lt;lockModules&gt;CS2030&lt;/lockModules&gt; it should look like &lt;lock&gt;CS2030&lt;/lock&gt; after editing). Now login as the student using the updated user data file.<br>
-Expected: You should see a success login message at the bottom. The timestamp in the user tab should be the time you logged in. However, that information will not be loaded and may cause generate feature to fail.</p>
-</li>
-<li>
-<p>Test case: Open up the student file and edit any contents in the &lt;moduleTaken&gt; or &lt;moduleStaged&gt; tag (it is recommended to start with &lt;code&gt; so you get a feel of the update). Now login as the student using the updated user data file.<br>
-Expected: You should see a success login message at the bottom. The timestamp in the user tab should be the time you logged in. Now navigate (switch tab/staged or switch tab/taken) staged or taken tab depending on where you change, you should see the updated module code.<br>
-Module information (represented by &lt;code&gt;, &lt;department&gt;, &lt;title&gt;, &lt;description&gt;, &lt;credit&gt;, &lt;isAvailableInSem1&gt;, &lt;isAvailableInSem2&gt;, &lt;isAvailableInSpecialTerm1&gt;, &lt;isAvailableInSpecialTerm2&gt;, &lt;lockedModules&gt;, &lt;parsedPrereq&gt;) are given as it is for testing purpose. If you change the information (module code/prerequisite), the application will generate based on the information in the user data.
-So the generate feature may fail depending on what you changed. You can create unique cases such as taking CS2030 without completing CS1010.
-An example would be to remove CS1010 as a prerequisite for CS2030 in the user data file. Now when log back in and add CS2030 to staged, you will be able to use the generate feature as expected even without having to add CS1010 to staged or taken.</p>
-</li>
-<li>
-<p>Test case: Open up the student file and edit the contents in the &lt;username&gt; tag . Now login as the student using the updated user data file.<br>
-Expected: You should see an error message at the bottom.</p>
-</li>
-<li>
-<p>Other invalid modification to try: removing the entire &lt;code&gt; tag from a module in &lt;modulesStaged&gt; or &lt;modulesTaken&gt;, remove characters from mandatory tags (code, department, title, description in &lt;modulesTaken or &lt;modulesStaged&gt;),  .<br>
-Expected: Similar to previous.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-module"><a class="link" href="#adding-a-module">F.9. Adding a module</a></h3>
-<div class="paragraph">
-<p>Below are some test cases you can perform to test the <code>AddModuleToDatabaseCommand</code> for the database administration feature:</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The below test cases only cater to <code>Admin</code> accounts
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Test case: <code>addModuleDB code/CS2103T department/Computing title/The New Module credit/4 available/1100
-           description/This course is newly offered by the school of computing. Visit the module website for more details
-           prereq/|(|CS1020,CS1020E,CS2020,)(&amp;CS2030,(|CS2040,CS2040C,))</code><br>
-Expected: A new module is created. The <code>Module</code> details as provided in the command should be automatically displayed in
-the database tab. A successful message should be displayed in the Output Display.
-Additionally, the module details is saved in <code>modules.xml</code>.
- Examine <code>modules.xml</code> to determine if the module is indeed created.</p>
-</li>
-<li>
-<p>Prerequisite: A module with module code CS2103T already exists in <code>modules.xml</code><br>
-Test case: <code>addModuleDB code/CS2103T department/Computing title/The New Module credit/4 available/1100
-                        description/This course is newly offered by the school of computing. Visit the module website for more details
-                        prereq/|(|CS1020,CS1020E,CS2020,)(&amp;CS2030,(|CS2040,CS2040C,))</code><br>
-Expected: No new module is created. Error details should be shown in the Output Display. Rest of the UI remains unchanged.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-module-details"><a class="link" href="#editing-module-details">F.10. Editing module details</a></h3>
-<div class="paragraph">
-<p>Below are some test cases you can perform to test the <code>EditModuleCommand</code> for the module database administration feature:</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The below test cases only cater to <code>Admin</code> accounts
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Prerequisite: A module with index 1 already exists in the database tab.<br>
-Test case: <code>editModule 1 code/#CS1010</code><br>
-Expected: module information is not edited. Error details should be shown in the output dsiplay. Rest of the UI remains unchanged.</p>
-</li>
-<li>
-<p>Other incorrect <code>editModule</code> commands to try:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><code>editModule code/CS1010</code></p>
-</li>
-<li>
-<p><code>editModule 1 prereq/&amp;&amp;</code></p>
-</li>
-<li>
-<p><code>editModule 1 prereq/&amp;CS1010</code></p>
-</li>
-<li>
-<p><code>editModule 1 prereq/|CS1010,()</code></p>
-</li>
-</ol>
-</div>
 </li>
 </ol>
 </div>
